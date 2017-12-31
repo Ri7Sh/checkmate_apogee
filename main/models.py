@@ -8,19 +8,33 @@ from django.contrib.auth.models import User
 class UserProfile(models.Model):
 	user = models.OneToOneField(User)
 	score = models.IntegerField(default = 0)
+	mines_left = models.IntegerField(default=20)#
+	question_left = models.IntegerField(default=20)
+	# flag_used = model.IntegerField(default=0)
 
 
 	def __str__(self):
 		return self.teamname
 
-class MinesGame(models.Model):
+class MinesGame(models.Model):#overview
 	user = models.ForeignKey(User)
-	mines_left = models.IntegerField(default=10)#
-
+	
 	def minefield(self):
-		mines = []
-		for x in range(0, 12):
-			row = []
+		mines = [1*21001*100012*1001111110122100001*1001*100001111233211110001**2*11*101123232211212**212*1013*3123*21101**20*21101233210110001**20000000013*2000]
+		return tuple(mines)
+
+
+	def ques(self):
+		quest = []
+		for x in range (0,144):
+			if (x/7!= 0):
+				quest.append('n')
+			else :
+				quest.append('q')
+		return tuple(quest)
+
+	def __str__(self):
+		return
 
 
 

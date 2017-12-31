@@ -31,7 +31,12 @@ def register(request):
 
 @login_required	
 def minesweeper(request):
-	pass
+	if request.user.is_authenticated():
+		user = UserProfile.objects.get(user=request.user)
+		
+	else:
+		return redirect('login')
+			
 @login_required
 def questions(request):
 	pass
