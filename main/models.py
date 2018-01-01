@@ -10,7 +10,7 @@ class UserProfile(models.Model):
 	score = models.IntegerField(default = 0)
 	mines_left = models.IntegerField(default=20)#
 	question_left = models.IntegerField(default=20)
-	field_viewed = models.StringField(default="")
+	field_viewed = models.CharField(default="")
 	# flag_used = model.IntegerField(default=0)
 
 
