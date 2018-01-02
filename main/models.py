@@ -2,18 +2,27 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
+# CustomUser is the extended user model
 # Create your models here.
 
-class UserProfile(models.Model):
-	user = models.OneToOneField(User)
+class puzzlePc(models.Model):
+	idno = models.IntegerField()
+	img = models.ImageField(blank=True)
+
+	def __str__(self):
+		return str(self.img_no)
+
+class UserProfile(AbstractUser):
+	#user = models.OneToOneField(User)
 	score = models.IntegerField(default = 0)
 	mines_left = models.IntegerField(default=20)#
 	question_left = models.IntegerField(default=20)
-	field_viewed = models.CharField(default="")
+	field_viewed = models.CharField(default="hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh", max_length=144)
+	puzzleRetrieved = models.ManyToManyField(puzzlePc)
+
 	# flag_used = model.IntegerField(default=0)
-
-
 	def __str__(self):
 		return self.teamname
 
@@ -40,7 +49,10 @@ class MinesGame(models.Model):#overview
 
 
 class Question(models.Model):
-	pass
+	question_no = models.IntegerField()
+	solution = models.CharField(max_length=50)
+	question = models.CharField(max_length=10000,default="")
+	puzzlePc = models.IntegerField(default=-1)#contains idno of puzzle pc associated or else -1
 
-class Answer(models.Model):
-	pass
+	def __str__(self):
+		return str(self.question_no)
