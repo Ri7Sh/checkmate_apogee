@@ -101,6 +101,7 @@ $(function __intit__(){
 					"url": '/main/reveal/',
 					"csrfmiddlewaretoken":csrf_token,
 					"success": function(data){
+							console.log(data)
 							displayMinesweeper(createGrid(data.field),getCells())
 					}
 
@@ -142,11 +143,11 @@ function displayMinesweeper(grid,cell){
 	var p,q;
 	for(p=0;p<12;p++)
 		for(q=0;q<12;q++) {
-			if(grid[p][q]==1||grid[p][q]==2||grid[p][q]==3||grid[p][q]==4||grid[p][q]==5||grid[p][q]==6){
-				console.log(grid, cell)
+			if(parseInt(grid[p][q]) >= 0 && parseInt(grid[p][q]) <=8){
+				// console.log(grid, cell)
 				displayNumber(cell[p*12+q],grid[p][q]);
 			}
-			else if (grid[p][q]=='b'){
+			else if (grid[p][q]=='9'){
 				var flag=0;
 				var bNo=bombList.length;
 				for (var l=0;l<bNo;l++) {
@@ -228,7 +229,8 @@ function displayNumber(ele, number){
 	ele.setAttribute("data",number.toString());
 	ele.className += " number";
 	var p = document.createElement('p');
-	p.innerText = number;
+	if(number >0)
+		p.innerText = number;
 	ele.appendChild(p);
 }
 

@@ -104,8 +104,8 @@ def reveal1(request):
 	if request.POST:
 		dt= json.loads(request.body.decode('utf-8'))
 		cords= dt['cords']
-		x = int(cords[0])
-		y = int(cords[1])
+		x = int(cords[1])
+		y = int(cords[0])
 
 		reveal(request,x,y,request.user.mines)
 		user= request.user
@@ -115,6 +115,9 @@ def reveal1(request):
 					return JsonResponse({'field':request.user.fieldViewed,'qsObject':qList,'score':request.user.score,'mines':request.user.minesLeft})
 			#frontend needs to check of qlist contains an qs object or not. qlist is a queryset
 		return JsonResponse({'field':request.user.fieldViewed, 'qsObject':'','score':request.user.score,'mines':request.user.minesLeft})
+
+
+
 
 
 
@@ -129,10 +132,19 @@ def reveal(request,x,y,mines):
 				request.user.questDone+=1
 			if(mines[x*12+y] == '0') :
 				# if x-1 in range(11):
-				for i in range (-1,1):
-					for j in range(-1,1):
-						if(i != 0 and j!=0):						
-							reveal(request,x+i,y+j,mines)
+				# for i in range (-1,1):
+				# 	for j in range(-1,1):
+				# 		if(i != 0 and j!=0):						
+				# 			reveal(request,x+i,y+j,mines)
+				reveal(request,x - 1, y - 1, mines)
+				reveal(request,x-1,y,mines)
+				reveal(request,x-1,y+1,mines)
+				reveal(request,x+1,y,mines)
+				reveal(request,x,y-1,mines)
+				reveal(request,x,y+1,mines)
+				reveal(request,x+1,y-1,mines)
+				reveal(request,x+1,y+1,mines)
+
 			elif(mines[x*12+y] == '*'):
 				request.user.score-=10
 				request.user.minesLeft-=1
@@ -148,7 +160,7 @@ def reveal(request,x,y,mines):
 @login_required	
 def user_logout(request):
 	logout(request)
-	return render(request, 'index')
+	return redirect('login')
 
 
 
