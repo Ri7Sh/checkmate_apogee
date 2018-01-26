@@ -199,9 +199,12 @@ def check(request):#to check the answer of puzzle
 
 def checkAnswer(request):
 	answer= request.GET.get('answer')
+	# attempt = request.user.correctAns()
 	qsno=request.user.currentQs
+	request.user.correctAns[qsno] = 1
 	qs=Question.objects.get(questionno=qsno)
 	if qs.solution==answer:
+		request.user.correctAns[qsno] = 2
 		request.user.score+=50
 		request.user.puzzlePc+=1
 		Pc=PuzzlePc.objects.get(id=request.user.puzzlePc)
@@ -209,6 +212,7 @@ def checkAnswer(request):
 		request.user.save()
 		return JsonResponse({'score':request.user.score,'puzzleOb':pc,'status':"correct",'quesDone':request.user.quesDone})
 	else:
+		request.user.save()
 		return JsonResponse({'status':"wrong",'quesDone':request.user.quesDone})
 
 def instructions(request):

@@ -27,7 +27,7 @@ class UserProfile(AbstractUser):
 	currentQs=models.IntegerField(default=-1)
 	questDone = models.IntegerField(default=0)
 	# quesTry = models.CharField(max_length=20,default="00000000000000000000")#0=no trial 3 = 3 trials
-	correctAns = models.CharField(max_length=20,default="00000000000000000000")#0=wrong 1 = correct 2=attempt
+	correctAns = models.CharField(max_length=20,default="00000000000000000000")#0=wrong 2 = correct 1=attempt
 	#flag = models.ManyToManyField(flagUsed)
 	#flagUsed = model.IntegerField(default=0)
 	def __str__(self):
