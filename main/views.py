@@ -176,7 +176,9 @@ def puzzStat(request):
 		dt= json.loads(request.body.decode('utf-8'))
 		for i in range(12):
 			if(dt[i] != 'null'):
-				request.user.Puzz[i]=dt[i]
+				if(request.user.Puzz[i]=='h'):
+					request.user.Puzz[i]=dt[i]
+					
 		request.user.save()		
 
 
@@ -185,44 +187,57 @@ def puzzStat(request):
 def check(request):#to check the answer of puzzle
 	if request.user.quesTry < 20:
 		status = "Solve all questions first"
-		return JsonResponse({'status':status})
+		return JsonResponse({'score':request.user.score,'status':status, 'TrialLeft' : TrialLeft})
 	if request.user.TrialLeft < 1 :
 		status = "No trial left"
-		return JsonResponse({'status':status})
+		return JsonResponse({'score':request.user.score,'status':status, 'TrialLeft' : TrialLeft})
 	# here an object list will be received of size 9(have to check this)
-	count =0
-	truth_value=0
-	data = json.loads(request.body.decode('utf-8'))
-	for dt in data:
-		count+=1
-		if count>9: 
-			break
-		if idno==1 and position ==1:
-			truth_value+=1
-		if idno==2 and position ==2:
-			truth_value+=1
-		if idno==3 and position ==3:
-			truth_value+=1
-		if idno==4 and position ==4:
-			truth_value+=1
-		if idno==1 and position ==5:
-			truth_value+=1
-		if idno==1 and position ==6:
-			truth_value+=1
-		if idno==1 and position ==7:
-			truth_value+=1
-		if idno==1 and position ==8:
-			truth_value+=1
-		if idno==1 and position ==9:
-			truth_value+=1
-	if truth_value==9:
-		state="solved"
-		request.user.score+=25#json reponese - score
+	if request.POST:
+		puzzStat(request)
+		request.user.TrialLeft-=1
+		truth_value = 0
+		for i in range(12):
+			pc = PuzzlePc.objects.get(pos = i)
+			if (request.user.Puzz[i] == pc.idno):
+				truth_value+=1
+		if truth_value==9:
+			state="solved"
+			request.user.score+=25#json reponese - score
 
-	else:
-		state="not solved"
-	request.user.save()	
-	return JsonResponse({'score':request.user.score,'status':state})
+		else:
+
+			state="not solved"
+	
+		request.user.save()	
+		return JsonResponse({'score':request.user.score,'status':state, 'TrialLeft' : TrialLeft})
+	
+
+	# count =0
+	# truth_value=0
+	# data = json.loads(request.body.decode('utf-8'))
+	# for dt in data:
+
+	# 	count+=1
+	# 	if count>9: 
+	# 		break
+	# 	if idno==1 and position ==1:
+	# 		truth_value+=1
+	# 	if idno==2 and position ==2:
+	# 		truth_value+=1
+	# 	if idno==3 and position ==3:
+	# 		truth_value+=1
+	# 	if idno==4 and position ==4:
+	# 		truth_value+=1
+	# 	if idno==1 and position ==5:
+	# 		truth_value+=1
+	# 	if idno==1 and position ==6:
+	# 		truth_value+=1
+	# 	if idno==1 and position ==7:
+	# 		truth_value+=1
+	# 	if idno==1 and position ==8:
+	# 		truth_value+=1
+	# 	if idno==1 and position ==9:
+	# 		truth_value+=1
 	# each object will contain the idno of puzzle pc and where what is its position in the puzzle according to answer given(values will be from 1 to 9)
 
 def checkAnswer(request):
@@ -235,13 +250,19 @@ def checkAnswer(request):
 		request.user.correctAns[qsno] = 2
 		request.user.score+=50
 		request.user.puzzlePc+=1
-		Pc=PuzzlePc.objects.get(id=request.user.puzzlePc)
-		request.user.puzzleRetrieved.add(Pc)
-		request.user.save()
-		return JsonResponse({'score':request.user.score,'puzzleOb':pc,'status':"correct",'quesDone':request.user.quesTry})
-	else:
-		request.user.save()
-		return JsonResponse({'status':"wrong",'quesDone':request.user.quesTry})
+		request.user.Puzz[request.user.puzzlePc] = 'n'
+		#Pc=PuzzlePc.objects.get(id=request.user.puzzlePc)
+		#request.user.puzzleRetrieved.add(Pc)
+	# 	request.user.save()
+	# 	#return JsonResponse({'score':request.user.score,'puzzleOb':pc,'status':"correct",'quesDone':request.user.quesTry})
+	# 	return JsonResponse({'score':request.user.score,'puzzle':request.user.Puzz,'status':"correct",'quesDone':request.user.quesTry})
+
+	# else:
+	# 	request.user.save()
+	# 	return JsonResponse({'status':"wrong",'quesDone':request.user.quesTry})
+	request.user.save()
+	return JsonResponse({'score':request.user.score,'puzzle':request.user.Puzz,'status':"correct",'quesDone':request.user.quesTry})
+
 
 def instructions(request):
 	return HttpResponse("<body><h1>Hello</h1></body>")
