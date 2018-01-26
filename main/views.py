@@ -112,9 +112,9 @@ def reveal1(request):
 		if user.currentQs!= -1:
 				if user.correctAns[user.currentQs]==0:
 					qlist=Question.objects.get(questionno=user.currentQs)
-						return 	JsonResponse({'field':request.user.fieldViewed, 'qsObject':qList, 'score':request.user.score,'mines':request.user.minesLeft})
+					return JsonResponse({'field':request.user.fieldViewed,'qsObject':qList,'score':request.user.score,'mines':request.user.minesLeft})
 			#frontend needs to check of qlist contains an qs object or not. qlist is a queryset
-		return 	JsonResponse({'field':request.user.fieldViewed, 'qsObject':'','score':request.user.score,'mines':request.user.minesLeft})
+		return JsonResponse({'field':request.user.fieldViewed, 'qsObject':'','score':request.user.score,'mines':request.user.minesLeft})
 
 
 
