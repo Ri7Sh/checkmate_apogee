@@ -1,0 +1,282 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{font-size:100%;font:inherit;padding:0;border:0;margin:0;vertical-align:baseline}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}.clear{clear:both}
+.sticky{}.bypostauthor{}.wp-caption{}.wp-caption-text{}.gallery-caption{}.alignright{}.alignleft{}.aligncenter{}
+
+textarea:focus, input:focus{outline: none;}
+*:focus {outline: none;}
+
+body {
+	width: 100%;
+	font-family: 'Inconsolata', monospace;
+	-webkit-font-smoothing: antialiased;
+	line-height: 1.1;
+ 	background-color: #131313;
+}
+
+.wrapper {
+	width: 100vw;
+	height: 100vh;
+	float: left;
+	box-sizing: border-box;
+	position: relative;
+	overflow: hidden;
+}
+
+.title {
+  width: 100%;
+  height: 10vh;
+  display: table;
+  text-align: center;	
+  box-sizing: border-box;
+}
+.title h1 {
+	font-size: 50px;
+	color: #FFFFFF;	
+  display: table-cell; 
+  vertical-align: middle;
+}
+
+.vision {
+	width: 100%;
+	height: 90vh;
+	position: relative;
+	overflow: hidden;
+}
+
+.stage {
+	width: 100%;
+  height: 100%;    
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+	background-image: url("Capture.JPG");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.overlay {
+	width: 100%;
+  height: 100%;
+  position: relative;
+  /*background-image: url(https://i.imgsafe.org/72/7249c53dff.png);*/
+  /*filter: hue(.4);*/
+  /*    background-color: transparent;
+    background-image:       linear-gradient(0deg, transparent 24%, #4CAF50 25%, #4CAF50 26%, transparent 27%, transparent 74%, #4CAF50 75%, #4CAF50 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, #4CAF50 25%, #4CAF50 26%, transparent 27%, transparent 74%, #4CAF50 75%, #4CAF50 76%, transparent 77%, transparent);
+  height:100%;
+  background-size: 25px 25px;*/
+	background-repeat: repeat;
+	background-position: center;
+	    /*filter: brightness(0.7);*/
+    background: #00000066;
+    /*opacity: .6*/
+    pointer-events: none;
+}
+
+.overlay .positionals {
+	width: 25%;
+	margin: 0 auto;
+	position: absolute;
+	bottom: 50px;
+	left: 50px;
+	text-align: left;
+}
+.overlay .positionals p {font-size: 16px;}
+
+.overlay .model {
+	width: 25%;
+	margin: 0 auto;
+	position: absolute;
+	bottom: 50px;
+	right: 50px;
+	text-align: right;
+}
+.overlay .model p {font-size: 16px;}
+
+.overlay .left {
+	width: 40%;
+	position: absolute;
+	top: 50px;
+	left: 50px;
+}
+.overlay .right {
+	width: 40%;
+	position: absolute;
+	top: 50px;
+	right: 50px;
+	text-align: right;
+}
+.overlay p {
+	font-size: 20px;
+	color: #FFFFFF;
+	margin: 0 auto;	
+}
+.overlay .center {
+	width: 50%;
+	margin: 0 auto;
+	position: absolute;
+	bottom: 50px;
+	left: 0;
+	right: 0;
+	text-align: center;
+}
+.overlay .center p {font-size: 60px;}
+.overlay .center p span {opacity: 1;}
+span.letter1 {
+	-webkit-animation: letterone 1s infinite;
+  animation: letterone 1s infinite;
+}
+span.letter2 {
+	-webkit-animation: lettertwo 1s infinite;
+  animation: lettertwo 1s infinite;
+}
+span.letter3 {
+	-webkit-animation: letterthree 1s infinite;
+  animation: letterthree 1s infinite;
+}
+span.letter4 {
+	-webkit-animation: letterfour 1s infinite;
+  animation: letterfour 1s infinite;
+}
+span.letter5 {
+	-webkit-animation: letterfive 1s infinite;
+  animation: letterfive 1s infinite;
+}
+span.letter6 {
+  -webkit-animation: lettersix 0.75s infinite;
+  animation: lettersix 0.75s infinite;
+}
+
+@-webkit-keyframes letterone {80% {opacity: 0;}}
+@keyframes letterone {80% {opacity: 0;}}
+
+@-webkit-keyframes lettertwo {85% {opacity: 0;}}
+@keyframes lettertwo {85% {opacity: 0;}}
+
+@-webkit-keyframes letterthree {90% {opacity: 0;}}
+@keyframes letterthree {90% {opacity: 0;}}
+
+@-webkit-keyframes letterfour {95% {opacity: 0;}}
+@keyframes letterfour {95% {opacity: 0;}}
+
+@-webkit-keyframes letterfive {100% {opacity: 0;}}
+@keyframes letterfive {100% {opacity: 0;}}
+
+@-webkit-keyframes lettersix {100% {opacity: 0;}}
+@keyframes lettersix {100% {opacity: 0;}}
+
+
+p.dimension1,
+p.dimension2,
+p.dimension3,
+p.dimension4,
+p.dimension5 {opacity: 0;}
+
+p.dimension1.show,
+p.dimension2.show,
+p.dimension3.show,
+p.dimension4.show,
+p.dimension5.show {opacity: 1;}
+
+p.dimension5.show {
+	-webkit-animation: fit 1s infinite;
+  animation: fit 1s infinite;
+}
+@-webkit-keyframes fit {100% {opacity: 0;}}
+@keyframes fit {100% {opacity: 0;}}
+
+
+
+
+/* 
+----------
+BELOW 1400
+----------
+*/
+@media screen and (max-width: 1399px) {
+
+  .overlay p {font-size: 30px;}
+  
+}
+
+/* 
+----------
+BELOW 1000
+----------
+*/
+@media screen and (max-width: 999px) {
+  
+  .title h1 {font-size: 40px;}
+  .overlay p {font-size: 20px;}
+  
+}
+
+
+.stage, .bomb{
+	display: flex;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	flex-wrap: wrap;
+}
+
+.row, .bomb-row{
+	flex: 1;
+		display: flex;
+	-webkit-flex-direction: row;
+	    -ms-flex-direction: row;
+	        flex-direction: row;
+	flex-wrap: wrap;	
+	/*border: 1px solid #fff;*/
+}
+.minesweeper_cell, .bomb-row *{
+	flex: 1;
+	
+	background: #3f824e2b;
+	/*filter: blur(1px);*/
+	cursor: url('target.ico'), pointer;
+	
+}
+.minesweeper_cell{
+	border: 1px solid #000;	
+	transition: all .3s linear;
+}
+.minesweeper_cell:hover{
+	filter: brightness(1.7);	
+}
+.bomb-cell{
+	background: #ff000087;
+}
+
+.exploded{
+	background: #ff000087;
+}
+.number{
+
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 30px;
+	color: #fff;
+	background: #1b1b1b80;
+	animation: num_anim .5s linear;
+}
+
+@keyframes num_anim{
+	from{
+		transform: scale(1);
+		
+	}
+	50%{
+		transform: scale(1.5);	
+		
+	}
+	to{
+		transform: scale(1);	
+
+	}
+
+}
+
+

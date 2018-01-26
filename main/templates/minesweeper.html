@@ -1,0 +1,103 @@
+<html>
+<head>
+{% load staticfiles %}
+	
+	<title>Vision</title>
+<!-- Jquery -->
+<link href="{% static 'css/main.css' %}" rel="stylesheet">
+<script src="{% static 'js/jquery.min.js' %}"></script>
+
+
+
+<!-- Font -->
+<!-- <link href="https://fonts.googleapis.com/css?family=Inconsolata:700" rel="stylesheet"> -->
+</head>
+<body>
+	<!-- Wrapper -->
+	<div class="wrapper">
+    
+    <!-- Title -->
+		<div class="title">
+      <h1>CHECKMATE 18<span class="letter6">_</span></h1>
+    </div>
+
+		<!-- Vision -->
+		<div class="vision">
+
+			<!-- Stage -->
+			<div class="stage"></div>
+
+			<!-- Overlay -->
+			<div class="overlay">
+
+				<!-- Positionals -->
+				<div class="positionals">
+					<p>X <span class="positionx"></span></p>
+					<p>Y <span class="positiony"></span></p>
+				</div>
+
+				<!-- Model -->
+				<div class="model">
+					<p>Model T-800</p>
+					<p>Sys Ver 122.9</p>
+          <p>Skynet Cyberdyne Systems</p>
+				</div>
+
+				<!-- Left -->
+				<div class="left">
+
+					<p>SYSTEM BOOT</p>
+					<p>ANALYSIS****</p>
+					<p id="randomnumber1"></p>
+					<p id="randomnumber2"></p>
+					<p id="randomnumber3"></p>
+
+					<br><br><br><br>
+
+					<p>THREAT ASSESSMENT</p>
+					<p>******************</p>
+					<p>TOLERANCE LVL4</p>
+					<p>ENGAGE<span class="letter6">_</span></p>
+
+				</div>
+
+				<!-- Center -->
+				<div class="center">
+					<p>
+						<span class="letter1">M</span><span class="letter2">A</span><span class="letter3">T</span><span class="letter4">C</span><span class="letter5">H</span><span class="letter6">_</span>
+					</p>
+				</div>
+
+				<!-- Right -->
+				<div class="right">
+
+					<p>SCAN MODE <span id="randomscan">438894</span></p>
+					<p>RESET TO ACQUISITION</p>
+					<p>SPEECH GRADE: HUMAN<span class="letter6">_</span></p>
+
+					<br><br><br><br>
+
+					<p>VISUAL SCAN</p>
+					<p>************</p>
+					<p class="dimension1">HGHT 0393</p>
+					<p class="dimension2">WGHT 9882</p>
+					<p class="dimension3">NECK 3422</p>
+					<p class="dimension4">BACK 1112</p>
+					<p class="dimension5">FIT PROBABILITY 93%</p>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+	<script src="{% static 'js/main.js' %}"></script>
+	<script>
+	var str = "{{ field }}";
+		//var str='0bbbbb6789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789';
+		window.str = str;
+		
+	</script>
+	</body>
+</html>
