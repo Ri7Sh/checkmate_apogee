@@ -19,19 +19,22 @@ class UserProfile(AbstractUser):
 	regTime = models.DateTimeField(null=True)
 	score = models.IntegerField(default = 0)
 	minesLeft = models.IntegerField(default=20)#
+	phone = models.CharField(default='0000000000', max_length=10)
 	#question_left = models.IntegerField(default=20)
 	mines = models.CharField(max_length=144,default='192100191000129100111111012210000191001910000111123321111000199291191011232322112129921291013931239211019920921101233210110001992000000001392000')
 	fieldViewed = models.CharField(max_length=144,default="hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
 	puzzleRetrieved = models.ManyToManyField(PuzzlePc)
 	puzzlePc = models.IntegerField(default=-1)
 	currentQs=models.IntegerField(default=-1)
-	questDone = models.IntegerField(default=0)
+	quesTry = models.IntegerField(default=0)
+	TrialLeft = models.IntegerField(default = 3)
+	Puzz = models.CharField(default = "hhhhhhhhhhhh", max_length = 12)
 	# quesTry = models.CharField(max_length=20,default="00000000000000000000")#0=no trial 3 = 3 trials
 	correctAns = models.CharField(max_length=20,default="00000000000000000000")#0=wrong 2 = correct 1=attempt
 	#flag = models.ManyToManyField(flagUsed)
 	#flagUsed = model.IntegerField(default=0)
 	def __str__(self):
-		return self.teamname
+		return self.username
 
 
 

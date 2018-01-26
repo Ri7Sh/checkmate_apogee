@@ -145,7 +145,7 @@ def reveal(request,x,y,mines):
 				reveal(request,x+1,y-1,mines)
 				reveal(request,x+1,y+1,mines)
 
-			elif(mines[x*12+y] == '*'):
+			elif(mines[x*12+y] == '9'):
 				request.user.score-=10
 				request.user.minesLeft-=1
 			request.user.fieldViewed =replacindex(request.user.fieldViewed,x*12+y,request.user.mines[x*12+y])
@@ -170,9 +170,25 @@ def sendPuzzlePcs(request):#this view might be merged later with answer view
 	data = serializers.serialize("json", pieces)
 	return HttpResponse(data,content_type='application/json')
 
+
+def puzzStat(request):
+	if request.POST:
+		dt= json.loads(request.body.decode('utf-8'))
+		for i in range(12):
+			if(dt[i] != 'null'):
+				request.user.Puzz[i]=dt[i]
+		request.user.save()		
+
+
+
 @login_required
 def check(request):#to check the answer of puzzle
-	
+	if request.user.quesTry < 20:
+		status = "Solve all questions first"
+		return JsonResponse({'status':status})
+	if request.user.TrialLeft < 1 :
+		status = "No trial left"
+		return JsonResponse({'status':status})
 	# here an object list will be received of size 9(have to check this)
 	count =0
 	truth_value=0
@@ -222,10 +238,10 @@ def checkAnswer(request):
 		Pc=PuzzlePc.objects.get(id=request.user.puzzlePc)
 		request.user.puzzleRetrieved.add(Pc)
 		request.user.save()
-		return JsonResponse({'score':request.user.score,'puzzleOb':pc,'status':"correct",'quesDone':request.user.quesDone})
+		return JsonResponse({'score':request.user.score,'puzzleOb':pc,'status':"correct",'quesDone':request.user.quesTry})
 	else:
 		request.user.save()
-		return JsonResponse({'status':"wrong",'quesDone':request.user.quesDone})
+		return JsonResponse({'status':"wrong",'quesDone':request.user.quesTry})
 
 def instructions(request):
 	return HttpResponse("<body><h1>Hello</h1></body>")
