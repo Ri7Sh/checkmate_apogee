@@ -82,7 +82,7 @@ def register(request):
 			state="Invalid Email Address"
 			return render(request,'register.html',{'state':state})
 		up.email=data['email']
-		#up.regTime = timezone.now()
+		up.regTime = timezone.now()
 		up.save()
 		return HttpResponseRedirect('/main/login')
 	else:
@@ -94,6 +94,7 @@ def register(request):
 def minesweeper(request):
 	#if(request.user.quesDone>=20):
 	#	return HttpResponseRedirect('puzzle.html')
+
 	return render({'field':request.user.fieldViewed,'score':request.user.score,'mines':request.user.minesLeft})
 
 def replacindex(text,index=0,replacement=''):
@@ -112,7 +113,8 @@ def reveal1(request):
 		if user.currentQs!= -1:
 				if user.correctAns[user.currentQs]==0:
 					qlist=Question.objects.get(questionno=user.currentQs)
-					return JsonResponse({'field':request.user.fieldViewed,'qsObject':qList,'score':request.user.score,'mines':request.user.minesLeft})
+					qs = qlist.question
+					return JsonResponse({'field':request.user.fieldViewed,'qsObject':qs,'score':request.user.score,'mines':request.user.minesLeft})
 			#frontend needs to check of qlist contains an qs object or not. qlist is a queryset
 		return JsonResponse({'field':request.user.fieldViewed, 'qsObject':'','score':request.user.score,'mines':request.user.minesLeft})
 
@@ -125,29 +127,32 @@ def reveal(request,x,y,mines):
 		#mines=request.user.mines
 		if((x>=0) and (x<12) and (y>=0) and (y<12)):
 			qL=Question.objects.filter(row=x,col=y)
-			
-			if qL:
-				qList=Question.objects.get(row=x,col=y)
-				request.user.currentQs=qList.questionno
-				request.user.questDone+=1
-			if(mines[x*12+y] == '0') :
-				# if x-1 in range(11):
-				# for i in range (-1,1):
-				# 	for j in range(-1,1):
-				# 		if(i != 0 and j!=0):						
-				# 			reveal(request,x+i,y+j,mines)
-				reveal(request,x - 1, y - 1, mines)
-				reveal(request,x-1,y,mines)
-				reveal(request,x-1,y+1,mines)
-				reveal(request,x+1,y,mines)
-				reveal(request,x,y-1,mines)
-				reveal(request,x,y+1,mines)
-				reveal(request,x+1,y-1,mines)
-				reveal(request,x+1,y+1,mines)
+			if request.user.fieldViewed[x*12+y] != 'h':
+				return
+			else:	
+				if qL:
+					qList=Question.objects.get(row=x,col=y)
+					request.user.currentQs=qList.questionno
+					request.user.quesTry+=1
+				if(mines[x*12+y] == '0') :
+					# if x-1 in range(11):
+					# for i in range (-1,1):
+					# 	for j in range(-1,1):
+					# 		if(i != 0 and j!=0):						
+					# 			reveal(request,x+i,y+j,mines)
+					request.user.fieldViewed =replacindex(request.user.fieldViewed,x*12+y,request.user.mines[x*12+y])
+					reveal(request,x - 1, y - 1, mines)
+					reveal(request,x-1,y,mines)
+					reveal(request,x-1,y+1,mines)
+					reveal(request,x+1,y,mines)
+					reveal(request,x,y-1,mines)
+					reveal(request,x,y+1,mines)
+					reveal(request,x+1,y-1,mines)
+					reveal(request,x+1,y+1,mines)
 
-			elif(mines[x*12+y] == '9'):
-				request.user.score-=10
-				request.user.minesLeft-=1
+				elif(mines[x*12+y] == '9'):
+					request.user.score-=10
+					request.user.minesLeft-=1
 			request.user.fieldViewed =replacindex(request.user.fieldViewed,x*12+y,request.user.mines[x*12+y])
 			request.user.save()
 		

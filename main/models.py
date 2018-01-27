@@ -4,6 +4,8 @@ from __future__ import unicode_literals
 from django.db import models
 #from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
+from datetime import timedelta, datetime
+from django.utils import timezone
 # CustomUser is the extended user model
 # Create your models here
 
@@ -15,7 +17,7 @@ class PuzzlePc(models.Model):
 
 class UserProfile(AbstractUser):
 	#user = models.OneToOneField(User)
-	regTime = models.DateTimeField(null=True)
+	regTime = models.DateTimeField(default = timezone.now())
 	score = models.IntegerField(default = 0)
 	minesLeft = models.IntegerField(default=20)#
 	phone = models.CharField(default='0000000000', max_length=10)
@@ -32,6 +34,12 @@ class UserProfile(AbstractUser):
 	correctAns = models.CharField(max_length=20,default="00000000000000000000")#0=wrong 2 = correct 1=attempt
 	#flag = models.ManyToManyField(flagUsed)
 	#flagUsed = model.IntegerField(default=0)
+	
+
+	# def timeLeft(self):
+	# 	return timezone.now()-self.regTime
+
+
 	def __str__(self):
 		return self.username
 
