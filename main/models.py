@@ -9,8 +9,7 @@ from django.contrib.auth.models import AbstractUser
 
 class PuzzlePc(models.Model):
 	idno = models.IntegerField()
-	name = models.CharField(max_length=10,default="")
-
+	pos = models.IntegerField()
 	def __str__(self):
 		return str(self.idno)
 
