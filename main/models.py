@@ -10,8 +10,8 @@ from django.utils import timezone
 # Create your models here
 
 class PuzzlePc(models.Model):
-	idno = models.IntegerField()
-	pos = models.IntegerField()
+	idno = models.IntegerField(default=0)
+	pos = models.IntegerField(default=0)
 	def __str__(self):
 		return str(self.idno)
 
