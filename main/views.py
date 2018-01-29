@@ -107,15 +107,16 @@ def reveal1(request):
 		cords= dt['cords']
 		x = int(cords[1])
 		y = int(cords[0])
-
+		#print(request.user.Puzz)
 		reveal(request,x,y,request.user.mines)
 		user= request.user
 		if user.currentQs != -1:
 				
 				if user.correctAns[user.currentQs]=='0':
-					
+					#print(user.correctAns)
 					qlist=Question.objects.get(questionno=user.currentQs)
 					qs = qlist.question
+					print(qlist.solution)
 					return JsonResponse({'field':user.fieldViewed,'qsObject':qs,'q': user.currentQs,'score':user.score,'mines':user.minesLeft})
 			#frontend needs to check of qlist contains an qs object or not. qlist is a queryset
 		return JsonResponse({'field':user.fieldViewed, 'qsObject':'','q': user.currentQs,'score':user.score,'mines':user.minesLeft})
@@ -155,7 +156,9 @@ def reveal(request,x,y,mines):
 				elif(mines[x*12+y] == '9'):
 					request.user.score-=10
 					request.user.minesLeft-=1
-			request.user.fieldViewed =replacindex(request.user.fieldViewed,x*12+y,request.user.mines[x*12+y])
+			#print(request.user.fieldViewed)
+			request.user.fieldViewed = replacindex(request.user.fieldViewed,x*12+y,request.user.mines[x*12+y])
+			#print(request.user.fieldViewed)
 			request.user.save()
 		
 			#frontend needs to check of qlist contains an qs object or not. qlist is a queryset
@@ -180,24 +183,30 @@ def sendPuzzlePcs(request):#this view might be merged later with answer view
 
 def puzzStat(request):
 	if request.POST:
-		dt= json.loads(request.body.decode('utf-8'))
-		for i in range(12):
-			if(dt[i] != 'null'):
-				if(request.user.Puzz[i]=='h'):
-					request.user.Puzz[i]=dt[i]
+		dt= json.loads(request.body.decode('utf-8'))["string"]
+		print(dt)
+		for i in range(0,12):
+			#print(i, dt[i] != 'n', )
+			if(request.user.Puzz[i]!='h'):
+				
+				request.user.Puzz=replacindex(request.user.Puzz,i,dt[i])
 					
-		request.user.save()		
+		request.user.save()
+		return JsonResponse({'status': 'saved'})	
 
-
+def puzzle(request):
+	return JsonResponse({'puzzle':request.user.Puzz})
 
 @login_required
 def check(request):#to check the answer of puzzle
 	if request.user.quesTry < 20:
-		status = "Solve all questions first"
-		return JsonResponse({'score':request.user.score,'status':status, 'TrialLeft' : TrialLeft})
+		status = "submit"
+		message = "Solve all questions first"
+		return JsonResponse({'score':request.user.score,'status':status, 'message':message,'TrialLeft' : request.user.TrialLeft})
 	if request.user.TrialLeft < 1 :
-		status = "No trial left"
-		return JsonResponse({'score':request.user.score,'status':status, 'TrialLeft' : TrialLeft})
+		status = "submit"
+		message= "No trial left"
+		return JsonResponse({'score':request.user.score,'status':status, 'message':message,'TrialLeft' : request.user.TrialLeft})
 	# here an object list will be received of size 9(have to check this)
 	if request.POST:
 		puzzStat(request)
@@ -208,15 +217,17 @@ def check(request):#to check the answer of puzzle
 			if (request.user.Puzz[i] == pc.idno):
 				truth_value+=1
 		if truth_value==9:
-			state="solved"
+			status = "submit"
+			message="solved"
 			request.user.score+=25#json reponese - score
 
 		else:
 
-			state="not solved"
+			status = "submit"
+			message="not solved"
 	
 		request.user.save()	
-		return JsonResponse({'score':request.user.score,'status':state, 'TrialLeft' : TrialLeft})
+		return JsonResponse({'score':request.user.score,'status':state,'message':message, 'TrialLeft' : request.user.TrialLeft})
 	
 
 	# count =0
@@ -248,27 +259,38 @@ def check(request):#to check the answer of puzzle
 	# each object will contain the idno of puzzle pc and where what is its position in the puzzle according to answer given(values will be from 1 to 9)
 
 def checkAnswer(request):
-	answer= request.GET.get('answer')
-	# attempt = request.user.correctAns()
-	qsno=request.user.currentQs
-	request.user.correctAns[qsno] = 1
-	qs=Question.objects.get(questionno=qsno)
-	if qs.solution==answer:
-		request.user.correctAns[qsno] = 2
-		request.user.score+=50
-		request.user.puzzlePc+=1
-		request.user.Puzz[request.user.puzzlePc] = 'n'
-		#Pc=PuzzlePc.objects.get(id=request.user.puzzlePc)
-		#request.user.puzzleRetrieved.add(Pc)
-	# 	request.user.save()
-	# 	#return JsonResponse({'score':request.user.score,'puzzleOb':pc,'status':"correct",'quesDone':request.user.quesTry})
-	# 	return JsonResponse({'score':request.user.score,'puzzle':request.user.Puzz,'status':"correct",'quesDone':request.user.quesTry})
+	if request.method == 'POST':
+		dt = json.loads(request.body.decode('utf-8'))
+		# attempt = request.user.correctAns()
+		answer = dt['answer']
+		qsno=request.user.currentQs
+		request.user.correctAns = replacindex(request.user.correctAns,qsno,'1')
+		qs=Question.objects.get(questionno=qsno)
+		#print(answer)
+		#print("asd")
+		if qs.solution==answer:
+			request.user.correctAns = replacindex(request.user.correctAns,qsno,'2')
+			request.user.score+=50
+			#print("s")
+			request.user.puzzlePc+=1
+			print(request.user.Puzz)
+			request.user.Puzz = replacindex(request.user.Puzz,request.user.puzzlePc,'n')
+			#Pc=PuzzlePc.objects.get(id=request.user.puzzlePc)
+			#request.user.puzzleRetrieved.add(Pc)
+		# 	request.user.save()
+		# 	#return JsonResponse({'score':request.user.score,'puzzleOb':pc,'status':"correct",'quesDone':request.user.quesTry})
+		# 	return JsonResponse({'score':request.user.score,'puzzle':request.user.Puzz,'status':"correct",'quesDone':request.user.quesTry})
+			request.user.save()
+			print(request.user.Puzz)
+			
 
-	# else:
-	# 	request.user.save()
-	# 	return JsonResponse({'status':"wrong",'quesDone':request.user.quesTry})
-	request.user.save()
-	return JsonResponse({'score':request.user.score,'puzzle':request.user.Puzz,'status':"correct",'quesDone':request.user.quesTry})
+			return JsonResponse({'score':request.user.score,'puzzle':request.user.Puzz,'index':request.user.puzzlePc,'status':"correct",'quesDone':request.user.quesTry})
+
+		# else:
+		# 	request.user.save()
+		# 	return JsonResponse({'status':"wrong",'quesDone':request.user.quesTry})
+		request.user.save()
+		return JsonResponse({'score':request.user.score,'puzzle':request.user.Puzz,'index':request.user.puzzlePc,'status':"wrong",'quesDone':request.user.quesTry})
 
 
 def instructions(request):

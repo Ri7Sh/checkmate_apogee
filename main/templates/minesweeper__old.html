@@ -1,14 +1,11 @@
-{% load static%}
 <html>
 <head>
+{% load staticfiles %}
 	
-	<title>Checkmate'18</title>
-
-<link href="{% static '/assets/css/common.css' %}" rel="stylesheet">
-<link href="{% static '/assets/css/main.css' %}" rel="stylesheet">
-<link href="{% static '/assets/css/puzzle.css' %}" rel="stylesheet">
+	<title>Vision</title>
 <!-- Jquery -->
-<script src="{% static '/assets/js/jquery.min.js' %}"></script>
+<link href="{% static 'css/main.css' %}" rel="stylesheet">
+<script src="{% static 'js/jquery.min.js' %}"></script>
 
 
 
@@ -22,7 +19,6 @@
     <!-- Title -->
 		<div class="title">
       <h1>CHECKMATE 18<span class="letter6">_</span></h1>
-      <a onclick="openPuzzle()">SOLVE PUZZLE</a>
     </div>
 
 		<!-- Vision -->
@@ -64,18 +60,7 @@
 					<p>ENGAGE<span class="letter6">_</span></p>
 
 				</div>
-				<!-- center popup -->
-				<div class="tadaa">
-					<nav class="tad_nav">
-						<!-- <li>&#x003C;&#x003E;</li> -->
-						<li class="plus">+</li>
-						<li class="cross">x</li>
-					</nav>
-					
-					<p class="main_text"><span class="the_text"></span><b class="blinking_cursor">_</b></p>
-					<input type="text" id="answer" autofocus="true" placeholder="Your answer">
-					<button id="submit_answer">Submit</button>
-				</div>
+
 				<!-- Center -->
 				<div class="center">
 					<p>
@@ -101,31 +86,16 @@
 					<p class="dimension5">FIT PROBABILITY 93%</p>
 
 				</div>
-				
-			</div>
-			<!-- bottom popup -->
-			<div class="snackbar">
-				
+
 			</div>
 
-			<!--puzzzle popup-->
-			<section id="puzzle">
-				<section  id="board" >
-					<nav>
-						<button id="submit_puzzle" data-url="check/">SUBMIT</button>
-						<button id="save_puzzle" data-url="save/">SAVE AND CLOSE</button>
-					</nav>
-				</section>
-			</section>
 		</div>
 
 	</div>
-	<script src="{% static '/assets/js/templates.js' %}"></script>
-	<script src="{% static '/assets/js/main.js' %}"></script>
-	<script src="{% static '/assets/js/puzzle.js' %}"></script>
+	<script src="{% static 'js/main.js' %}"></script>
 	<script>
-		var str = "{{ field }}";
-		// var str='0bbbbb6789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789';
+	var str = "{{ field }}";
+		//var str='0bbbbb6789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789';
 		window.str = str;
 		
 	</script>

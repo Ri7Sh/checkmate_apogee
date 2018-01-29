@@ -1,3 +1,8 @@
+$('.tadaa').fadeOut();
+$('.snackbar').fadeOut();
+$('#puzzle').fadeOut();
+
+setAnimation();
 // Move GIF with mouse
 var lFollowX = 0;
 var lFollowY = 0;
@@ -25,23 +30,23 @@ function moveBackground() {
 
 }
 
-$(window).on('mousemove click', function(e) {
+// $(window).on('mousemove click', trackMouse);
 
+
+
+function trackMouse(e){
+	
 	var lMouseX = Math.max(-100, Math.min(100, $(window).width() / 2 - e.clientX));
 	var lMouseY = Math.max(-100, Math.min(100, $(window).height() / 2 - e.clientY));
 	lFollowX = (200 * lMouseX) / 100;
-	lFollowY = (80 * lMouseY) / 100;
-
-});
+	lFollowY = (80 * lMouseY) / 100;	
+}
 
 moveBackground();
 
 // Random number generator
-setInterval(function(){
-	ChangeNumber1(); 
-	ChangeNumber2(); 
-	ChangeNumber3(); 
-}, 50);
+var numberAnimation1;
+var numberAnimation2;
 function ChangeNumber1() {
 	var newNumber = Math.floor(Math.random(9) * 1000000);
 	$('#randomnumber1').text(newNumber);
@@ -55,12 +60,32 @@ function ChangeNumber3() {
 	$('#randomnumber3').text(newNumber);
 }
 
-setInterval(function(){
-	ChangeNumber4(); 
-}, 1500);
+
 function ChangeNumber4() {
 	var newNumber = Math.floor(Math.random(9) * 100000);
 	$('#randomscan').text(newNumber);
+}
+
+function setAnimation(){
+	numberAnimation1 = setInterval(function(){
+		ChangeNumber1(); 
+		ChangeNumber2(); 
+		ChangeNumber3(); 
+	}, 50);
+
+	numberAnimation2 = setInterval(function(){
+		ChangeNumber4(); 
+	}, 1500);
+
+	window.addEventListener('mousemove', trackMouse, false);
+	window.addEventListener('click', trackMouse, false);
+}
+
+function clearAnimation(){
+	clearInterval(numberAnimation1);
+	clearInterval(numberAnimation2);
+	window.removeEventListener('mousemove', trackMouse, false);
+	window.removeEventListener('click', trackMouse, false);
 }
 
 // Load in dimensions
@@ -85,13 +110,13 @@ $(function __intit__(){
 			
 			cell.setAttribute('i',i);
 			cell.setAttribute('j',j);
+			console.log(i, j)
 			cell.addEventListener("click", function(e){
 				var obj  = {};
 				obj.cords = [e.target.getAttribute("i"), e.target.getAttribute("j")]
 				var csrf_token = document.cookie.split("=")[1]
 				var data = JSON.stringify(obj);
-				console.log(data)
-				// console.log(obj)
+				console.log(data) 
 				$.ajax({
 					"method": "POST",
 					"data" : data,
@@ -100,15 +125,21 @@ $(function __intit__(){
 					},
 					"url": '/main/reveal/',
 					"csrfmiddlewaretoken":csrf_token,
-					"success": function(data){
-							console.log(data)
-							displayMinesweeper(createGrid(data.field),getCells())
+					success: function(data){
+						console.log("success")
+						console.log(data)
+						displayMinesweeper(createGrid(data.field),getCells())
+						if(data.qsObject != ""){
+							openQuestionDiv(data.qsObject);
+						}
+
 					}
 
 
 				})
-				
+				// displayMinesweeper(grid,cells)
 			});
+			// console.log(cells)
 			cells.push(cell);
 
 		}
@@ -144,22 +175,22 @@ function displayMinesweeper(grid,cell){
 	for(p=0;p<12;p++)
 		for(q=0;q<12;q++) {
 			if(parseInt(grid[p][q]) >= 0 && parseInt(grid[p][q]) <=8){
-				// console.log(grid, cell)
-				displayNumber(cell[p*12+q],grid[p][q]);
-			}
-			else if (grid[p][q]=='9'){
-				var flag=0;
-				var bNo=bombList.length;
-				for (var l=0;l<bNo;l++) {
-					if (bombList[l]==p*12+q)
-						flag=1;
-				}
-				if(flag==0){		
-					explodeAnimate(cell[p*12+q]);
-					bombList.push(p*12+q);
-				}
+		// console.log(grid, cell)
+		displayNumber(cell[p*12+q],grid[p][q]);
+	}
+	else if (grid[p][q]=='9'){
+		var flag=0;
+		var bNo=bombList.length;
+		for (var l=0;l<bNo;l++) {
+			if (bombList[l]==p*12+q)
+				flag=1;
+		}
+		if(flag==0){		
+			explodeAnimate(cell[p*12+q]);
+			bombList.push(p*12+q);
+		}
 
-			}
+	}
     	// console.log(bombList);
     }
 }
@@ -234,5 +265,110 @@ function displayNumber(ele, number){
 	ele.appendChild(p);
 }
 
+var animation_skip= false;
+
+function textAnimation(ele, text){
+	if(text == "")return;
+	var char = text;
+	if(!animation_skip)
+		char = text.slice(0, 1);
+	// console.log(char);
+	var child = document.createTextNode(char);
+	ele.appendChild(child);
+	if(!animation_skip)
+		setTimeout(()=>{
+			textAnimation(ele, text.slice(1));
+		},50)
+}
 
 
+
+
+
+
+function openQuestionDiv(text){
+	$('.tadaa').fadeIn();
+	$('.overlay').css({
+		'pointer-events': 'initial'
+	})
+	document.querySelector(".the_text").innerHTML = "";
+	document.querySelector("#answer").value = "";
+	animation_skip = false;
+	textAnimation(document.querySelector(".the_text"),text)
+
+	clearAnimation();
+}
+
+$('.tadaa .cross').on('click', (e)=>{
+	animation_skip = true;
+	confirmAction(hideQuestionDiv);
+})
+
+function confirmAction(callback){
+	// $('.confirmation_box').fadeIn();
+	openSnackBar("confirmAction");
+
+	$('.confirm span').on('click', (e)=>{
+		closeSnackBar();
+		var ele = e.target;
+		if(ele.getAttribute("data-confirm") == "y"){
+
+			if(callback)callback();
+		}
+	})
+}
+
+
+
+function hideQuestionDiv(){
+	$('.tadaa').fadeOut();
+	$('.overlay').css({
+		'pointer-events': 'none'
+	})
+	setAnimation();
+}
+
+// setTimeout(()=>{
+// 	openQuestionDiv("eee");
+// }, 300)
+
+$('#submit_answer').click(function(e){
+	var ans = $("#answer").val();
+	var data = JSON.stringify({answer: ans});
+	console.log("answer ==> ", data)
+	var csrf_token = document.cookie.split("=")[1];
+	$.ajax({
+		"method": "POST",
+		"data" : data,
+		"url": '/main/answer/',
+		"headers":{
+			"X-CSRFToken": csrf_token
+		},
+		success: submitSuccess
+	})
+})
+
+function submitSuccess(data){
+	console.log(data)
+	openSnackBar("submissionSuccess");
+	hideQuestionDiv();
+	setTimeout(closeSnackBar, 3000);
+	if(data.status == "correct"){
+		openPuzzle(data.puzzle)
+	}
+}
+
+function submitFaliure(data){
+	openSnackBar("submissionFaliure");
+	setTimout(closeSnackBar, 3000);
+}
+
+function openSnackBar(templateName){
+	$('.snackbar').html(templates[templateName].html);
+	$('.snackbar').addClass(templates[templateName].class)
+	$('.snackbar').fadeIn();
+}
+
+function closeSnackBar(){
+	$('.snackbar').fadeOut();	
+}
