@@ -1,8 +1,34 @@
-$('.tadaa').fadeOut();
-$('.snackbar').fadeOut();
-$('#puzzle').fadeOut();
+$('.tadaa').hide();
+$('.snackbar').hide();
+$('#puzzle').hide();
 
 setAnimation();
+
+/*** words into span soup ***/
+function spanSoup(text){
+	var string = "";
+	var span = 1/(text.length + 1);
+	text.split("").forEach((l, i)=>{
+		string += ("<span class=letter"+ (i +1)+" style='transition-delay:"+((i+1)*span)+"s'>"+l+"</span>");
+	})
+	return string;
+}
+
+function setCenterWord(word){
+	$(".center p").html(spanSoup(word));
+}
+
+setCenterWord("SEARCH_")
+
+function wordBlink(el){
+	el.toggleClass("hide");
+	setTimeout(function(){
+		wordBlink(el)
+	}, 1000)
+}
+
+wordBlink($('.center'))
+
 // Move GIF with mouse
 var lFollowX = 0;
 var lFollowY = 0;
@@ -95,6 +121,22 @@ setTimeout(function(){ $('.dimension3').addClass('show') }, 3000);
 setTimeout(function(){ $('.dimension4').addClass('show') }, 4000);
 setTimeout(function(){ $('.dimension5').addClass('show') }, 5000);
 
+
+
+
+
+function getCSRFToken(){
+	var o = {};
+	document.cookie.split("; ").forEach((l,i)=>{
+
+		var [k, v] = l.split("=");
+
+		o[k] = v;
+		
+	})
+	return o["csrftoken"];
+}
+
 var bombList = [];
 var cells = [];
 $(function __intit__(){
@@ -110,13 +152,15 @@ $(function __intit__(){
 			
 			cell.setAttribute('i',i);
 			cell.setAttribute('j',j);
-			console.log(i, j)
+			// console.log(i, j)
 			cell.addEventListener("click", function(e){
 				var obj  = {};
 				obj.cords = [e.target.getAttribute("i"), e.target.getAttribute("j")]
-				var csrf_token = document.cookie.split("=")[1]
+				
+				var csrf_token = getCSRFToken();
+				console.log(document.cookie)
 				var data = JSON.stringify(obj);
-				console.log(data) 
+				console.log(data, csrf_token) 
 				$.ajax({
 					"method": "POST",
 					"data" : data,
@@ -132,6 +176,8 @@ $(function __intit__(){
 						if(data.qsObject != ""){
 							openQuestionDiv(data.qsObject);
 						}
+						updateScore(data.score);
+						updateMines(data.mines);
 
 					}
 
@@ -301,8 +347,15 @@ function openQuestionDiv(text){
 
 $('.tadaa .cross').on('click', (e)=>{
 	animation_skip = true;
-	confirmAction(hideQuestionDiv);
+	confirmAction(function(){
+		hideQuestionDiv();
+		skipAns();
+	});
 })
+
+function skipAns(){
+	submitAns(JSON.stringify({answer:""}), ()=>{})
+}
 
 function confirmAction(callback){
 	// $('.confirmation_box').fadeIn();
@@ -335,8 +388,11 @@ function hideQuestionDiv(){
 $('#submit_answer').click(function(e){
 	var ans = $("#answer").val();
 	var data = JSON.stringify({answer: ans});
-	console.log("answer ==> ", data)
-	var csrf_token = document.cookie.split("=")[1];
+	submitAns(data, submitSuccess);
+})
+
+function submitAns(data, successCallback){
+	var csrf_token = getCSRFToken();
 	$.ajax({
 		"method": "POST",
 		"data" : data,
@@ -344,14 +400,15 @@ $('#submit_answer').click(function(e){
 		"headers":{
 			"X-CSRFToken": csrf_token
 		},
-		success: submitSuccess
+		success: successCallback
 	})
-})
+}
 
 function submitSuccess(data){
-	console.log(data)
+	
 	openSnackBar("submissionSuccess");
 	hideQuestionDiv();
+	updateScore(data.score)
 	setTimeout(closeSnackBar, 3000);
 	if(data.status == "correct"){
 		openPuzzle(data.puzzle)
@@ -371,4 +428,25 @@ function openSnackBar(templateName){
 
 function closeSnackBar(){
 	$('.snackbar').fadeOut();	
+}
+
+
+$('.plus').click(function(e){
+	if($(".enlarged").length == 0){
+		$('.tadaa').addClass("enlarged");
+		$('.plus').text("-")
+	}
+	else{
+		$('.tadaa').removeClass("enlarged");
+		$('.plus').text("+")
+	}
+
+})
+
+function updateScore(i){
+	$('.score').text(i);
+}
+
+function updateMines(i){
+	$('.mines_left').text(i);
 }

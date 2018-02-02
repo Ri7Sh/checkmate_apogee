@@ -131,8 +131,8 @@ body {
 	text-align: center;
 }
 .overlay .center p {font-size: 60px;}
-.overlay .center p span {opacity: 1;}
-span.letter1 {
+/*.overlay .center p span {opacity: 1;}*/
+/*span.letter1 {
 	-webkit-animation: letterone 1s infinite;
   animation: letterone 1s infinite;
 }
@@ -173,7 +173,7 @@ span.letter6 {
 @keyframes letterfive {100% {opacity: 0;}}
 
 @-webkit-keyframes lettersix {100% {opacity: 0;}}
-@keyframes lettersix {100% {opacity: 0;}}
+@keyframes lettersix {100% {opacity: 0;}}*/
 
 
 p.dimension1,
@@ -219,4 +219,17 @@ BELOW 1000
   .title h1 {font-size: 40px;}
   /*.overlay p {font-size: 20px;}*/
   
+}
+.title h1{
+    text-align: left;
+    padding: 0 30px;
+    width: fit-content;
+}
+
+.title nav{
+	color: #fff;
+	display: flex;
+	height: 100%;
+    align-items: center;
+    justify-content: space-around;
 }

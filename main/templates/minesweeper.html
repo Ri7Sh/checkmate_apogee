@@ -22,7 +22,10 @@
     <!-- Title -->
 		<div class="title">
       <h1>CHECKMATE 18<span class="letter6">_</span></h1>
-      <a onclick="openPuzzle()">SOLVE PUZZLE</a>
+      <nav>
+      	<li class="instr">$Instructions</li>
+      	<li>$Score: <span class="score">{{score}}</span></li>
+      </nav>
     </div>
 
 		<!-- Vision -->
@@ -50,13 +53,13 @@
 				<!-- Left -->
 				<div class="left">
 
-					<p>SYSTEM BOOT</p>
+					<!-- <p>SYSTEM BOOT</p>
 					<p>ANALYSIS****</p>
 					<p id="randomnumber1"></p>
 					<p id="randomnumber2"></p>
-					<p id="randomnumber3"></p>
+					<p id="randomnumber3"></p> -->
 
-					<br><br><br><br>
+					<!-- <br><br><br><br> -->
 
 					<p>THREAT ASSESSMENT</p>
 					<p>******************</p>
@@ -73,13 +76,13 @@
 					</nav>
 					
 					<p class="main_text"><span class="the_text"></span><b class="blinking_cursor">_</b></p>
-					<input type="text" id="answer" autofocus="true" placeholder="Your answer">
+					<p id="fancy_dollar">$</p><input type="text" id="answer" autofocus="true" placeholder="Your answer">
 					<button id="submit_answer">Submit</button>
 				</div>
 				<!-- Center -->
 				<div class="center">
 					<p>
-						<span class="letter1">M</span><span class="letter2">A</span><span class="letter3">T</span><span class="letter4">C</span><span class="letter5">H</span><span class="letter6">_</span>
+						
 					</p>
 				</div>
 
@@ -87,8 +90,8 @@
 				<div class="right">
 
 					<p>SCAN MODE <span id="randomscan">438894</span></p>
-					<p>RESET TO ACQUISITION</p>
-					<p>SPEECH GRADE: HUMAN<span class="letter6">_</span></p>
+					<p>MINES LEFT : <span class="mines_left">{{mines}}</span></p>
+					<p>USER NAME: {{user_name}}<span class="letter6">_</span></p>
 
 					<br><br><br><br>
 

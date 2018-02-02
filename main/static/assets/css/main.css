@@ -88,6 +88,7 @@
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
+	transition: all .4s linear;
 }
 
 li{
@@ -172,9 +173,10 @@ li{
 	line-height: 50px;
 	height: 50px;
 	margin-left: calc(50vw - 400px);
-	background: rgba(0,0,0,0.7);
+	background: rgb(0,0,0);
 	color: #fff;
 	padding: 0 10px;
+	z-index: 99999;
 }
 .snackbar p, .snackbar span{
 	display: inline;
@@ -188,4 +190,30 @@ li{
 
 .overlay{
 	pointer-events: none;
+}
+
+.instr{
+	cursor: pointer;
+}
+
+#fancy_dollar{
+	position: absolute;
+	bottom: 20px;
+	left: 10px;
+}
+
+.enlarged{
+	width: 100vw;
+    height: 100%;
+    background: #000;
+    border: none;
+    margin:0;
+}
+
+.center p span{
+	opacity: 1;
+	transition: all .2s linear;
+}
+.hide p span{
+	opacity: 0;
 }

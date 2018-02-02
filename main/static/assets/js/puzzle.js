@@ -623,7 +623,7 @@ function initPuzzle(str){
 		var string = encodeSequence(boardSequence);
 		console.log(string , ' @ ', "/main/" + e.target.getAttribute("data-url"))
 		
-		var csrf_token = document.cookie.split("=")[1];
+		var csrf_token = getCSRFToken();
 		$.ajax({
 			"method": "POST",
 			"data" : JSON.stringify({
