@@ -127,7 +127,7 @@ def reveal1(request):
 
 
 def reveal(request,x,y,mines):
-		#mines=request.user.mines
+		mines=request.user.mines
 		if((x>=0) and (x<12) and (y>=0) and (y<12)):
 			qL=Question.objects.filter(row=x,col=y)
 			if request.user.fieldViewed[x*12+y] != 'h':
