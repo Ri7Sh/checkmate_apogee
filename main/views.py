@@ -33,7 +33,7 @@ def index(request):
 	if not request.user.is_authenticated() :
 		return redirect('register')
 	else :
-		return render(request,'minesweeper.html',{'field':request.user.fieldViewed,'score':request.user.score,'mines':request.user.minesLeft})
+		return render(request,'minesweeper.html',{'user':request.user.username, 'field':request.user.fieldViewed,'score':request.user.score,'mines':request.user.minesLeft})
 
 
 def user_login(request):
@@ -94,8 +94,8 @@ def register(request):
 def minesweeper(request):
 	#if(request.user.quesDone>=20):
 	#	return HttpResponseRedirect('puzzle.html')
-
-	return render({'field':request.user.fieldViewed,'score':request.user.score,'mines':request.user.minesLeft})
+	#print(request.user.User)
+	return render({'user':request.user.username,'field':request.user.fieldViewed,'score':request.user.score,'mines':request.user.minesLeft})
 
 def replacindex(text,index=0,replacement=''):
 	return '%s%s%s'%(text[:index],replacement,text[index+1:])
@@ -107,6 +107,8 @@ def reveal1(request):
 		cords= dt['cords']
 		x = int(cords[1])
 		y = int(cords[0])
+		
+
 		#print(request.user.Puzz)
 		reveal(request,x,y,request.user.mines)
 		user= request.user
@@ -119,7 +121,7 @@ def reveal1(request):
 					print(qlist.solution)
 					return JsonResponse({'field':user.fieldViewed,'qsObject':qs,'q': user.currentQs,'score':user.score,'mines':user.minesLeft})
 			#frontend needs to check of qlist contains an qs object or not. qlist is a queryset
-		return JsonResponse({'field':user.fieldViewed, 'qsObject':'','q': user.currentQs,'score':user.score,'mines':user.minesLeft})
+		return JsonResponse({'user':request.user.username, 'field':user.fieldViewed, 'qsObject':'','q': user.currentQs,'score':user.score,'mines':user.minesLeft})
 
 
 
@@ -192,21 +194,21 @@ def puzzStat(request):
 				request.user.Puzz=replacindex(request.user.Puzz,i,dt[i])
 					
 		request.user.save()
-		return JsonResponse({'status': 'saved'})	
+		return JsonResponse({'user':request.user.username, 'status': 'saved'})	
 
 def puzzle(request):
-	return JsonResponse({'puzzle':request.user.Puzz})
+	return JsonResponse({'user':request.user.username, 'puzzle':request.user.Puzz})
 
 @login_required
 def check(request):#to check the answer of puzzle
 	if request.user.quesTry < 20:
 		status = "submit"
 		message = "Solve all questions first"
-		return JsonResponse({'score':request.user.score,'status':status, 'message':message,'TrialLeft' : request.user.TrialLeft})
+		return JsonResponse({'user':request.user.username, 'score':request.user.score,'status':status, 'message':message,'TrialLeft' : request.user.TrialLeft})
 	if request.user.TrialLeft < 1 :
 		status = "submit"
 		message= "No trial left"
-		return JsonResponse({'score':request.user.score,'status':status, 'message':message,'TrialLeft' : request.user.TrialLeft})
+		return JsonResponse({'user':request.user.username, 'score':request.user.score,'status':status, 'message':message,'TrialLeft' : request.user.TrialLeft})
 	# here an object list will be received of size 9(have to check this)
 	if request.POST:
 		puzzStat(request)
@@ -227,7 +229,7 @@ def check(request):#to check the answer of puzzle
 			message="not solved"
 	
 		request.user.save()	
-		return JsonResponse({'score':request.user.score,'status':state,'message':message, 'TrialLeft' : request.user.TrialLeft})
+		return JsonResponse({'user':request.user.username, 'score':request.user.score,'status':state,'message':message, 'TrialLeft' : request.user.TrialLeft})
 	
 
 	# count =0
@@ -284,13 +286,13 @@ def checkAnswer(request):
 			print(request.user.Puzz)
 			
 
-			return JsonResponse({'score':request.user.score,'puzzle':request.user.Puzz,'index':request.user.puzzlePc,'status':"correct",'quesDone':request.user.quesTry})
+			return JsonResponse({'user':request.user.username, 'score':request.user.score,'puzzle':request.user.Puzz,'index':request.user.puzzlePc,'status':"correct",'quesDone':request.user.quesTry})
 
 		# else:
 		# 	request.user.save()
 		# 	return JsonResponse({'status':"wrong",'quesDone':request.user.quesTry})
 		request.user.save()
-		return JsonResponse({'score':request.user.score,'puzzle':request.user.Puzz,'index':request.user.puzzlePc,'status':"wrong",'quesDone':request.user.quesTry})
+		return JsonResponse({'user':request.user.username, 'score':request.user.score,'puzzle':request.user.Puzz,'index':request.user.puzzlePc,'status':"wrong",'quesDone':request.user.quesTry})
 
 
 def instructions(request):
