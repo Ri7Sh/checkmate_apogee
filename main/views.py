@@ -33,7 +33,7 @@ def index(request):
 	if not request.user.is_authenticated() :
 		return redirect('register')
 	else :
-		return render(request,'minesweeper.html',{'user':request.user.username, 'field':request.user.fieldViewed,'score':request.user.score,'mines':request.user.minesLeft})
+		return render(request,'minesweeper.html',{'user':request.user.username, 'field':request.user.fieldViewed,'score':request.user.score,'mines':request.user.minesLeft,'puzzleGained':(request.user.puzzlePc+1),'quesTried':request.user.quesTry})
 
 
 def user_login(request):
@@ -95,7 +95,7 @@ def minesweeper(request):
 	#if(request.user.quesDone>=20):
 	#	return HttpResponseRedirect('puzzle.html')
 	#print(request.user.User)
-	return render({'user':request.user.username,'field':request.user.fieldViewed,'score':request.user.score,'mines':request.user.minesLeft})
+	return render({'user':request.user.username,'field':request.user.fieldViewed,'score':request.user.score,'mines':request.user.minesLeft,'puzzleGained':(request.user.puzzlePc+1),'quesTried':request.user.quesTry})
 
 def replacindex(text,index=0,replacement=''):
 	return '%s%s%s'%(text[:index],replacement,text[index+1:])
@@ -119,7 +119,7 @@ def reveal1(request):
 					qlist=Question.objects.get(questionno=user.currentQs)
 					qs = qlist.question
 					print(qlist.solution)
-					return JsonResponse({'field':user.fieldViewed,'qsObject':qs,'q': user.currentQs,'score':user.score,'mines':user.minesLeft})
+					return JsonResponse({'user':request.user.username,'field':user.fieldViewed,'qsObject':qs,'q': user.currentQs,'score':user.score,'mines':user.minesLeft})
 			#frontend needs to check of qlist contains an qs object or not. qlist is a queryset
 		return JsonResponse({'user':request.user.username, 'field':user.fieldViewed, 'qsObject':'','q': user.currentQs,'score':user.score,'mines':user.minesLeft})
 
