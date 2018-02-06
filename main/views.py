@@ -29,6 +29,9 @@ User=get_user_model()
 def test(request):
 	return HttpResponse("Working!!!")
 
+def welcome(request):
+	return render(request,'ss.html')
+
 def index(request):
 	if not request.user.is_authenticated() :
 		return redirect('register')
