@@ -580,7 +580,7 @@ function openPuzzle(str=null){
 	else{
 		getString(initPuzzle);
 	}
-	
+	clearAnimation();
 }
 
 function initPuzzle(str){
@@ -683,7 +683,7 @@ function encodeSequence(seq){
 
 function closePuzzle(){
 	$('#puzzle').fadeOut();
-	
+	setAnimation();
 }
 
 

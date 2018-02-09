@@ -97,12 +97,12 @@ body{
 	/*margin: 100px 0 0 0;*/
 	width: 300px;
 }
-#puzzle button{
+/*#puzzle button{
 	padding: 10px;
     border-radius: 6px;
-    /*margin: 30px 10px;*/
-    /*background: #3fad3d;
-    box-shadow: 0 5px 0 #317740;*/
+    margin: 30px 10px;
+    background: #3fad3d;
+    box-shadow: 0 5px 0 #317740;
     border: none;
     color: #fff;
     background: transparent;
@@ -114,7 +114,7 @@ body{
 #puzzle button:active{
 	transform: translateY(3px);
 	box-shadow: 0 2px 0 #317740;
-}
+}*/
 
 #puzzle .number{
 	border: 1px solid #aaa;

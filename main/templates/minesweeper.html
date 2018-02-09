@@ -23,10 +23,10 @@
 		<div class="title">
       <h1>CHECKMATE 18<span class="letter6">_</span></h1>
       <nav>
-      	<li class="instr button">$Instructions</li>
-      	<li class="button" onclick="openPuzzle()">$Open Puzzle</li>
-      	<li class="button" onclick="logout()">$Logout</li>
       	<li class="sink">$Score: <span class="score">{{score}}</span></li>
+      	<li class="instr button">$Instructions</li>
+      	<li class="button" onclick="openPuzzle()">$Puzzle</li>
+      	<li class="button" onclick="logout()">$Logout</li>
       </nav>
     </div>
 
@@ -70,7 +70,7 @@
 
 				</div>
 				<!-- center popup -->
-				<div class="tadaa">
+				<div class="tadaa __hidden__">
 					<nav class="tad_nav">
 						<!-- <li>&#x003C;&#x003E;</li> -->
 						<li class="plus">+</li>
@@ -92,6 +92,7 @@
 				<div class="right">
 
 					<p>SCAN MODE <span id="randomscan">438894</span></p>
+					<!-- <p>PEICES GAINED : <span class="puzzleGained">(index + 1)</span></p> -->
 					<p>MINES LEFT : <span class="mines_left">{{mines}}</span></p>
 					<p>USER NAME: {{user}}<span class="letter6"></span></p>
 					
@@ -109,16 +110,16 @@
 				
 			</div>
 			<!-- bottom popup -->
-			<div class="snackbar">
+			<div class="snackbar __hidden__">
 				
 			</div>
 
 			<!--puzzzle popup-->
-			<section id="puzzle">
+			<section id="puzzle" class="__hidden__">
 				<section  id="board" >
 					<nav>
-						<button id="submit_puzzle" data-url="check/">SUBMIT</button>
-						<button id="save_puzzle" data-url="save/">CLOSE</button>
+						<button id="submit_puzzle" class="button" data-url="check/">SUBMIT</button>
+						<button id="save_puzzle" class="button" data-url="save/">CLOSE</button>
 					</nav>
 				</section>
 			</section>
