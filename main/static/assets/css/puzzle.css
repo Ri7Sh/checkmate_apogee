@@ -47,6 +47,9 @@ body{
 	align-items: center;
 	padding: 50px;
 	justify-content: space-around;
+	position: absolute;
+    top: calc(45vh - 280px);
+    left: calc(50vw - 436px);
 	
 }
 
@@ -94,12 +97,12 @@ body{
 	/*margin: 100px 0 0 0;*/
 	width: 300px;
 }
-#puzzle button{
+/*#puzzle button{
 	padding: 10px;
     border-radius: 6px;
-    /*margin: 30px 10px;*/
-    /*background: #3fad3d;
-    box-shadow: 0 5px 0 #317740;*/
+    margin: 30px 10px;
+    background: #3fad3d;
+    box-shadow: 0 5px 0 #317740;
     border: none;
     color: #fff;
     background: transparent;
@@ -111,7 +114,7 @@ body{
 #puzzle button:active{
 	transform: translateY(3px);
 	box-shadow: 0 2px 0 #317740;
-}
+}*/
 
 #puzzle .number{
 	border: 1px solid #aaa;
@@ -204,10 +207,9 @@ body{
 	border: 1px solid #fff;
 	position: relative;
 	background: rgba(0,0,0,0.7);
-	height: 600px;
-	width: 1000px;
-	margin-top: calc(50vh - 300px);
-	margin-left: calc(50vw - 500px);
+	height: 560px;
+	width: 872px;
+
 }
 
 #puzzle nav{

@@ -2,6 +2,13 @@ $('.tadaa').hide();
 $('.snackbar').hide();
 $('#puzzle').hide();
 
+setTimeout(function(){
+	$('.tadaa').removeClass('__hidden__');
+	$('.snackbar').removeClass('__hidden__')
+	$('#puzzle').removeClass('__hidden__')
+}, 1000)
+
+
 setAnimation();
 
 /*** words into span soup ***/
@@ -406,13 +413,19 @@ function submitAns(data, successCallback){
 
 function submitSuccess(data){
 	
-	openSnackBar("submissionSuccess");
+	
 	hideQuestionDiv();
 	updateScore(data.score)
 	setTimeout(closeSnackBar, 3000);
-	if(data.status == "correct"){
-		openPuzzle(data.puzzle)
+	openSnackBar(data.status);
+	if(data.status == "CP"){
+		console.log(data)
+		setTimeout(()=>{
+			openPuzzle(data.puzzle)
+		}, 500);
 	}
+
+	updatePuzzleGained(data.index + 1)
 }
 
 function submitFaliure(data){
@@ -421,6 +434,7 @@ function submitFaliure(data){
 }
 
 function openSnackBar(templateName){
+	console.log(templateName);
 	$('.snackbar').html(templates[templateName].html);
 	$('.snackbar').addClass(templates[templateName].class)
 	$('.snackbar').fadeIn();
@@ -449,4 +463,12 @@ function updateScore(i){
 
 function updateMines(i){
 	$('.mines_left').text(i);
+}
+
+function updatePuzzleGained(i){
+	$('.puzzleGained').text(i);
+}
+
+function logout(){
+	window.location.href = "/main/logout";
 }

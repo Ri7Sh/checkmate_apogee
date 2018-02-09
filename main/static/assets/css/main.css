@@ -217,3 +217,40 @@ li{
 .hide p span{
 	opacity: 0;
 }
+
+.button{
+	margin: 0 10px;
+	padding: 10px;
+    border: 1px solid #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 0px #aaa;
+    background: #272727;
+    cursor: pointer;
+    transition: all .4s cubic-bezier(0.68, 0.26, 0.4, 0.91);
+    color: #fff;
+}
+
+.button:active{
+	transform: translateY(2px);
+	box-shadow: 0 0px 0px #aaa;
+}
+
+.sink{
+	margin: 0 10px;
+	padding: 10px;
+    border: 1px solid #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 0px #aaa inset;
+    transform: translateY(2px);
+    background: #111;	
+}
+
+
+.__hidden__{
+	display: none;
+}
+
+.title nav li{
+	font-variant: small-caps;
+	font-size: 1.2em;
+}
