@@ -17,7 +17,8 @@ class PuzzlePc(models.Model):
 
 class UserProfile(AbstractUser):
 	#user = models.OneToOneField(User)
-	regTime = models.DateTimeField(default = timezone.now())
+	regTime = models.DateTimeField(default=timezone.now())
+	time = models.FloatField(default=7200.0)
 	score = models.IntegerField(default = 0)
 	minesLeft = models.IntegerField(default=20)#
 	phone = models.CharField(default='0000000000', max_length=10)
@@ -37,13 +38,17 @@ class UserProfile(AbstractUser):
 	
 
 	# def timeLeft(self):
-	# 	return timezone.now()-self.regTime
+	# 	time = 7200 - (timezone.now()-self.regTime).total_seconds()
+	# 	return self.time
+		 	
 
 
 	def __str__(self):
 		return self.username
 
-
+	# def save(self, *args, **kwargs):
+	# 	self.time = 7200 - (timezone.now()-self.regTime).total_seconds()
+	# 	super(UserProfile,self).save(*args, **kwargs)
 
 
 
