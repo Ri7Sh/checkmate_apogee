@@ -23,8 +23,10 @@
 		<div class="title">
       <h1>CHECKMATE 18<span class="letter6">_</span></h1>
       <nav>
-      	<li class="instr">$Instructions</li>
-      	<li>$Score: <span class="score">{{score}}</span></li>
+      	<li class="instr button">$Instructions</li>
+      	<li class="button" onclick="openPuzzle()">$Open Puzzle</li>
+      	<li class="button" onclick="logout()">$Logout</li>
+      	<li class="sink">$Score: <span class="score">{{score}}</span></li>
       </nav>
     </div>
 
@@ -116,7 +118,7 @@
 				<section  id="board" >
 					<nav>
 						<button id="submit_puzzle" data-url="check/">SUBMIT</button>
-						<button id="save_puzzle" data-url="save/">SAVE AND CLOSE</button>
+						<button id="save_puzzle" data-url="save/">CLOSE</button>
 					</nav>
 				</section>
 			</section>

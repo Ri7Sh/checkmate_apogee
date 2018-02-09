@@ -217,3 +217,23 @@ li{
 .hide p span{
 	opacity: 0;
 }
+
+.button{
+	margin: 0 10px;
+	padding: 10px;
+    border: 1px solid #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 0px #aaa;
+    background: #272727;
+    cursor: pointer;
+}
+
+.sink{
+	margin: 0 10px;
+	padding: 10px;
+    border: 1px solid #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 0px #aaa inset;
+    transform: translateY(2px);
+    background: #111;	
+}

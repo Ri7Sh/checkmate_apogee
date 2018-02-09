@@ -227,9 +227,13 @@ BELOW 1000
 }
 
 .title nav{
+
 	color: #fff;
 	display: flex;
 	height: 100%;
+	width: fit-content;
+	padding: 20px;
+	float: right;
     align-items: center;
     justify-content: space-around;
 }

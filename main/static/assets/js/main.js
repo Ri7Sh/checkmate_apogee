@@ -450,3 +450,8 @@ function updateScore(i){
 function updateMines(i){
 	$('.mines_left').text(i);
 }
+
+
+function logout(){
+	window.location.href = "/main/logout";
+}
