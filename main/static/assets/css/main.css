@@ -254,3 +254,17 @@ li{
 	font-variant: small-caps;
 	font-size: 1.2em;
 }
+
+.ex-small{
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+
+.ex-small span{
+	    display: block;
+    line-height: 10px;
+}

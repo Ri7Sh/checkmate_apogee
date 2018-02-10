@@ -1,0 +1,33 @@
+
+1 - Flight
+2 - Light
+3 - Flame
+4 - Lightning
+5 - Earth
+6 - Wind
+7 - Time
+8 - Water
+9 - Teleportation
+10 - Healing
+11 - Ice
+12 - Telekinesis
+
+
+ORDER
+
+Order of peices : 8, 12, 4, 5, 9, 2, 11, 6, 10, 7, 1, 3,
+
+=> [
+8 - Water,
+12 - Telekinesis,
+4 - Lightning,
+5 - Earth,
+9 - Teleportation,
+2 - Light,
+11 - Ice,
+6 - Wind,
+10 - Healing,
+7 - Time,
+1 - Flight,
+3 - Flame,
+]

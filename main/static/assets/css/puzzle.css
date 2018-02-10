@@ -217,3 +217,7 @@ body{
 	top: 30px;
 	right: 30px;
 }
+
+.ex-small{
+	line-height: 25px;
+}

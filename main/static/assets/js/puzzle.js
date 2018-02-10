@@ -68,7 +68,7 @@ Game.prototype.start = function(){
 
 	this.grid.cells.forEach((cell, index)=>{
 		// console.log(text[index]);
-		cell.cell.innerText = text[index];
+		cell.cell.innerHTML = text[index];
 	})
 }
 
@@ -490,7 +490,20 @@ create scene
 
 
 var state;
-var text = ["fire", "air", "water","fire", "air", "water","fire", "air", "water","fire", "air", "water"]
+var text = [
+"Water",
+"<span class='ex-small'><span>Tele</span><span>kinesis</span></span>",
+"<span class='ex-small'><span>Light</span><span>ning</span></span>",
+"Earth",
+"<span class='ex-small'><span>Telepo</span><span>rtation</span></span>",
+"Light",
+"Ice",
+"Wind",
+"Healing",
+"Time",
+"Flight",
+"Flame",
+]
 // var pieces = ['./img/pieces/superman/image_part_005.jpg','./img/pieces/superman/image_part_005.jpg', './img/pieces/superman/image_part_009.jpg', './img/pieces/superman/image_part_001.jpg', './img/pieces/superman/image_part_007.jpg', './img/pieces/superman/image_part_002.jpg', './img/pieces/superman/image_part_004.jpg', './img/pieces/superman/image_part_008.jpg', './img/pieces/superman/image_part_003.jpg', './img/pieces/superman/image_part_006.jpg','./img/pieces/superman/image_part_006.jpg' ]
 
 var board = document.getElementById('board');
