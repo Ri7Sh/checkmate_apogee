@@ -25,7 +25,7 @@
       <h1>CHECKMATE 18<span class="letter6">_</span></h1>
       <nav>
       	<li class="sink">$Score: <span class="score">{{score}}</span></li>
-      	<li class="instr button">$Instructions</li>
+      	<li class="instr button" onclick="openInst()">$Instructions</li>
       	<li class="button" onclick="openPuzzle()">$Puzzle</li>
       	<li class="button" onclick="logout()">$Logout</li>
       </nav>
@@ -46,7 +46,7 @@
 					<p>Y <span class="positiony"></span></p>
 					<p>
 
-<progress value="0" max="10" id="progressBar"></progress>
+<progress value="0" max="7200" id="progressBar"></progress>
 <span id="countdowntimer">0 </span> Seconds
 
 
@@ -150,13 +150,18 @@
 		var timeleft1 = (parseInt("{{ time }}") != NaN )?parseInt("{{ time }}"):0;
 var timeleft2 = timeleft1-1;
 var downloadTimer = setInterval(function(){
-  document.getElementById("progressBar").value = 10 - --timeleft1;
+  document.getElementById("progressBar").value = 7200 - --timeleft1;
+  console.log(document.getElementById("progressBar").value)
   document.getElementById("countdowntimer").textContent = timeleft2--;
   console.log("pok")
   if(timeleft1 <= 0)
     clearInterval(downloadTimer);
 },1000);
+	
 
+	function openInst(){
+		window.location.href = "/main/welcome"
+	}
 
 	</script>
 
