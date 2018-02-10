@@ -12,6 +12,7 @@
 
 
 
+
 <!-- Font -->
 <!-- <link href="https://fonts.googleapis.com/css?family=Inconsolata:700" rel="stylesheet"> -->
 </head>
@@ -43,6 +44,16 @@
 				<div class="positionals">
 					<p>X <span class="positionx"></span></p>
 					<p>Y <span class="positiony"></span></p>
+					<p>
+
+<progress value="0" max="10" id="progressBar"></progress>
+<span id="countdowntimer">0 </span> Seconds
+
+
+
+
+
+					</p>
 				</div>
 
 				<!-- Model -->
@@ -134,6 +145,20 @@
 		// var str='0bbbbb6789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789';
 		window.str = str;
 		
+
+
+		var timeleft1 = (parseInt("{{ time }}") != NaN )?parseInt("{{ time }}"):0;
+var timeleft2 = timeleft1-1;
+var downloadTimer = setInterval(function(){
+  document.getElementById("progressBar").value = 10 - --timeleft1;
+  document.getElementById("countdowntimer").textContent = timeleft2--;
+  console.log("pok")
+  if(timeleft1 <= 0)
+    clearInterval(downloadTimer);
+},1000);
+
+
 	</script>
+
 	</body>
 </html>
