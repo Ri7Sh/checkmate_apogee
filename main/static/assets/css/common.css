@@ -1,10 +1,8 @@
 /***************************************************
 ====================================================
-
 THIS IS A SHARED FILE
 DONT MAKE ANY CHANGES HERE
 ( CHECK ALL .html FILES BEFORE COMMITING ANY )
-
 ====================================================
 ***************************************************/
 
@@ -156,22 +154,16 @@ span.letter6 {
   -webkit-animation: lettersix 0.75s infinite;
   animation: lettersix 0.75s infinite;
 }
-
 @-webkit-keyframes letterone {80% {opacity: 0;}}
 @keyframes letterone {80% {opacity: 0;}}
-
 @-webkit-keyframes lettertwo {85% {opacity: 0;}}
 @keyframes lettertwo {85% {opacity: 0;}}
-
 @-webkit-keyframes letterthree {90% {opacity: 0;}}
 @keyframes letterthree {90% {opacity: 0;}}
-
 @-webkit-keyframes letterfour {95% {opacity: 0;}}
 @keyframes letterfour {95% {opacity: 0;}}
-
 @-webkit-keyframes letterfive {100% {opacity: 0;}}
 @keyframes letterfive {100% {opacity: 0;}}
-
 @-webkit-keyframes lettersix {100% {opacity: 0;}}
 @keyframes lettersix {100% {opacity: 0;}}*/
 

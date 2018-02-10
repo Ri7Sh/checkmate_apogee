@@ -110,7 +110,6 @@ body{
     transition: all 1s linear;
     cursor: pointer;
 }
-
 #puzzle button:active{
 	transform: translateY(3px);
 	box-shadow: 0 2px 0 #317740;
@@ -220,4 +219,5 @@ body{
 
 .ex-small{
 	line-height: 25px;
+
 }
