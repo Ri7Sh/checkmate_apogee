@@ -27,7 +27,7 @@
 </head>
 <body>
 	<div id="wrapper">
-		<video src="{% static '/assets/___.mp4' %}#t=9,16" type="video/mp4" width="100%" height="100%" autoplay muted="true">
+		<video src="{% static '/assets/___.mp4' %}#t=9,16" type="video/mp4" width="100%" height="100%" autoplay muted="true" id="vid1" paused>
 		</video>
 		<div id="dummy">
 		<div id="form">
@@ -140,6 +140,11 @@
 
 <script>
 console.log("{{ state }}")
+// document.getElementById('vid1').addEventListener('loadedmetadata', function() {
+//   this.currentTime = 9;
+//   console.log(document.getElementById('vid1'))
+//   console.log(this.attributes, this.currentTime, Array(this))
+// }, false);
 </script>	
 
 
