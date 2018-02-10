@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 import re
+from random import randint
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, Http404,HttpResponseRedirect, JsonResponse
@@ -42,7 +43,7 @@ def index(request):
 @login_required
 def timer(request):
 	if request.user.is_authenticated():
-		request.user.time =	1050-(timezone.now()-request.user.regTime).total_seconds()
+		request.user.time =	7200-(timezone.now()-request.user.regTime).total_seconds()
 
 		print(request.user.time)
 		request.user.save()
@@ -73,6 +74,7 @@ def user_login(request):
 			if user is not None:
 				if user.is_active:
 					login(request,user)
+					print(request.user.mineno)
 					if(timer(request)<0):
 						state = "Time Over"
 						auth.logout(request)
@@ -83,7 +85,8 @@ def user_login(request):
 				else:
 					state = "Your account is not active, please contact the site admin."
 					return render(request,'login.html', { 'state':state })
-				
+				# print(request.user.mineno)
+				# print(request.user.mines)
 			else:
 				state = "Your username and/or password were incorrect."
 				return render(request,'login.html', {'state':state})
@@ -111,6 +114,14 @@ def register(request):
 			state="Invalid Email Address"
 			return render(request,'register.html',{'state':state})
 		up.email=data['email']
+		up.mineno=randint(0,3)
+		try:
+			randfield=Mines.objects.get(idno=up.mineno)
+		except:
+			pass
+		else:
+			up.mines=randfield.mines
+			up.qslist=randfield.ques
 		up.regTime = timezone.now()
 		up.save()
 		return HttpResponseRedirect('/main/login')
@@ -139,6 +150,9 @@ def reveal1(request):
 		cords= dt['cords']
 		x = int(cords[1])
 		y = int(cords[0])
+		print(request.user.mineno)
+		print(request.user.mines)
+
 		if(timer(request)<0):
 			print("over")
 			return JsonResponse({'user':request.user.username, 'field':user.fieldViewed, 'qsObject':'','q': user.currentQs,'score':user.score,'mines':user.minesLeft,'time':0})
@@ -166,14 +180,26 @@ def reveal1(request):
 def reveal(request,x,y,mines):
 		mines=request.user.mines
 		if((x>=0) and (x<12) and (y>=0) and (y<12)):
-			qL=Question.objects.filter(row=x,col=y)
+			# qL=Question.objects.filter(row=x,col=y)
 			if request.user.fieldViewed[x*12+y] != 'h':
 				return
 			else:	
-				if qL:
-					qList=Question.objects.get(row=x,col=y)
-					request.user.currentQs=qList.questionno
-					request.user.quesTry+=1
+				# if qL:
+				# 	qList=Question.objects.get(row=x,col=y)
+				# 	request.user.currentQs=qList.questionno
+				# 	request.user.quesTry+=1
+				if request.user.qslist[x*12+y]!='0':
+
+
+					try:
+						qList=Question.objects.get(idch=request.user.qslist[x*12+y])
+
+					except:
+						pass
+					else:
+						request.user.currentQs=qList.questionno
+						request.user.quesTry+=1
+
 				if(mines[x*12+y] == '0') :
 					# if x-1 in range(11):
 					# for i in range (-1,1):
