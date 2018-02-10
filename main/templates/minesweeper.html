@@ -12,6 +12,7 @@
 
 
 
+
 <!-- Font -->
 <!-- <link href="https://fonts.googleapis.com/css?family=Inconsolata:700" rel="stylesheet"> -->
 </head>
@@ -23,8 +24,10 @@
 		<div class="title">
       <h1>CHECKMATE 18<span class="letter6">_</span></h1>
       <nav>
-      	<li class="instr">$Instructions</li>
-      	<li>$Score: <span class="score">{{score}}</span></li>
+      	<li class="instr button">$Instructions</li>
+      	<li class="button" onclick="openPuzzle()">$Open Puzzle</li>
+      	<li class="button" onclick="logout()">$Logout</li>
+      	<li class="sink">$Score: <span class="score">{{score}}</span></li>
       </nav>
     </div>
 
@@ -41,6 +44,16 @@
 				<div class="positionals">
 					<p>X <span class="positionx"></span></p>
 					<p>Y <span class="positiony"></span></p>
+					<p>
+
+<progress value="0" max="10" id="progressBar"></progress>
+<span id="countdowntimer">0 </span> Seconds
+
+
+
+
+
+					</p>
 				</div>
 
 				<!-- Model -->
@@ -92,7 +105,7 @@
 					<p>SCAN MODE <span id="randomscan">438894</span></p>
 					<p>MINES LEFT : <span class="mines_left">{{mines}}</span></p>
 					<p>USER NAME: {{user}}<span class="letter6"></span></p>
-
+					
 					<br><br><br><br>
 
 					<p>VISUAL SCAN</p>
@@ -116,7 +129,7 @@
 				<section  id="board" >
 					<nav>
 						<button id="submit_puzzle" data-url="check/">SUBMIT</button>
-						<button id="save_puzzle" data-url="save/">SAVE AND CLOSE</button>
+						<button id="save_puzzle" data-url="save/">CLOSE</button>
 					</nav>
 				</section>
 			</section>
@@ -131,6 +144,20 @@
 		// var str='0bbbbb6789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789';
 		window.str = str;
 		
+
+
+		var timeleft1 = (parseInt("{{ time }}") != NaN )?parseInt("{{ time }}"):0;
+var timeleft2 = timeleft1-1;
+var downloadTimer = setInterval(function(){
+  document.getElementById("progressBar").value = 10 - --timeleft1;
+  document.getElementById("countdowntimer").textContent = timeleft2--;
+  console.log("pok")
+  if(timeleft1 <= 0)
+    clearInterval(downloadTimer);
+},1000);
+
+
 	</script>
+
 	</body>
 </html>
