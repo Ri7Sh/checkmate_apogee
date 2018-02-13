@@ -658,7 +658,8 @@ function initPuzzle(str, tLeft){
 			},
 			success: function(data){
 				console.log(data);
-				openSnackBar(data.message, true);
+				if(data.message)
+					openSnackBar(data.message, true);
 			}
 		})
 		setTimeout(closePuzzle, 1500);

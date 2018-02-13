@@ -1494,7 +1494,6 @@ body {
     z-index: 2;
     cursor: pointer;
     font-size: 2em;
-    pa
    }
   
 
@@ -1530,3 +1529,15 @@ body {
 @media screen and (min-width: 1600px) {
   .zoom-close .scale-d #solar-system {
     margin-left: -120%; } }
+
+
+
+.holographic-text-blue{
+    text-shadow: -4px -2px 5px #ff3939;
+    color: #68e0ef;
+    font-family: 'Azo Sans';
+}
+
+#navbar{
+  font-size: 3em;
+}
