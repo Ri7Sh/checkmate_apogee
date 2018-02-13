@@ -4,30 +4,16 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Iron Man Login 
-	</title>
-
+	<title>Checkmate'18 Register</title>
     <link href="{% static '/assets/css/loggin.css' %}" rel="stylesheet">
     <link href="{% static '/assets/css/normalize.min.css' %}" rel="stylesheet">
-
-	
     <script src="{% static '/assets/js/jquery.min.js' %}"></script>
-
-    
-
     <script src="{% static '/assets/js/prefixfree.min.js' %}"></script>
-
-
 	<script src="{% static '/assets/js/index.js' %}"></script>
-
-
-	
-
-
 </head>
 <body>
 	<div id="wrapper">
-		<video src="{% static '/assets/___.mp4' %}#t=9,16" type="video/mp4" width="100%" height="100%" autoplay muted="true" id="vid1" paused>
+		<video src="{% static '/assets/cut_video1.mp4' %}" type="video/mp4" width="100%" height="100%" autoplay muted="true" id="vid1" paused>
 		</video>
 		<div id="dummy">
 		<div id="form">
@@ -51,6 +37,7 @@
 						<button>Register</button> 
 					</div>
 				</form>
+				<div class="msg"></div>
 				<div class="hexagons">
 					<span>&#x2B22;</span>
 					<span>&#x2B22;</span>
@@ -140,11 +127,18 @@
 
 <script>
 console.log("{{ state }}")
-document.getElementById('vid1').addEventListener('loadedmetadata', function() {
-  this.currentTime = 9;
-  console.log(document.getElementById('vid1'))
-  console.log(this.attributes, this.currentTime, Array(this))
-}, false);
+var msg = "{{ state }}";
+if(msg != "")showMsg();
+else $('.msg').hide(); 
+function showMsg(){
+	$('.msg').text(msg);
+	$('.msg').show();
+}
+// document.getElementById('vid1').addEventListener('loadedmetadata', function() {
+//   this.currentTime = 9;
+//   console.log(document.getElementById('vid1'))
+//   console.log(this.attributes, this.currentTime, Array(this))
+// }, false);
 </script>	
 
 

@@ -2,7 +2,7 @@
 
 window.onload =  function(){
 
-	setTimeout(triggerAnimation, 5100)
+	setTimeout(triggerAnimation, 9200)
 }
 
 function  triggerAnimation(){

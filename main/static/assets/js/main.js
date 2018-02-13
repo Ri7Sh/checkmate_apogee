@@ -3,11 +3,12 @@ var prevGrid = (new Array(12)).fill(new Array(12).fill("9"));
 $('.tadaa').hide();
 $('.snackbar').hide();
 $('#puzzle').hide();
+$('#game-over').hide();
 
 setTimeout(function(){
 	$('.tadaa').removeClass('__hidden__');
 	$('.snackbar').removeClass('__hidden__')
-	$('#puzzle').removeClass('__hidden__')
+	$('#game-over').removeClass('__hidden__')
 }, 1000)
 
 
@@ -50,8 +51,8 @@ function moveBackground() {
 	x += (lFollowX - x) * friction;
 	y += (lFollowY - y) * friction;
 
-	$('.positionx').text(x);
-	$('.positiony').text(y);
+	$('.positionx').text(x.toString().slice(0, 6));
+	$('.positiony').text(y.toString().slice(0, 6));
 
 	translate = 'translate(' + x + 'px, ' + y + 'px) scale(1.2)';
 
@@ -487,5 +488,5 @@ function logout(){
 }
 
 function gameOver(){
-
+	$("#game-over").fadeIn();
 }

@@ -403,3 +403,15 @@ Animation Keyframes
 		transform: rotate(360deg);
 	}
 }
+
+.msg{
+	    color: #fff;
+    line-height: 30px;
+    font-size: 22px;
+    background: #000;
+    width: 300px;
+    margin: 30px auto;
+    border: 5px solid #4ca5a2;
+    border-radius: 6px;
+    padding: 10px;
+}

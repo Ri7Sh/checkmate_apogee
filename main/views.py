@@ -265,6 +265,7 @@ def puzzStat(request):
 def puzzle(request):
 	return JsonResponse({'user':request.user.username, 'puzzle':request.user.Puzz,'time':request.user.time, 'TrialLeft' : request.user.TrialLeft})
 
+
 @login_required
 def check(request):#to check the answer of puzzle
 	if(timer(request)<0):
@@ -274,11 +275,11 @@ def check(request):#to check the answer of puzzle
 
 	if request.user.quesTry < 20:
 		status = "submit"
-		message = "Solve all questions first"
+		message = "puzzleSubmission1"
 		return JsonResponse({'user':request.user.username, 'score':request.user.score,'status':status, 'message':message,'TrialLeft' : request.user.TrialLeft,'time':request.user.time})
 	if request.user.TrialLeft < 1 :
 		status = "submit"
-		message= "No trial left"
+		message= "puzzleSubmission2"
 		return JsonResponse({'user':request.user.username, 'score':request.user.score,'status':status, 'message':message,'TrialLeft' : request.user.TrialLeft,'time':request.user.time})
 	# here an object list will be received of size 9(have to check this)
 	if request.POST:
@@ -291,13 +292,13 @@ def check(request):#to check the answer of puzzle
 				truth_value+=1
 		if truth_value==9:
 			status = "submit"
-			message="solved"
+			message="puzzleSubmission3"
 			request.user.score+=25#json reponese - score
 
 		else:
 
 			status = "submit"
-			message="not solved"
+			message="puzzleSubmission4"
 	
 		request.user.save()	
 		return JsonResponse({'user':request.user.username, 'score':request.user.score,'status':state,'message':message, 'TrialLeft' : request.user.TrialLeft,'time':request.user.time})
