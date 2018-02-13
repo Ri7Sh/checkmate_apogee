@@ -13,7 +13,7 @@
 		z-index: -999;
 	}
 	#wrapper #form{
-		background: #000;
+		background: url(/static/assets/images/2.jpg);
 		position: absolute;
 		top:-50vh;
 		left:-50vw;
@@ -21,6 +21,10 @@
 		height: 100vh;
 		z-index: 10;
 		overflow: hidden;
+		background-size: cover;
+		background-position-x: center;
+		background-position-y: center;
+		
 		/*
 		animation: adjust 1s linear;*/
 		transition: all 1s linear;
