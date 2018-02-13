@@ -44,5 +44,9 @@ var templates={
 	"puzzleSubmission4":{
 		html: "<p>Not correct</p>",
 		class: "wrong"
+	},
+	"puzzleHelp":{
+		html: "<p>Complete the puzzle using the peices. Controls: Click on a peice to grab it. Move mouse to move the peice. Click again to drop</p>"
+		,class: "info"
 	}
 }

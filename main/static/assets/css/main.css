@@ -167,17 +167,18 @@ li{
 
 .snackbar{
 	position: absolute;
-	bottom: 20px;
-	width: 800px;
-	border: 1px solid #fff;
-	line-height: 50px;
-	height: 50px;
-	margin-left: calc(50vw - 400px);
-	background: rgb(0,0,0);
-	color: #fff;
-	padding: 0 10px;
-	z-index: 99999;
-	border-radius: 6px;
+    bottom: 20px;
+    width: 800px;
+    border: 1px solid #fff;
+    /* line-height: 50px; */
+    /* height: 50px; */
+    /* padding: 10px; */
+    margin-left: calc(50vw - 400px);
+    background: rgb(0,0,0);
+    color: #fff;
+    padding: 20px 10px;
+    z-index: 99999;
+    border-radius: 6px;
 }
 .snackbar p, .snackbar span{
 	display: inline;
@@ -327,4 +328,17 @@ li{
 	    -ms-flex-direction: row;
 	        flex-direction: row;
 	margin: 0px 5px;
+}
+
+.helpPuzzle{
+	color: #fff;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    border-radius: 50%;
+    border: 1px solid #fff;
 }

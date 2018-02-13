@@ -9,6 +9,7 @@ function  triggerAnimation(){
 	var dummy = document.querySelector("#dummy");
 	var dia = window.innerWidth;
 	var h = window.innerHeight;
+	
 	var t = (dia - h)/2;
 	dummy.style.top = "-" + t + "px";
 	dummy.style.left = "0vw";

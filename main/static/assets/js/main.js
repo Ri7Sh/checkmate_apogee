@@ -490,3 +490,7 @@ function logout(){
 function gameOver(){
 	$("#game-over").fadeIn();
 }
+
+$(".helpPuzzle").click(()=>{
+	openSnackBar("puzzleHelp", true);
+})
