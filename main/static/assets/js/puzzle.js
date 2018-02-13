@@ -582,21 +582,31 @@ Start ^_^ (yay!)
 ***************/
 
 
-function openPuzzle(str=null){
+function openPuzzle(str=null, trialsLeft=null){
 	// console.log($(".piece"))
 	$(".piece").remove();
 	$('.highlighted').removeClass('highlighted');
 	$('#puzzle').fadeIn();
 	
-	if(str)
-		initPuzzle(str);
+	if(str && trialsLeft)
+		initPuzzle(str, trialsLeft);
 	else{
 		getString(initPuzzle);
 	}
 	clearAnimation();
 }
 
-function initPuzzle(str){
+function initPuzzle(str, tLeft){
+	console.log(str, tLeft)
+	$('.dots').empty()
+	var dots = (new Array(tLeft)).fill(0).map(e=>{	
+		console.log(e)
+		var dot = document.createElement('div');
+		dot.className = "dot";
+		
+		$('.dots').append(dot);
+		return dot;
+	})
 	var peiceNo = 0;
 	var scene = document.createDocumentFragment();
 	str.split("").forEach((el,index)=>{
@@ -648,6 +658,7 @@ function initPuzzle(str){
 			},
 			success: function(data){
 				console.log(data);
+				openSnackBar(data.message, true);
 			}
 		})
 		setTimeout(closePuzzle, 1500);
@@ -707,7 +718,7 @@ function getString(callback){
 		"url": '/main/puzzle/',
 		success: function(data){
 			console.log("puzzle data =>", data)
-			callback(data.puzzle);
+			callback(data.puzzle, data.TrialLeft);
 		}
 	})
 }

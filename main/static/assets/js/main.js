@@ -1,3 +1,5 @@
+var prevGrid = (new Array(12)).fill(new Array(12).fill("9"));
+
 $('.tadaa').hide();
 $('.snackbar').hide();
 $('#puzzle').hide();
@@ -225,27 +227,32 @@ function createGrid(str, old_str=""){
 
 function displayMinesweeper(grid,cell){
 	var p,q;
-	for(p=0;p<12;p++)
+
+	for(p=0;p<12;p++){
 		for(q=0;q<12;q++) {
 			if(parseInt(grid[p][q]) >= 0 && parseInt(grid[p][q]) <=8){
-		// console.log(grid, cell)
-		displayNumber(cell[p*12+q],grid[p][q]);
-	}
-	else if (grid[p][q]=='9'){
-		var flag=0;
-		var bNo=bombList.length;
-		for (var l=0;l<bNo;l++) {
-			if (bombList[l]==p*12+q)
-				flag=1;
-		}
-		if(flag==0){		
-			explodeAnimate(cell[p*12+q]);
-			bombList.push(p*12+q);
-		}
+				displayNumber(cell[p*12+q],grid[p][q]);
+			}else if (grid[p][q]=='9'){
+				var flag=0;
+				var bNo=bombList.length;
+				for (var l=0;l<bNo;l++) {
+					if (bombList[l]==p*12+q)
+						flag=1;
+				}
+				if(flag==0){
+					if(prevGrid[p][q] != "9"){	
+						explodeAnimate(cell[p*12+q]);
+						openSnackBar("bomb", true);
+					}else{
+						exploded(cell[p*12 + q]);
+					}
+					bombList.push(p*12+q);
+				}
 
-	}
-    	// console.log(bombList);
+			}
+    	}
     }
+    prevGrid = grid;
 }
 
 
@@ -421,7 +428,7 @@ function submitSuccess(data){
 	if(data.status == "CP"){
 		console.log(data)
 		setTimeout(()=>{
-			openPuzzle(data.puzzle)
+			openPuzzle(data.puzzle, data.TrialsLeft)
 		}, 500);
 	}
 
@@ -433,11 +440,17 @@ function submitFaliure(data){
 	setTimout(closeSnackBar, 3000);
 }
 
-function openSnackBar(templateName){
+function openSnackBar(templateName, autoFade=false){
 	console.log(templateName);
 	$('.snackbar').html(templates[templateName].html);
 	$('.snackbar').addClass(templates[templateName].class)
 	$('.snackbar').fadeIn();
+
+	if(autoFade){
+		setTimeout(()=>{
+			closeSnackBar();
+		}, 3000)
+	}
 }
 
 function closeSnackBar(){
@@ -471,4 +484,8 @@ function updatePuzzleGained(i){
 
 function logout(){
 	window.location.href = "/main/logout";
+}
+
+function gameOver(){
+
 }

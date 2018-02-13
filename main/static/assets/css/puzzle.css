@@ -72,7 +72,7 @@ body{
 
 #puzzle .piece{
 	position: absolute;
-	transition: all .02s linear;
+	transition: border .02s linear;
 	cursor:pointer;
 	background: #fff;
 	z-index: 4;
