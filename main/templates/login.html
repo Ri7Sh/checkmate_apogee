@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Iron Man Login 
+	<title>Checkmate'18 Login 
 	</title>
 
     <link href="{% static '/assets/css/logggin.css' %}" rel="stylesheet">
@@ -49,6 +49,7 @@
 						<button>Log in</button> 
 					</div>
 				</form>
+				<div class="msg"></div>
 				<div class="hexagons">
 					<span>&#x2B22;</span>
 					<span>&#x2B22;</span>
@@ -138,7 +139,15 @@
 
 
 <script>
-console.log("{{ state }}")
+console.log("{{ state }}");
+triggerAnimation();
+var msg = "{{ state }}";
+if(msg != "")showMsg();
+else $('.msg').hide(); 
+function showMsg(){
+	$('.msg').text(msg);
+	$('.msg').show();
+}
 </script>
 
 </body>

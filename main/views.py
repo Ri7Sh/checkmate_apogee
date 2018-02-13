@@ -261,10 +261,11 @@ def puzzStat(request):
 				request.user.Puzz=replacindex(request.user.Puzz,i,dt[i])
 					
 		request.user.save()
-		return JsonResponse({'user':request.user.username, 'status': 'saved','time':request.user.time})	
+		return JsonResponse({'user':request.user.username, 'status': 'saved','time':request.user.time, 'TrialLeft' : request.user.TrialLeft})	
 
 def puzzle(request):
-	return JsonResponse({'user':request.user.username, 'puzzle':request.user.Puzz,'time':request.user.time,'TrialLeft' : request.user.TrialLeft })
+	return JsonResponse({'user':request.user.username, 'puzzle':request.user.Puzz,'time':request.user.time, 'TrialLeft' : request.user.TrialLeft})
+
 
 @login_required
 def check(request):#to check the answer of puzzle

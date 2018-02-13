@@ -4,32 +4,32 @@
 	
 	<title>Checkmate'18</title>
 
-<link href="{% static '/assets/css/common.css' %}" rel="stylesheet">
-<link href="{% static '/assets/css/main.css' %}" rel="stylesheet">
-<link href="{% static '/assets/css/puzzle.css' %}" rel="stylesheet">
-<!-- Jquery -->
-<script src="{% static '/assets/js/jquery.min.js' %}"></script>
+	<link href="{% static '/assets/css/common.css' %}" rel="stylesheet">
+	<link href="{% static '/assets/css/main.css' %}" rel="stylesheet">
+	<link href="{% static '/assets/css/puzzle.css' %}" rel="stylesheet">
+	<!-- Jquery -->
+	<script src="{% static '/assets/js/jquery.min.js' %}"></script>
 
 
 
 
-<!-- Font -->
-<!-- <link href="https://fonts.googleapis.com/css?family=Inconsolata:700" rel="stylesheet"> -->
+	<!-- Font -->
+	<!-- <link href="https://fonts.googleapis.com/css?family=Inconsolata:700" rel="stylesheet"> -->
 </head>
 <body>
 	<!-- Wrapper -->
 	<div class="wrapper">
-    
-    <!-- Title -->
+
+		<!-- Title -->
 		<div class="title">
-      <h1>CHECKMATE 18<span class="letter6">_</span></h1>
-      <nav>
-      	<li class="sink">$Score: <span class="score">{{score}}</span></li>
-      	<li class="instr button" onclick="openInst()">$Instructions</li>
-      	<li class="button" onclick="openPuzzle()">$Puzzle</li>
-      	<li class="button" onclick="logout()">$Logout</li>
-      </nav>
-    </div>
+			<h1>CHECKMATE 18<span class="letter6">_</span></h1>
+			<nav>
+				<li class="sink">$Score: <span class="score">{{score}}</span></li>
+				<li class="instr button" onclick="openInst()">$Instructions</li>
+				<li class="button" onclick="openPuzzle()">$Puzzle</li>
+				<li class="button" onclick="logout()">$Logout</li>
+			</nav>
+		</div>
 
 		<!-- Vision -->
 		<div class="vision">
@@ -46,8 +46,8 @@
 					<p>Y <span class="positiony"></span></p>
 					<p>
 
-<progress value="0" max="7200" id="progressBar"></progress>
-<span id="countdowntimer">0 </span> Seconds
+						<progress value="0" max="7200" id="progressBar"></progress>
+						<span id="countdowntimer">0 </span> Seconds
 
 
 
@@ -60,7 +60,7 @@
 				<div class="model">
 					<p>Model T-800</p>
 					<p>Sys Ver 122.9</p>
-          <p>Skynet Cyberdyne Systems</p>
+					<p>Skynet Cyberdyne Systems</p>
 				</div>
 
 				<!-- Left -->
@@ -109,13 +109,13 @@
 					
 					<br><br><br><br>
 
-					<p>VISUAL SCAN</p>
+					<!-- <p>VISUAL SCAN</p>
 					<p>************</p>
 					<p class="dimension1">HGHT 0393</p>
 					<p class="dimension2">WGHT 9882</p>
 					<p class="dimension3">NECK 3422</p>
 					<p class="dimension4">BACK 1112</p>
-					<p class="dimension5">FIT PROBABILITY 93%</p>
+					<p class="dimension5">FIT PROBABILITY 93%</p> -->
 
 				</div>
 				
@@ -128,11 +128,20 @@
 			<!--puzzzle popup-->
 			<section id="puzzle" class="__hidden__">
 				<section  id="board" >
+					<div class="trials">
+						<p>Trials left: <span class="dots"></span></p>
+
+					</div>
+					<div class="helpPuzzle">?</div>
 					<nav>
+
 						<button id="submit_puzzle" class="button" data-url="check/">SUBMIT</button>
 						<button id="save_puzzle" class="button" data-url="save/">CLOSE</button>
 					</nav>
 				</section>
+			</section>
+			<section id="game-over" class="__hidden__">
+				<p>GAME OVER</p>
 			</section>
 		</div>
 
@@ -148,22 +157,22 @@
 
 
 		var timeleft1 = (parseInt("{{ time }}") != NaN )?parseInt("{{ time }}"):0;
-var timeleft2 = timeleft1-1;
-var downloadTimer = setInterval(function(){
-  document.getElementById("progressBar").value = 7200 - --timeleft1;
-  console.log(document.getElementById("progressBar").value)
-  document.getElementById("countdowntimer").textContent = timeleft2--;
-  console.log("pok")
-  if(timeleft1 <= 0)
-    clearInterval(downloadTimer);
-},1000);
-	
+		var timeleft2 = timeleft1-1;
+		var downloadTimer = setInterval(function(){
+			document.getElementById("progressBar").value = 7200 - --timeleft1;
+			document.getElementById("countdowntimer").textContent = timeleft2--;
+			if(timeleft1 <= 0){
+				clearInterval(downloadTimer);
+				gameOver();
+			}
+		},1000);
 
-	function openInst(){
-		window.location.href = "/main/welcome"
-	}
+
+		function openInst(){
+			window.location.href = "/main/welcome"
+		}
 
 	</script>
 
-	</body>
+</body>
 </html>

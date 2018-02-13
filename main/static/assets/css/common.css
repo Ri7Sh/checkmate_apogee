@@ -17,7 +17,7 @@ textarea:focus, input:focus{outline: none;}
 
 body {
 	width: 100%;
-	font-family: 'Inconsolata', monospace;
+	font: 16px/24px 'Inconsolata', monospace;
 	-webkit-font-smoothing: antialiased;
 	line-height: 1.1;
  	background-color: #131313;
@@ -128,7 +128,7 @@ body {
 	right: 0;
 	text-align: center;
 }
-.overlay .center p {font-size: 60px;}
+.overlay .center p {font-size: 3em;}
 /*.overlay .center p span {opacity: 1;}*/
 /*span.letter1 {
 	-webkit-animation: letterone 1s infinite;
