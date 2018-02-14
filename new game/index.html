@@ -1,28 +1,67 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
+<head><meta charset="utf-8">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/phaser/2.0.3/phaser.min.js"></script>
+<style>
+
+div#game{
+  margin-left: 25%;
+  margin-top: 2%;
+  position: relative;
+  z-index: 1;
+}
+div#myMessage{
+  display: none;
+  width: 100%;
+  height: 600px;
+  background-color: black;
+  position: absolute;
+  z-index: 3;
+  top : 23px;
+  color: white;
+}
+div#myOMessage{
+  display: none;
+  width: 100%;
+  height: 600px;
+  background-color: black;
+  position: absolute;
+  z-index: 3;
+  top : 23px;
+  color: white;
+}
+
+</style>
+</head>
 <body>
-  <div id="game" style="overflow: hidden;"></div>
+
+
 <script>
   /* 
    A GAME MECHANIC EXPLORER DEMO
    http://gamemechanicexplorer.com/#thrust-4
    */
-
+// above img19,  
   var GameState = function(game) {
   };
 
   // Load images and sounds
   GameState.prototype.preload = function() {
       this.game.load.spritesheet('ship', 'ship.png', 32, 32);
-      this.game.load.image('ground', 'img1.jpg');
+      this.game.load.image('ground', 'img50.jpg');
+      this.game.load.image('above', 'img53.jpg');
       this.game.load.spritesheet('explosion', 'explosion.png', 128, 128);
-  };
 
+      //this.game.load.image("background", "img1.jpg"
+  };
+var zax = 0;
+var cax = 0;
   // Setup the example
   GameState.prototype.create = function() {
       // Set stage background color
-      this.game.stage.backgroundColor = 0x333333;
+      
+      //this.game.stage.backgroundColor = 0x000000;
+      this.game.add.image(0,0,'above').scale.setTo(0.5,0.5)
+      //0xe3b9a0;
 
       // Define motion constants
       this.ROTATION_SPEED = 180; // degrees/second
@@ -31,8 +70,9 @@
       this.DRAG = 0; // pixels/second
       this.GRAVITY = 50; // pixels/second/second
 
+
       // Add the ship to the stage
-      this.ship = this.game.add.sprite(0, 0, 'ship');
+      this.ship = this.game.add.sprite(0, 2, 'ship');
       this.ship.anchor.setTo(0.5, 0.5);
       this.ship.angle = -90; // Point the ship up
 
@@ -47,6 +87,7 @@
 
       // Choose a random starting angle and velocity for the ship
       this.resetShip();
+      
 
       // Turn on gravity
       game.physics.arcade.gravity.y = this.GRAVITY;
@@ -56,9 +97,9 @@
 
       // Create some ground for the ship to land on
       this.ground = this.game.add.group();
-      for(var x = 0; x < this.game.width; x += 32) {
+      for(var x = 0; x < this.game.width; x += 602) {
           // Add the ground blocks, enable physics on each, make them immovable
-          var groundBlock = this.game.add.sprite(x, this.game.height - 52, 'ground');
+          var groundBlock = this.game.add.sprite(x, this.game.height - 102, 'ground');
           this.game.physics.enable(groundBlock, Phaser.Physics.ARCADE);
           groundBlock.body.immovable = true;
           groundBlock.body.allowGravity = false;
@@ -67,7 +108,7 @@
 
       // Create a group for explosions
       this.explosionGroup = this.game.add.group();
-
+      
       // Capture certain keys to prevent their default actions in the browser.
       // This is only necessary because this is an HTML5 game. Games on other
       // platforms may not need code like this.
@@ -102,7 +143,7 @@
           // animation is complete
           var animation = explosion.animations.add('boom', [0,1,2,3], 60, false);
           animation.killOnComplete = true;
-
+          //
           // Add the explosion sprite to the group
           this.explosionGroup.add(explosion);
       }
@@ -111,6 +152,7 @@
       // You can also define a onRevived event handler in your explosion objects
       // to do stuff when they are revived.
       explosion.revive();
+
       // Move the explosion to the given coordinates
       explosion.x = x;
       explosion.y = y;
@@ -124,8 +166,15 @@
       // Return the explosion itself in case we want to do anything else with it
       return explosion;
   };
+  
+  
 
   GameState.prototype.resetShip = function() {
+      zax = zax +1;
+      console.log(zax);
+      if (zax  == 2){
+        document.getElementById("myMessage").style.display = "block";
+      }
       // Move the ship back to the top of the stage
       this.ship.x = 32;
       this.ship.y = 32;
@@ -169,9 +218,13 @@
               // Blow it up and start the game over.
               this.getExplosion(this.ship.x, this.ship.y);
               this.resetShip();
+              
           } else {
               // We've landed!
               // Stop rotating and moving and aim the ship up.
+              cax = 1;
+              document.getElementById("myOMessage").style.display = "block";
+
               this.ship.body.angularVelocity = 0;
               this.ship.body.velocity.setTo(0, 0);
               this.ship.angle = -90;
@@ -196,9 +249,23 @@
       }
   };
 
-  var game = new Phaser.Game(960, 500, Phaser.AUTO, 'game');
+  var game = new Phaser.Game(600, 500, Phaser.AUTO, 'game');
   game.state.add('game', GameState, true);
 
   window.focus();
+
+
+
+
+
+// main.jsvar game = new Phaser.Game(1000, 600, Phaser.CANVAS, 'game_div');
+//var main_state = {    preload: function() 
+      //{       game.load.image("background", "http://gametest.mobi/phaser095/assets/pics/aya_touhou_teng_soldier.png");            },    create: function() {       game.add.tileSprite(0, 0, 1000, 600, 'background');    },    update: function() {    }};game.state.add('main', main_state);  game.state.start('main');
+
 </script>
 
+  <div id="game" style="overflow: hidden;"></div>
+  <div id="myMessage">You lost</div>
+  <div id="myOMessage">You won</div>
+</BODY>
+</html>
