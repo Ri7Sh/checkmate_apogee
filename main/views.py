@@ -233,7 +233,8 @@ def reveal(request,x,y,mines):
 @login_required	
 def user_logout(request):
 	logout(request)
-	return render(request,'login.html')
+	# return render(request,'login.html')
+	return redirect('/main/login/')
 
 
 
