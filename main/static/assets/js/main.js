@@ -1,13 +1,15 @@
 var prevGrid = (new Array(12)).fill(new Array(12).fill("9"));
+var newPeice = null;
+
 
 $('.tadaa').hide();
-$('.snackbar').hide();
+$('#snackbar').hide();
 $('#puzzle').hide();
 $('#game-over').hide();
 
 setTimeout(function(){
 	$('.tadaa').removeClass('__hidden__');
-	$('.snackbar').removeClass('__hidden__')
+	$('#snackbar').removeClass('__hidden__')
 	$('#game-over').removeClass('__hidden__')
 }, 1000)
 
@@ -429,6 +431,7 @@ function submitSuccess(data){
 	if(data.status == "CP"){
 		console.log(data)
 		setTimeout(()=>{
+			newPeice = data.index;
 			openPuzzle(data.puzzle, data.TrialsLeft)
 		}, 500);
 	}
@@ -443,9 +446,11 @@ function submitFaliure(data){
 
 function openSnackBar(templateName, autoFade=false){
 	console.log(templateName);
-	$('.snackbar').html(templates[templateName].html);
-	$('.snackbar').addClass(templates[templateName].class)
-	$('.snackbar').fadeIn();
+	console.log($('#snackbar'), $('#snackbar')[0] ,$('#snackbar')[0].className)
+	$('#snackbar').html(templates[templateName].html);
+	$('#snackbar')[0].className = (templates[templateName].class);
+	console.log($('#snackbar'), $('#snackbar')[0] ,$('#snackbar')[0].className)
+	$('#snackbar').fadeIn();
 
 	if(autoFade){
 		setTimeout(()=>{
@@ -455,7 +460,7 @@ function openSnackBar(templateName, autoFade=false){
 }
 
 function closeSnackBar(){
-	$('.snackbar').fadeOut();	
+	$('#snackbar').fadeOut();	
 }
 
 

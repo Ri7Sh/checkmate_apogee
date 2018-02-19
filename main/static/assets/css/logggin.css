@@ -1,30 +1,35 @@
 /*for login*/
-#wrapper{
-		position: absolute;
-		width: 100vw;
-		height: 100vh;
-		overflow:hidden;
-	}
+.stark-login, #logo, .hexagons, #circle1{
+	margin-top: 100px;
+}
 
-	#wrapper video{
-		height: inherit;
-		width: inherit;
-		object-fit: fill;
-		z-index: -999;
-	}
-	#wrapper #form{
-		background: url(/static/assets/images/2.jpg);
-		position: absolute;
-		top:-50vh;
-		left:-50vw;
-		width: 100vw;
-		height: 100vh;
-		z-index: 10;
-		overflow: hidden;
-		background-size: cover;
-		background-position-x: center;
-		background-position-y: center;
-		
+
+#wrapper{
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	overflow:hidden;
+}
+
+#wrapper video{
+	height: inherit;
+	width: inherit;
+	object-fit: fill;
+	z-index: -999;
+}
+#wrapper #form{
+	background: url(/static/assets/images/2.jpg);
+	position: absolute;
+	top:-50vh;
+	left:-50vw;
+	width: 100vw;
+	height: 100vh;
+	z-index: 10;
+	overflow: hidden;
+	background-size: cover;
+	background-position-x: center;
+	background-position-y: center;
+
 		/*
 		animation: adjust 1s linear;*/
 		transition: all 1s linear;
@@ -45,48 +50,48 @@
 	@keyframes open{
 		from{
 			width: 0;
-		height: 0;
-		top: 50vh;
-		left: 50vw;
-			}
-			to{
-				width: 100vw;
-		height: 100vh;
-		top: 0;
-		left:0;
-			}
-
+			height: 0;
+			top: 50vh;
+			left: 50vw;
+		}
+		to{
+			width: 100vw;
+			height: 100vh;
+			top: 0;
+			left:0;
 		}
 
-		@keyframes adjust{
+	}
+
+	@keyframes adjust{
 		from{
 			
-		top: -50vh;
-		left: -50vw;
-			}
-			to{
+			top: -50vh;
+			left: -50vw;
+		}
+		to{
 			
-		top: 0;
-		left:0;
-			}
-
+			top: 0;
+			left:0;
 		}
 
-		/* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
-		* {
-			box-sizing: border-box;
-		}
+	}
 
-		html {
-			background: #000;
-			background-size: cover;
-			font-size: 10px;
-			height: 100%;
-			overflow: hidden;
-			position: absolute;
-			text-align: center;
-			width: 100%;
-		}
+	/* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+	* {
+		box-sizing: border-box;
+	}
+
+	html {
+		background: #000;
+		background-size: cover;
+		font-size: 10px;
+		height: 100%;
+		overflow: hidden;
+		position: absolute;
+		text-align: center;
+		width: 100%;
+	}
 
 /* =========================================
 Stark Industries Logo
@@ -97,6 +102,16 @@ Stark Industries Logo
 	margin: 0 auto;
 	position: relative;
 	z-index: 40;
+	width: fit-content;
+	display: flex;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-align-items: center;
+	align-items: center;
+	margin-top:100px;
 }
 
 h1 {
@@ -104,7 +119,7 @@ h1 {
 	font-family: 'Ubuntu', sans-serif;
 	color: #00a4a2;
 	font-size: 48px;
-	font-size: 4.8rem;
+	font-size: 3rem !important; 
 	font-weight: bold;
 	position: absolute;
 	text-shadow: 0 0 10px #000, 0 0 20px #000, 0 0 30px #000, 0 0 40px #000, 0 0 50px #000, 0 0 60px #000, 0 0 70px #000;
@@ -142,6 +157,8 @@ Log in form
 	z-index: 4;
 }
 
+
+
 .stark-login form {
 	animation: form-entry 3s ease-in-out;
 	background: #111;
@@ -151,7 +168,7 @@ Log in form
 	border-radius: 5px;
 	display: inline-block;
 	height: 220px;
-	margin: 200px auto 0;
+	margin: 50px auto 0;
 	position: relative;
 	z-index: 4;
 	width: 500px;
@@ -411,13 +428,13 @@ Animation Keyframes
 
 
 .msg{
-	    color: #fff;
-    line-height: 30px;
-    font-size: 22px;
-    background: #000;
-    width: 300px;
-    margin: 30px auto;
-    border: 5px solid #4ca5a2;
-    border-radius: 6px;
-    padding: 10px;
+	color: #fff;
+	line-height: 30px;
+	font-size: 22px;
+	background: #000;
+	width: 300px;
+	margin: 30px auto;
+	border: 5px solid #4ca5a2;
+	border-radius: 6px;
+	padding: 10px;
 }

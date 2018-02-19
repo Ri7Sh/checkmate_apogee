@@ -36,7 +36,7 @@ class UserProfile(AbstractUser):
 	mineno=models.IntegerField(default=0)
 	#flag = models.ManyToManyField(flagUsed)
 	#flagUsed = model.IntegerField(default=0)
-	qslist=models.CharField(max_length=144,default='000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000')
+	qslist=models.CharField(max_length=144,default='a0b00000000000000000000c00000000000d000000000000e00f000g0000000h0ij00000k0l0m00000000n0000p0q000r000000000000000000000000000000000s000t000000000')
 
 	# def timeLeft(self):
 	# 	time = 7200 - (timezone.now()-self.regTime).total_seconds()

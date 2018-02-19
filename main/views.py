@@ -383,6 +383,8 @@ def checkAnswer(request):
 				print(request.user.Puzz)
 				request.user.Puzz = replacindex(request.user.Puzz,request.user.puzzlePc,'n')
 				request.user.save()
+				print("-->")
+				print(request.user.puzzlePc)
 				return JsonResponse({'user':request.user.username, 'score':request.user.score,'puzzle':request.user.Puzz,'index':request.user.puzzlePc,'status':"CP",'quesDone':request.user.quesTry,'TrialLeft' : request.user.TrialLeft,'time':request.user.time})
 
 			#Pc=PuzzlePc.objects.get(id=request.user.puzzlePc)

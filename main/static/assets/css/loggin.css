@@ -1,4 +1,9 @@
 /*for register*/
+.stark-login, #logo, .hexagons, #circle1{
+	margin-top: 100px;
+}
+
+
 #wrapper{
 		position: absolute;
 		width: 100vw;
@@ -96,6 +101,16 @@ Stark Industries Logo
 	margin: 0 auto;
 	position: relative;
 	z-index: 40;
+	width: fit-content;
+	display: flex;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-align-items: center;
+	align-items: center;
+	margin-top:100px;
 }
 
 h1 {
@@ -150,7 +165,7 @@ Log in form
 	border-radius: 5px;
 	display: inline-block;
 	height: 340px;
-	margin: 200px auto 0;
+	margin: 50px auto 0;
 	position: relative;
 	z-index: 4;
 	width: 500px;
