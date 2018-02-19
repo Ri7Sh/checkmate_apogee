@@ -47,7 +47,7 @@
 					<p>
 
 						<progress value="0" max="7200" id="progressBar"></progress>
-						<span id="countdowntimer">0 </span> Seconds
+						<span id="countdowntimer" style="font-size: 22px;display: block;">01:00:00</span>
 
 
 
@@ -161,13 +161,22 @@
 		var timeleft2 = timeleft1-1;
 		var downloadTimer = setInterval(function(){
 			document.getElementById("progressBar").value = 7200 - --timeleft1;
-			document.getElementById("countdowntimer").textContent = timeleft2--;
+			timeleft2--;
+			var seconds = (timeleft2%60);
+			var minutes = Math.floor((timeleft2/60)%60);
+			var hours = Math.floor((timeleft2/3600))
+			var timeText = pad(hours) + " : "  + pad(minutes) + " : " + pad(seconds);
+			// console.log(timeleft2)
+			document.getElementById("countdowntimer").textContent = timeText;
 			if(timeleft1 <= 0){
 				clearInterval(downloadTimer);
 				gameOver();
 			}
 		},1000);
 
+		function pad(text){
+			return ("00" + text).slice(-2);
+		}
 
 		function openInst(){
 			window.location.href = "/main/welcome"
