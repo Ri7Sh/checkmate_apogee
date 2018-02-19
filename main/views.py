@@ -47,7 +47,7 @@ def index(request):
 @login_required
 def timer(request):
 	if request.user.is_authenticated():
-		request.user.time =	7200-(timezone.now()-request.user.regTime).total_seconds()
+		request.user.time = 7200-(timezone.now()-request.user.regTime).total_seconds()
 
 		print(request.user.time)
 		request.user.save()
@@ -113,6 +113,9 @@ def register(request):
 		except IntegrityError:
 			state="Duplicacy in Username"
 			return render(request,'register.html',{'state':state})
+		if re.match(r"[^\d{10}$/]",data['phone'])==None:
+			state="Invalid Mobile Number"
+			return render(request,'register.html',{'state':state})
 		up.phone=data['phone']
 		if re.match(r"[^@]+@[^@]+\.[^@]+", data['email'])==None:
 			state="Invalid Email Address"
@@ -173,12 +176,12 @@ def reveal1(request):
 		reveal(request,x,y,request.user.mines)
 		user= request.user
 		if user.currentQs != -1:
-				
+				print(user.score)
 				if user.correctAns[user.currentQs]=='0':
 					#print(user.correctAns)
 					qlist=Question.objects.get(questionno=user.currentQs)
 					qs = qlist.question
-					print(qlist.solution)
+					# print(qlist.solution)
 					return JsonResponse({'user':request.user.username,'field':user.fieldViewed,'qsObject':qs,'q': user.currentQs,'score':user.score,'mines':user.minesLeft,'time':request.user.time})
 			#frontend needs to check of qlist contains an qs object or not. qlist is a queryset
 		return JsonResponse({'user':request.user.username, 'field':user.fieldViewed, 'qsObject':'','q': user.currentQs,'score':user.score,'mines':user.minesLeft,'time':request.user.time})
@@ -209,27 +212,29 @@ def reveal(request,x,y,mines):
 				else:
 					request.user.currentQs=qList.questionno
 					request.user.quesTry+=1
-					if(mines[x*12+y] == '0') :
-						# if x-1 in range(11):
-						# for i in range (-1,1):
-						# 	for j in range(-1,1):
-						# 		if(i != 0 and j!=0):
-						# 			reveal(request,x+i,y+j,mines)
-						request.user.fieldViewed =replacindex(request.user.fieldViewed,x*12+y,request.user.mines[x*12+y])
-						reveal(request,x - 1, y - 1, mines)
-						reveal(request,x-1,y,mines)
-						reveal(request,x-1,y+1,mines)
-						reveal(request,x+1,y,mines)
-						reveal(request,x,y-1,mines)
-						reveal(request,x,y+1,mines)
-						reveal(request,x+1,y-1,mines)
-						reveal(request,x+1,y+1,mines)
-					elif(mines[x*12+y] == '9'):
-						request.user.score-=10
-						request.user.minesLeft-=1
-						# print(request.user.fieldViewed)
+				
+			if(mines[x*12+y] == '0') :
+				# if x-1 in range(11):
+				# for i in range (-1,1):
+				# 	for j in range(-1,1):
+				# 		if(i != 0 and j!=0):
+				# 			reveal(request,x+i,y+j,mines)
+				request.user.fieldViewed =replacindex(request.user.fieldViewed,x*12+y,request.user.mines[x*12+y])
+				reveal(request,x - 1, y - 1, mines)
+				reveal(request,x-1,y,mines)
+				reveal(request,x-1,y+1,mines)
+				reveal(request,x+1,y,mines)
+				reveal(request,x,y-1,mines)
+				reveal(request,x,y+1,mines)
+				reveal(request,x+1,y-1,mines)
+				reveal(request,x+1,y+1,mines)
+			elif(mines[x*12+y] == '9'):
+				request.user.score-=10
+				request.user.minesLeft-=1
+				# print(request.user.score)
+				# print(request.user.fieldViewed)
 			request.user.fieldViewed = replacindex(request.user.fieldViewed,x*12+y,request.user.mines[x*12+y])
-			# print(request.user.fieldViewed)
+		# print(request.user.fieldViewed)
 			request.user.save()
 		
 			#frontend needs to check of qlist contains an qs object or not. qlist is a queryset
