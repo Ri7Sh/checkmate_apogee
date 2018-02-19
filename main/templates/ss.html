@@ -1,16 +1,37 @@
 {% load static %}
+
 <html>
 <head>
 <link rel  = "stylesheet" href = "{% static '/assets/css/ssstyle.css' %}">
 <link rel  = "stylesheet" href = "{% static '/assets/css/fonts.css' %}">
+<link href="{% static '/assets/css/common.css' %}" rel="stylesheet">
+  <link href="{% static '/assets/css/main.css' %}" rel="stylesheet">
+  <link href="{% static '/assets/css/puzzle.css' %}" rel="stylesheet">
 </head>
 
 
   <body class="opening hide-UI view-2D zoom-large data-close controls-close" onload = "typeWriter()">
+  <div class="title">
+      <h1>CHECKMATE 18<span class="letter6">_</span></h1>
+      <nav>
+        {% if stat %}
+        <li class="instr button" action="/">$Register</li>
+        <li class="button" action="/main/login">$Login</li>
+        {% else %}
+        <li class="instr button" action="/">$Play</li>
+        <li class="button" action="/main/logout">$Logout</li>
+        {% endif %}
+      </nav>
+    </div>
   <div id = "see1" class="holographic-text-blue"><br><br>
                   <br><br></div>
    <div id = "see2" class="holographic-text-blue"><br><br>
-                  <br><br>Quick Instructions</div>
+                  <br><br>Quick Instructions
+                          
+
+
+
+                          </div>
     <div id="navbar" class="holographic-text-blue">
            <h1>Instructions<br></h1>
      

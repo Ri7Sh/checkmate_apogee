@@ -1175,7 +1175,7 @@ h1 span, #navbar h1 a {
 #navbar {
   z-index: 99;
   position: absolute;
-  top: 0;
+  top: 55;
   left: 0;
   padding: 16px;
   width: 100%;
@@ -1471,13 +1471,13 @@ body {
    	width: 58%;
    	position: fixed;
     color: white;
-    top: 0%;
+    top: 15%;
     left: 2%;
     border-radius: 12px;
     bottom: 1%;
     background-color: rgba(0,0,0,0.5);
     z-index: 2;
-    cursor: pointer;
+    
     font-size: 2em;
 
    }
@@ -1486,13 +1486,13 @@ body {
    	width: 38%;
    	position: fixed;
     color: lime;
-    top: 0%;
+    top: 15%;
     left: 60%;
     border-radius: 12px;
     bottom: 1%;
     background-color: rgba(0,0,0,0.5);
     z-index: 2;
-    cursor: pointer;
+    
     font-size: 2em;
    }
   

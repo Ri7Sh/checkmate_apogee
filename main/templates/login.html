@@ -9,6 +9,9 @@
 
     <link href="{% static '/assets/css/logggin.css' %}" rel="stylesheet">
     <link href="{% static '/assets/css/normalize.min.css' %}" rel="stylesheet">
+    <link href="{% static '/assets/css/common.css' %}" rel="stylesheet">
+	<link href="{% static '/assets/css/main.css' %}" rel="stylesheet">
+	<link href="{% static '/assets/css/puzzle.css' %}" rel="stylesheet">
 
 	
     <script src="{% static '/assets/js/jquery.min.js' %}"></script>
@@ -26,9 +29,26 @@
 
 </head>
 <body>
+<div class="title">
+      
+      <nav>
+        
+        <li class="instr button" onclick="openRegis()">$Register</li>
+        <li class="instr button" onclick="openInst()">$Instructions</li>
+        
+        
+        
+        
+      </nav>
+    </div>
+  
+    
 	<div id="wrapper">
+	
 		
 		<div id="dummy">
+		 
+    
 		<div id="form">
 
 			<div id="logo"> 
@@ -150,6 +170,14 @@ function showMsg(){
 	$('.msg').show();
 }
 </script>
+<script>
+function openInst(){
+			window.location.href = "/main/welcome"
+		}
+function openRegis(){
+			window.location.href = "/main/register"
+		}
+		</script>
 
 </body>
 </html>
