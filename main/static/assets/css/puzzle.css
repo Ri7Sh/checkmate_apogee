@@ -221,3 +221,16 @@ body{
 	line-height: 25px;
 
 }
+.glowPiece{
+	border: 5px solid #aa9574 !important;
+	animation: glowy .5s linear alternate infinite;
+}
+
+@keyframes glowy{
+	from{
+		border: 5px solid #aa9574 !important;
+	},
+	to{
+		border: 5px solid #276877 !important;	
+	}
+}

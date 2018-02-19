@@ -630,6 +630,11 @@ function initPuzzle(str, tLeft){
 	})
 	board.appendChild(scene);
 	setupConfig();
+	console.log("newPeice", newPeice)
+	if(newPeice != null){
+		glowPiece(newPeice);
+		newPeice = null;
+	}
 	game.start();
 }
 
@@ -725,3 +730,11 @@ function getString(callback){
 }
 
 // openPuzzle();
+
+function glowPiece(i){
+	console.log("glow",i,  pieceList[i].ele)
+	$(pieceList[i].ele).addClass('glowPiece');
+	setTimeout(function(){
+		$(pieceList[i].ele).removeClass('glowPiece');
+	}, 3000)	
+}

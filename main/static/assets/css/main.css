@@ -166,9 +166,9 @@ li{
 
 
 
-.snackbar{
+#snackbar{
 	position: absolute;
-	bottom: 20px;
+	bottom: 40px;
 	width: 800px;
 	border: 1px solid #fff;
 	/* line-height: 50px; */
@@ -181,11 +181,11 @@ li{
 	z-index: 99999;
 	border-radius: 6px;
 }
-.snackbar p, .snackbar span{
+#snackbar p, #snackbar span{
 	display: inline;
 }
 
-.snackbar span{
+#snackbar span{
 	float: right;
 	margin: 0 10px;
 	cursor: pointer;
@@ -273,7 +273,7 @@ li{
 }
 
 .bombMessage{
-	background: #e62f2099;
+	background: #e62f2099 !important;
 	animation: flicker .5s ease-in-out alternate infinite; 
 }
 
@@ -287,15 +287,15 @@ li{
 }
 
 .correct{
-	background: #20e6b399;
+	background: #20e6b399 !important;
 }
 
 .awesome{
-	background: #20e64f99;	
+	background: #20e64f99 !important;	
 }
 
 .wrong{
-	background: #4c20e699;
+	background: #4c20e699 !important;
 }
 
 .gameOver{
