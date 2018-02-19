@@ -113,7 +113,7 @@ def register(request):
 		except IntegrityError:
 			state="Duplicacy in Username"
 			return render(request,'register.html',{'state':state})
-		if re.match(r"[^\d{10}$/]",data['phone'])==None:
+		if re.match(r"^\d{10}$",data['phone'])==None:
 			state="Invalid Mobile Number"
 			return render(request,'register.html',{'state':state})
 		up.phone=data['phone']
