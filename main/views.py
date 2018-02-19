@@ -31,7 +31,11 @@ def test(request):
 	return HttpResponse("Working!!!")
 
 def welcome(request):
-	return render(request,'ss.html')
+	if request.user.is_authenticated():
+		stat = "logged"
+	else:
+		stat = "not logged"
+	return render(request,'ss.html',{'stat':stat})
 
 def index(request):
 	if not request.user.is_authenticated() :
@@ -77,8 +81,8 @@ def user_login(request):
 					print(request.user.mineno)
 					if(timer(request)<0):
 						state = "Time Over"
-						auth.logout(request)
-						return render(request,'register.html',{'state':state})
+						logout(request)
+						return redirect('/')
 				
 					return HttpResponseRedirect('/')
 
@@ -132,12 +136,16 @@ def register(request):
 
 @login_required	
 def minesweeper(request):
+	if not request.user.is_authenticated() :
+		return redirect('/main/login')
+	
 	#if(request.user.quesDone>=20):
 	#	return HttpResponseRedirect('puzzle.html')
 	#print(request.user.User)
 	if(timer(request)<0):
-		return HttpResponseRedirect('/main/logout')
-
+		logout(request)
+		return redirect('/')
+	
 	return render({'user':request.user.username,'field':request.user.fieldViewed,'score':request.user.score,'mines':request.user.minesLeft,'index':(request.user.puzzlePc),'quesTried':request.user.quesTry,'time':request.user.time})
 
 def replacindex(text,index=0,replacement=''):
@@ -145,6 +153,9 @@ def replacindex(text,index=0,replacement=''):
 
 	#function
 def reveal1(request):
+	if not request.user.is_authenticated() :
+		return redirect('/main/login')
+	
 	if request.POST:
 		dt= json.loads(request.body.decode('utf-8'))
 		cords= dt['cords']
@@ -154,9 +165,9 @@ def reveal1(request):
 		print(request.user.mines)
 
 		if(timer(request)<0):
-			print("over")
-			return JsonResponse({'user':request.user.username, 'field':user.fieldViewed, 'qsObject':'','q': user.currentQs,'score':user.score,'mines':user.minesLeft,'time':0})
-
+			logout(request)
+			return redirect('/')
+	
 
 		#print(request.user.Puzz)
 		reveal(request,x,y,request.user.mines)
@@ -178,50 +189,47 @@ def reveal1(request):
 
 
 def reveal(request,x,y,mines):
-		mines=request.user.mines
-		if((x>=0) and (x<12) and (y>=0) and (y<12)):
-			# qL=Question.objects.filter(row=x,col=y)
-			if request.user.fieldViewed[x*12+y] != 'h':
-				return
-			else:	
-				# if qL:
-				# 	qList=Question.objects.get(row=x,col=y)
-				# 	request.user.currentQs=qList.questionno
-				# 	request.user.quesTry+=1
-				if request.user.qslist[x*12+y]!='0':
-
-
-					try:
-						qList=Question.objects.get(idch=request.user.qslist[x*12+y])
-
-					except:
-						pass
-					else:
-						request.user.currentQs=qList.questionno
-						request.user.quesTry+=1
-
-				if(mines[x*12+y] == '0') :
-					# if x-1 in range(11):
-					# for i in range (-1,1):
-					# 	for j in range(-1,1):
-					# 		if(i != 0 and j!=0):						
-					# 			reveal(request,x+i,y+j,mines)
-					request.user.fieldViewed =replacindex(request.user.fieldViewed,x*12+y,request.user.mines[x*12+y])
-					reveal(request,x - 1, y - 1, mines)
-					reveal(request,x-1,y,mines)
-					reveal(request,x-1,y+1,mines)
-					reveal(request,x+1,y,mines)
-					reveal(request,x,y-1,mines)
-					reveal(request,x,y+1,mines)
-					reveal(request,x+1,y-1,mines)
-					reveal(request,x+1,y+1,mines)
-
-				elif(mines[x*12+y] == '9'):
-					request.user.score-=10
-					request.user.minesLeft-=1
-			#print(request.user.fieldViewed)
+	if not request.user.is_authenticated() :
+		return redirect('/main/login')
+	mines=request.user.mines
+	if((x>=0) and (x<12) and (y>=0) and (y<12)):
+		#qL=Question.objects.filter(row=x,col=y)
+		if request.user.fieldViewed[x*12+y] != 'h':
+			return
+		else:
+			# if qL:
+			# 	qList=Question.objects.get(row=x,col=y)
+			# 	request.user.currentQs=qList.questionno
+			# 	request.user.quesTry+=1
+			if request.user.qslist[x*12+y]!='0':
+				try:
+					qList=Question.objects.get(idch=request.user.qslist[x*12+y])
+				except:
+					pass
+				else:
+					request.user.currentQs=qList.questionno
+					request.user.quesTry+=1
+					if(mines[x*12+y] == '0') :
+						# if x-1 in range(11):
+						# for i in range (-1,1):
+						# 	for j in range(-1,1):
+						# 		if(i != 0 and j!=0):
+						# 			reveal(request,x+i,y+j,mines)
+						request.user.fieldViewed =replacindex(request.user.fieldViewed,x*12+y,request.user.mines[x*12+y])
+						reveal(request,x - 1, y - 1, mines)
+						reveal(request,x-1,y,mines)
+						reveal(request,x-1,y+1,mines)
+						reveal(request,x+1,y,mines)
+						reveal(request,x,y-1,mines)
+						reveal(request,x,y+1,mines)
+						reveal(request,x+1,y-1,mines)
+						reveal(request,x+1,y+1,mines)
+					elif(mines[x*12+y] == '9'):
+						request.user.score-=10
+						request.user.minesLeft-=1
+						# print(request.user.fieldViewed)
 			request.user.fieldViewed = replacindex(request.user.fieldViewed,x*12+y,request.user.mines[x*12+y])
-			#print(request.user.fieldViewed)
+			# print(request.user.fieldViewed)
 			request.user.save()
 		
 			#frontend needs to check of qlist contains an qs object or not. qlist is a queryset
@@ -238,14 +246,14 @@ def user_logout(request):
 
 
 
-@login_required
-def sendPuzzlePcs(request):#this view might be merged later with answer view
-	pieces=User.puzzleRetrieved.all()
-	data = serializers.serialize("json", pieces)
-	return HttpResponse(data,content_type='application/json')
-
-
 def puzzStat(request):
+	if not request.user.is_authenticated() :
+		return redirect('/')
+	
+	if(timer(request)<0):
+		logout(request)
+		return redirect('/')
+	
 	if request.POST:
 		dt= json.loads(request.body.decode('utf-8'))["string"]
 		print(dt)
@@ -264,14 +272,26 @@ def puzzStat(request):
 		return JsonResponse({'user':request.user.username, 'status': 'saved','time':request.user.time, 'TrialLeft' : request.user.TrialLeft})	
 
 def puzzle(request):
+	if not request.user.is_authenticated() :
+		return redirect('/main/login')
+	
+	if(timer(request)<0):
+		logout(request)
+		return redirect('/')
+	
 	return JsonResponse({'user':request.user.username, 'puzzle':request.user.Puzz,'time':request.user.time, 'TrialLeft' : request.user.TrialLeft})
 
 
 @login_required
 def check(request):#to check the answer of puzzle
+	if not request.user.is_authenticated() :
+		return redirect('/main/login')
+
 	if(timer(request)<0):
-		print("over")
-		return JsonResponse({'user':request.user.username, 'field':user.fieldViewed, 'qsObject':'','q': user.currentQs,'score':user.score,'mines':user.minesLeft,'time':0})
+		logout(request)
+		return redirect('/')
+		# print("over")
+		# return JsonResponse({'user':request.user.username, 'field':user.fieldViewed, 'qsObject':'','q': user.currentQs,'score':user.score,'mines':user.minesLeft,'time':0})
 
 
 	if request.user.quesTry < 20:
@@ -334,6 +354,12 @@ def check(request):#to check the answer of puzzle
 	# each object will contain the idno of puzzle pc and where what is its position in the puzzle according to answer given(values will be from 1 to 9)
 
 def checkAnswer(request):
+	if not request.user.is_authenticated() :
+		return redirect('/main/login')
+	if(timer(request)<0):
+		logout(request)
+		return redirect('/')
+	
 	if request.method == 'POST':
 		if(timer(request)<0):
 			print("over")
