@@ -15,11 +15,12 @@
       <h1>CHECKMATE 18<span class="letter6">_</span></h1>
       <nav>
         {% if stat %}
-        <li class="instr button" action="/">$Register</li>
-        <li class="button" action="/main/login">$Login</li>
+
+        <li class="instr button" onclick="openRegis()">$Register</li>
+        <li class="button" onclick="login()">$Login</li>
         {% else %}
-        <li class="instr button" action="/">$Play</li>
-        <li class="button" action="/main/logout">$Logout</li>
+        <li class="instr button" onclick="play()">$Play</li>
+        <li class="button" onclick="logout()">$Logout</li>
         {% endif %}
       </nav>
     </div>
@@ -158,6 +159,20 @@ function typeWriter() {
     setTimeout(typeWriter, speed);
   }
 }
+</script>
+<script>
+  function openRegis(){
+      window.location.href = "/main/register"
+    }
+    function login(){
+      window.location.href = "/main/login"
+    }
+    function logout(){
+      window.location.href = "/main/logout"
+    }
+    function play(){
+      window.location.href = "/"
+    }
 </script>
       </body>
 </body>
