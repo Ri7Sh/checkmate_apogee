@@ -32,9 +32,10 @@ def test(request):
 
 def welcome(request):
 	if request.user.is_authenticated():
-		stat = "logged"
+		return render(request,'ss.html')
+
 	else:
-		stat = "not logged"
+		stat = "1"
 	return render(request,'ss.html',{'stat':stat})
 
 def index(request):
