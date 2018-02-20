@@ -2,7 +2,11 @@
 .stark-login, #logo, .hexagons, #circle1{
 	margin-top: 100px;
 }
-
+.title{
+	position: absolute;
+    top: 0;
+    z-index: 100;
+}
 
 #wrapper{
 		position: absolute;
