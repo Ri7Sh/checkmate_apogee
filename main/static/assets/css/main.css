@@ -55,7 +55,7 @@
 	align-items: center;
 	font-size: 30px;
 	color: #fff;
-	background: #46464687;
+	background: #222222cf;
 	animation: num_anim .5s linear;
 }
 
@@ -359,6 +359,7 @@ li{
 	-webkit-align-items: center;
 	align-items: center;
 	text-shadow: 4px 4px 6px #3f00ff;
+	z-index: 999;
 }
 
 .lo{
