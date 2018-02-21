@@ -107,7 +107,7 @@ Stark Industries Logo
 ========================================= */
 #logo {
 	animation: logo-entry 4s ease-in;
-	width: 500px;
+	width: 100vw;
 	margin: 0 auto;
 	position: relative;
 	z-index: 40;
@@ -121,7 +121,21 @@ Stark Industries Logo
 	-webkit-align-items: center;
 	align-items: center;
 	margin-top:100px;
+	align-content: center;
 }
+
+#logo h1, #logo i{
+	width: 100vw;
+	text-align: center;
+	display: block;
+}
+
+#logo h1{
+	position: relative;
+	font-size: 29px !important;
+}
+
+
 
 h1 {
 	animation: text-glow 2s ease-out infinite alternate;
@@ -141,7 +155,7 @@ h1:before {
 	content: ' ';
 	height: 0;
 	position: absolute;
-	right: -74px;
+	right: calc(50vw - 267px);
 	top: -10px;
 	width: 0;
 }
@@ -152,7 +166,7 @@ h1:after {
 	content: ' ';
 	height: 0;
 	position: absolute;
-	right: -85px;
+	right: calc(50vw - 277px);
 	top: 24px;
 	transform: rotate(-47deg);
 	width: 0;
@@ -198,7 +212,7 @@ Log in form
 	display: block;
 	font-family: 'Cabin', helvetica, arial, sans-serif;
 	font-size: 13px;
-	font-size: 1.3rem;
+	/*font-size: 1.3rem;*/
 	height: 40px;
 	margin: 20px auto 10px;
 	padding: 0 10px;

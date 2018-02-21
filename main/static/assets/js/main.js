@@ -300,8 +300,16 @@ function explodeAnimate(ele){
 }
 
 function chooseEle(bomb_cells, ele){
+	// console.log(bomb_cells, ele)
 	if(bomb_cells.length == 0){
 		// setTimeout(randBomb, 300);
+		var a = ele.children;
+		var b = Array.from(a);
+		exploded(ele);
+		setTimeout(()=>{
+			b.forEach((e)=>e.remove())
+		}, 500);
+		
 		return;
 	}
 	var index = Math.floor(bomb_cells.length * Math.random());
@@ -313,6 +321,7 @@ function chooseEle(bomb_cells, ele){
 }
 
 function exploded(ele){
+	console.log("exploded", ele)
 	ele.setAttribute("data","b");
 	ele.className += " exploded";
 
@@ -403,7 +412,7 @@ function hideQuestionDiv(){
 // }, 300)
 
 $('#submit_answer').click(function(e){
-	var ans = $("#answer").val();
+	var ans = $("#answer").val().trim();
 	var data = JSON.stringify({answer: ans});
 	submitAns(data, submitSuccess);
 })

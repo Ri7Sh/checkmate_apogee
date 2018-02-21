@@ -7,17 +7,34 @@
 	<title>Checkmate'18 Register</title>
     <link href="{% static '/assets/css/loggin.css' %}" rel="stylesheet">
     <link href="{% static '/assets/css/normalize.min.css' %}" rel="stylesheet">
+    <link href="{% static '/assets/css/common.css' %}" rel="stylesheet">
+	<link href="{% static '/assets/css/main.css' %}" rel="stylesheet">
     <script src="{% static '/assets/js/jquery.min.js' %}"></script>
     <script src="{% static '/assets/js/prefixfree.min.js' %}"></script>
 	<script src="{% static '/assets/js/index.js' %}"></script>
 </head>
 <body>
-
 	<div id="wrapper">
+
 		<video src="{% static '/assets/cut_video1.mp4' %}" type="video/mp4" width="100%" muted="true" height="100%" autoplay  id="vid1" paused>
 		</video>
 		<div id="dummy">
+
+
 		<div id="form">
+		<div class="title">
+      
+      <nav>
+        
+        <li class="instr button" onclick="openLogin()">$Login</li>
+        <li class="instr button" onclick="openInst()">$Instructions</li>
+        
+        
+        
+        
+      </nav>
+    </div>
+
 
 			<div id="logo"> 
 				<!-- <h3 class="tag" style="color: #5ec8c6;font-size: 20px;text-shadow:7px 7px 3px #000000;">ACMW and ACM presents</h3> -->
@@ -40,71 +57,7 @@
 					</div>
 				</form>
 				<div class="msg"></div>
-				<div class="hexagons">
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<br>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<br>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span> 
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-
-					<br>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<br>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-					<span>&#x2B22;</span>
-				</div>      
+				
 			</section> 
 
 			<div id="circle1">
@@ -142,6 +95,14 @@ function showMsg(){
 //   console.log(this.attributes, this.currentTime, Array(this))
 // }, false);
 </script>	
+<script>
+function openInst(){
+			window.location.href = "/main/welcome"
+		}
+function openLogin(){
+			window.location.href = "/main/login"
+		}
+		</script>
 
 
 </body>
