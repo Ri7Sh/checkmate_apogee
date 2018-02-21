@@ -109,11 +109,7 @@ def register(request):
 		up=User()
 		up.username=data['name']
 		up.set_password(data['password'])
-		try:
-			up.save()
-		except IntegrityError:
-			state="Duplicacy in Username"
-			return render(request,'register.html',{'state':state})
+		
 		if re.match(r"^\d{10}$",data['phone'])==None:
 			state="Invalid Mobile Number"
 			return render(request,'register.html',{'state':state})
@@ -130,6 +126,11 @@ def register(request):
 		else:
 			up.mines=randfield.mines
 			up.qslist=randfield.ques
+		try:
+			up.save()
+		except IntegrityError:
+			state="Duplicacy in Username"
+			return render(request,'register.html',{'state':state})
 		up.regTime = timezone.now()
 		up.save()
 		return HttpResponseRedirect('/main/login')

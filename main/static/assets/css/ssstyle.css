@@ -1466,36 +1466,7 @@ body {
   #navbar a {
     display: none; }
 
-   #see1{
-   	height: 96%;
-   	width: 58%;
-   	position: fixed;
-    color: white;
-    top: 15%;
-    left: 2%;
-    border-radius: 12px;
-    bottom: 1%;
-    background-color: rgba(0,0,0,0.5);
-    z-index: 2;
-    
-    font-size: 2em;
-
-   }
-   #see2{
-   	height: 96%;
-   	width: 38%;
-   	position: fixed;
-    color: lime;
-    top: 15%;
-    left: 60%;
-    border-radius: 12px;
-    bottom: 1%;
-    background-color: rgba(0,0,0,0.5);
-    z-index: 2;
-    
-    font-size: 2em;
-   }
-  
+   
 
   h1 {
     font-size: 22px;
@@ -1525,7 +1496,7 @@ body {
     right: 0px; } }
 @media screen and (min-width: 1300px) {
   #universe {
-    font-size: 100%; } }
+    font-size: 62%; } }
 @media screen and (min-width: 1600px) {
   .zoom-close .scale-d #solar-system {
     margin-left: -120%; } }
@@ -1535,9 +1506,106 @@ body {
 .holographic-text-blue{
     text-shadow: -4px -2px 5px #ff3939;
     color: #68e0ef;
-    font-family: 'Azo Sans';
+    font-family: monospace, arial, verdana;
 }
 
 #navbar{
-  font-size: 3em;
+  font-size: 2em;
+}
+
+
+.title{
+  /*background: url("/static/assets/images/universe.png")*/
+}
+
+.title h1{
+  font-size: 34px !important;
+}
+
+#universe, #main-wrapper{
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+#main-wrapper{
+  z-index: 999;
+  background: rgba(0,0,0,0.8);
+}
+
+#black_box{
+  height: 90vh;
+  padding: 50px;
+  overflow: hidden;
+}
+
+#container{
+
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 100%;
+}
+
+#see1{
+    text-align: justify;
+
+    height: 100%;
+    width: 25vw;
+    /*position: fixed;*/
+    color: white;
+    top: 15%;
+    left: 2%;
+    border-radius: 12px;
+    bottom: 1%;
+    /*background-color: rgba(0,0,0,0.5);*/
+    z-index: 2;
+    
+    font-size: 1em;
+    /*text-transform: uppercase;*/
+    overflow: auto;
+   }
+   #see2{
+    text-align: justify;
+    height: 100%;
+    width: 65vw;
+    /*position: fixed;*/
+    color: white;
+    top: 15%;
+    left: 60%;
+    border-radius: 12px;
+    bottom: 1%;
+    /*background-color: rgba(0,0,0,0.5);*/
+    z-index: 2;
+    
+    font-size: 1em;
+    /*text-transform: uppercase;*/
+    overflow: auto;
+    padding:  0 30px;
+   }
+
+
+p, li{
+
+  font-size: .9em !important;
+}
+
+h3{
+  font-size: 24px !important;
+  /*line-height: 68px !important;*/
+  padding: 10px 0 !important;
+}
+
+h2{
+  text-align: left !important;
+  font-size: 29px !important;
+  padding: 20px 0 !important;
+  /*line-height: 3px !important;*/
+}
+
+body{
+  overflow: hidden;
 }
