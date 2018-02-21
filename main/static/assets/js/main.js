@@ -412,7 +412,7 @@ function hideQuestionDiv(){
 // }, 300)
 
 $('#submit_answer').click(function(e){
-	var ans = $("#answer").val();
+	var ans = $("#answer").val().trim();
 	var data = JSON.stringify({answer: ans});
 	submitAns(data, submitSuccess);
 })
