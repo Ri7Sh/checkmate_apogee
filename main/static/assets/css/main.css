@@ -371,4 +371,7 @@ li{
 	border-radius: 6px;
 	background: black;
 	color: #5bfb71;
+	right: calc(50vw - 100px);
+    width: 200px;
+
 }

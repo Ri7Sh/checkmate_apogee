@@ -11,32 +11,67 @@
 
 
   <body class="opening hide-UI view-2D zoom-large data-close controls-close" onload = "typeWriter()">
+  <div id="main-wrapper">
   <div class="title">
-      <h1>CHECKMATE 18<span class="letter6">_</span></h1>
+      <h1>INSTRUCTIONS<span class="letter6">_</span></h1>
       <nav>
         {% if stat %}
 
         <li class="instr button" onclick="openRegis()">$Register</li>
         <li class="button" onclick="login()">$Login</li>
         {% else %}
-        <li class="instr button" onclick="play()">$Play</li>
+        <li class="instr button" onclick="play()">$Detonix</li>
         <li class="button" onclick="logout()">$Logout</li>
         {% endif %}
       </nav>
     </div>
-  <div id = "see1" class="holographic-text-blue"><br><br>
-                  <br><br></div>
-   <div id = "see2" class="holographic-text-blue"><br><br>
-                  <br><br>Quick Instructions
-                          
+    <div id="black_box">
+    
+    <div id="container">
+      <div id = "see1" class="holographic-text-blue"><h2>Overview of storyline</h2><br><p></p></div>
+   <div id = "see2" class="holographic-text-blue">
+   <h2>Quick Instructions</h2>
+ 
+<ul>
+<li>Time limit is 2 hrs.</li>
+<li>There are 20 questions.</li>
+<li>You can't re-attempt any question.</li>
+<li>Each correct answer awards you 50 points and a "Portallatam" piece.</li>
+<li>Clicking on the mines awards a penalty of 10 points.</li>
+<li>"Portallatam" contains 12 pieces.</li>
+<li>To solve the "Portallatam", place all the pieces on their correct locations on the board.</li>
+<li>"Portallatam" can be submitted only after attempting all 20 questions.</li>
+<li>Solving the "Portallatam" correctly awards you 25 points.</li>
+<li>You have 3 attempts to solve the "Portallatam"</li>
+</ul>
 
+<h2>General Rules</h2>
 
+<h3>Minesweeper Rules</h3>
+
+<p>The aim is to locate all the mines and solve all the questions that are hidden under tiles on a rectangular board. You will need to use a combination of logic and luck to find all the mines without triggering an explosion.</p>
+
+<p>The game begins with the board covered in tiles. Click on any tile to uncover it. You will reveal:</p>
+<ul>
+<li>A question, which you need to solve to attaian a "Portallatam" piece.</li>
+<li>A colored number, which represent the number of mines in the adjacent tiles. This will help you deduce where the mines are. </li>
+<li>A blank tile, which means there are no mines under any of the adjacent tiles.</li>
+<li>A mine, which will detonate.</li>
+
+<li>Repeat the previous step until you have uncovered all the tiles which do not have mines underneath them.</li>
+</ul>
+<h3>"Portallatam" Rule</h3>
+<ul>
+<li>You need to match the "Portallatam" piece with their names using your intution.</li>
+<li>Click the piece to pick up, move the mouse to drag the piece and click to drop.</li>
+</ul>
+<p>After finishing the game, you can log out, otherwise you will be automatically logged out after the game finishes.</p>
 
                           </div>
-    <div id="navbar" class="holographic-text-blue">
-           <h1>Instructions<br></h1>
-     
     </div>
+    </div>
+    </div>
+  
     <div id="data">
       </div>
         <div id="universe" class="scale-stretched">
@@ -150,11 +185,11 @@
 
     <script>
 var i = 0;
-var txt = 'Overview of storyline';
-var speed = 35;
+var txt = " The fate of humanity is at stake, since villainous Decepticons are bringing their war on Earth.. You are one of the good Autobots. You have managed to get into the decepticon's control center. They have detected your presence on their space ship. This has alerted their survillence system. This shuttle will blast in 2 hrs. Your mission is to save the earth using their device 'Detonix' and use their teleportation system 'Portallatam' to save yourself!!  Can you solve their tricky lock without causing destruction on the earth and unlock 'Portallatam'. Time is ticking.... The lock system resembles a minesweeper game with a twist. Decepticons are intelligent bots and they have set their traps. These traps are 20 questions. The decepticons are confident that you can't solve these traps to unlock their system.Are you up for the challenge?";
+var speed = 15;
 function typeWriter() {
   if (i < txt.length) {
-    document.getElementById("see1").innerHTML += txt.charAt(i);
+    document.getElementById("see1").querySelector("p").innerHTML += txt.charAt(i);
     i++;
     setTimeout(typeWriter, speed);
   }
