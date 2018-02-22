@@ -57,7 +57,7 @@ class Question(models.Model):
 	questionno = models.IntegerField()
 	solution = models.CharField(max_length=50)
 	question = models.CharField(max_length=10000,default="")
-	mineno=models.IntegerField(default=0)
+	#mineno=models.IntegerField(default=0)
 	#puzzlePc = models.IntegerField(default=-1)#contains idno of puzzle pc associated or else -1
 	# row=models.IntegerField()
 	# col=models.IntegerField()
