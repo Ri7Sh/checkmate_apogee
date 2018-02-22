@@ -366,8 +366,8 @@ function openQuestionDiv(text){
 	document.querySelector(".the_text").innerHTML = "";
 	document.querySelector("#answer").value = "";
 	animation_skip = false;
-	textAnimation(document.querySelector(".the_text"),text)
-
+	//textAnimation(document.querySelector(".the_text"),text)
+	document.querySelector(".the_text").innerHTML = text;
 	clearAnimation();
 }
 
@@ -412,7 +412,7 @@ function hideQuestionDiv(){
 // }, 300)
 
 $('#submit_answer').click(function(e){
-	var ans = $("#answer").val().trim();
+	var ans = $("#answer").val().trim().toUpperCase();
 	var data = JSON.stringify({answer: ans});
 	submitAns(data, submitSuccess);
 })
