@@ -1,141 +1,340 @@
 [{
 		"model": "main.PuzzlePc",
-		"pk":7,
+		"pk": 7,
 		"fields": {
-			"idno":"7",
+			"idno": "7",
 			"pos": "0"
 		}
 	},
 
 	{
 		"model": "main.PuzzlePc",
-		"pk":11,
+		"pk": 11,
 		"fields": {
-			"idno":"11",
+			"idno": "11",
 			"pos": "1"
 		}
 	},
 	{
 		"model": "main.PuzzlePc",
-		"pk":3,
+		"pk": 3,
 		"fields": {
-			"idno":"3",
+			"idno": "3",
 			"pos": "2"
 		}
 	},
 	{
 		"model": "main.PuzzlePc",
-		"pk":4,
+		"pk": 4,
 		"fields": {
-			"idno":"4",
+			"idno": "4",
 			"pos": "3"
 		}
 	},
 	{
 		"model": "main.PuzzlePc",
-		"pk":8,
+		"pk": 8,
 		"fields": {
-			"idno":"8",
+			"idno": "8",
 			"pos": "4"
 		}
 	},
 	{
 		"model": "main.PuzzlePc",
-		"pk":1,
+		"pk": 1,
 		"fields": {
-			"idno":"1",
+			"idno": "1",
 			"pos": "5"
 		}
 	},
 	{
 		"model": "main.PuzzlePc",
-		"pk":10,
+		"pk": 10,
 		"fields": {
-			"idno":"10",
+			"idno": "10",
 			"pos": "6"
 		}
 	},
 	{
 		"model": "main.PuzzlePc",
-		"pk":5,
+		"pk": 5,
 		"fields": {
-			"idno":"5",
+			"idno": "5",
 			"pos": "7"
 		}
 	},
 	{
 		"model": "main.PuzzlePc",
-		"pk":9,
+		"pk": 9,
 		"fields": {
-			"idno":"9",
+			"idno": "9",
 			"pos": "8"
 		}
 	},
 	{
 		"model": "main.PuzzlePc",
-		"pk":6,
+		"pk": 6,
 		"fields": {
-			"idno":"6",
+			"idno": "6",
 			"pos": "9"
 		}
 	},
 	{
 		"model": "main.PuzzlePc",
-		"pk":12,
+		"pk": 12,
 		"fields": {
-			"idno":"0",
+			"idno": "0",
 			"pos": "10"
 		}
 	},
 	{
 		"model": "main.PuzzlePc",
-		"pk":2,
+		"pk": 2,
 		"fields": {
-			"idno":"2",
+			"idno": "2",
 			"pos": "11"
 		}
 	},
 	{
 		"model": "main.Mines",
-		"pk":3,
+		"pk": 3,
 		"fields": {
 			"idno": "3",
-			"ques": "011101910000019101232100011100199200110011239322910019111399110011100293000011211111001129291000112932322100292139219100921029323210110011292910",
-			"mines": "0cd0000000000000000000s00000000000000000000q00000000g000000000000j0p000000000i000000000000m000000000fh0o0000b00000l0000t0000000n0000a000e0k0r000"
+			"mines": "011101910000019101232100011100199200110011239322910019111399110011100293000011211111001129291000112932322100292139219100921029323210110011292910",
+			"ques": "0cd0000000000000000000s00000000000000000000q00000000g000000000000j0p000000000i000000000000m000000000fh0o0000b00000l0000t0000000n0000a000e0k0r000"
 		}
 
 	},
 	{
 		"model": "main.Mines",
-		"pk":2,
+		"pk": 2,
 		"fields": {
 			"idno": "2",
-			"ques": "000293100000000299100011012332101129029910112932139320192129921211223232110191192991000111123321111000019100191000012210111111001921000191001291",
-			"mines": "000000000t000s000000000000000000000000000000000r000q0p00o0n00000000m0l0k00000ji0h0000000g000f000000000000000d00000000000c00000000000000000000b0a"
+			"mines": "000293100000000299100011012332101129029910112932139320192129921211223232110191192991000111123321111000019100191000012210111111001921000191001291",
+			"ques": "000000000t000s000000000000000000000000000000000r000q0p00o0n00000000m0l0k00000ji0h0000000g000f000000000000000d00000000000c00000000000000000000b0a"
 		}
 
 	},
 	{
 		"model": "main.Mines",
-		"pk":1,
+		"pk": 1,
 		"fields": {
 			"idno": "1",
-			"ques": "019292110011012323920129001912931292001223239211000192921100111112110000392001110011993111910019223932110011002991001110001232101910000019101110",
-			"mines": "000r0k0e000a0000n0000000t0000l00000b0000o0hf000000000m000000000000i000000000p0j000000000000g00000000q00000000000000000000s0000000000000000000dc0"
+			"mines": "019292110011012323920129001912931292001223239211000192921100111112110000392001110011993111910019223932110011002991001110001232101910000019101110",
+			"ques": "000r0k0e000a0000n0000000t0000l00000b0000o0hf000000000m000000000000i000000000p0j000000000000g00000000q00000000000000000000s0000000000000000000dc0"
 		}
 
 	},
 	{
 		"model": "main.Mines",
-		"pk":4,
+		"pk": 4,
 		"fields": {
 			"idno": "0",
-			"ques": "192100191000129100111111012210000191001910000111123321111000199291191011232322112129921291013931239211019920921101233210110001992000000001392000",
-			"mines": "a0b00000000000000000000c00000000000d000000000000e00f000g0000000h0ij00000k0l0m00000000n0000p0q000r000000000000000000000000000000000s000t000000000"
+			"mines": "192100191000129100111111012210000191001910000111123321111000199291191011232322112129921291013931239211019920921101233210110001992000000001392000",
+			"ques": "a0b00000000000000000000c00000000000d000000000000e00f000g0000000h0ij00000k0l0m00000000n0000p0q000r000000000000000000000000000000000s000t000000000"
 		}
 
+	}, {
+		"model": "main.Question",
+		"pk": 1,
+		"fields": {
+			"questionno": "1",
+			"solution": "ALICE",
+			"question": "In the 2-D world of Flatland (where all members are ‘N’ sided polygons on the plane), it turns out that all the polygons with ‘odd’ number of sides always lie, and all with ‘even’ number of sides are truthtellers. The Royal Society of Flatland has members only of the aristocratic families, which have either six, seven, or eight sides. The King of Flatland, a perfect circle, asks four members Linda,Brian,Alice and Alex this “How many sides are present in this room in total?”  All of Linda, Brian, Alice, and Alex reply '25 ', “26”, “27” and “28” respectively. Given only one does, which of them tells the truth?",
+			"idch": "a"
+		}
+	},
+
+	{
+		"model": "main.Question",
+		"pk": 2,
+		"fields": {
+			"questionno": "2",
+			"solution": "6",
+			"question": "A 4x4 grid has to be made on a Gaussian plane (only integer points available). A particular system does so by using a function called square, which takes an array of three integers as input. Upon giving it [a,b,s], square makes a square of side s with the lower left vertex on the point (a,b) on the plane. What is the minimum number of three integer sets which must be given to square to do the task? As an example, a 2x2 grid requires three such sets, such as [0,0,2], [0,0,1] and [1,1,1].",
+			"idch": "b"
+		}
+	},
+
+
+	{
+		"model": "main.Question",
+		"pk": 3,
+		"fields": {
+			"questionno": "3",
+			"solution": "35",
+			"question": "Planet Andellor is held captive by some mysterious alien forces. They plan to use their magical glass cube to destroy all the planets of the galaxy. To help restore peace and save the galaxy, Earth sends an AI Robot Chappie to Andellor. The evil aliens though get to know of it, and hide their destructive glass cube with 31 other identical looking ones, with slightly different weights. Chappie can compare the weight of 2 cubes at a time, and knows that the destructive cube is the second heaviest. How many comparisons does it need to make in order to find the 2nd heaviest out of 32 cubes? ",
+			"idch": "c"
+		}
+	},
+	{
+		"model": "main.Question",
+		"pk": 4,
+		"fields": {
+			"questionno": "4",
+			"solution": "(4!-4+.4)/.4=51",
+			"question": "It is quite late in night and you are on your comfortable four-poster bed-set, waiting to board the boat meant to float gently across your mind, when suddenly you remember that you are yet to complete your math assignment for tomorrow. You get your things, and check your mail where your friend has promised you to send the solutions. The problems are of the format of a mathematical expression, with numbers and symbols (excluding powers and roots). It so happens that for one of the questions, instead of the answer, the symbols are missing. (4 _ _ 4 _ _ 4)_ _ 4 = 51 Can you guess what the complete question could have been. Write your answer in the exact format of the question you’d write in your answer booklet, ie, the above complete above statement with symbols instead of underscores. ",
+			"idch": "d"
+		}
+	},
+	{
+		"model": "main.Question",
+		"pk": 5,
+		"fields": {
+			"questionno": "5",
+			"solution": "44",
+			"question": "Matt is stuck in one of the caves in Mathland, and to get out of the cave he needs to give the correct answers to two classical probability questions. Your task is to help Matt find the two probabilities, express them in the form (a/b) and (c/d), where a,b,c,d are natural numbers, with (a,b) and (c,d) being co-prime pairs. Problem 1- “A family has two children. Given that one of the children is a boy, what is the probability that both children are boys?”Problem 2- “A family has two children. Given that one of the children is a boy, and that he was born on a Wednesday, what is the probability that both children are boys?”Give your answer as a+b+c+d. ",
+			"idch": "e"
+		}
+	},
+	{
+		"model": "main.Question",
+		"pk": 6,
+		"fields": {
+			"questionno": "6",
+			"solution": "100125",
+			"question": "You are one of the Hundred prisoners, and one day you all are called by the Demon, andhe tells you: “Tomorrow, you will have a chance to prove your wits. I will blindfold you all and put a hat on each of your heads. You’ll line in a row such that you can see the color of the hat ofall the prisoners standing ahead of you, not your own, nor of anyone behind you. One by one, from back to front, I will ask you what the color of your hat is, and if you answer correctly, I’ll set you free. I have eight different colors of hats available and you have one day to prepare yourselves.” You being the “genius” of the group, have to devise a strategy. Let N denote the expected number (average, need not be an integer) of prisoners you can set free in the worst case scenario. Find 1000*N.",
+			"idch": "f"
+		}
+	},
+	{
+		"model": "main.Question",
+		"pk": 7,
+		"fields": {
+			"questionno": "7",
+			"solution": "ENDS",
+			"question": "You are on a visit to the very old Castle of Bogbrows, which is famous for its cryptic inscriptions on walls and shady silhouettes. On your way out, the symbologist in you notices this crazy looking cipher.Talweg he ends; talweg yamaha idiot port dumb; wise idiot rarely made;over stiff;talweg he idiot paraphrase;may thee supply raise all cage ever.Decode the above message, and answer in one word, what it points to. ",
+			"idch": "g"
+		}
+	},
+	{
+		"model": "main.Question",
+		"pk": 8,
+		"fields": {
+			"questionno": "8",
+			"solution": "20",
+			"question": "You are the ruler of a great empire and you have decided to throw another celebration tomorrow. However, apparently you were forgetful of the near disaster that happened in the last celebration, and decide to hatch your own plan with poison. For during this celebration, one of your most hated rivals will come, thinking that you have finally given up your fight and you held this celebration in part to surrender to your rival's superiority. You decide to pour some drops of that same deadly poison (that have no symptoms except death 10 to 20 hours later) into his glass; however, you do not want to look guilty, so to push the blame away you will insert some poison in your own drink that will make you sick after 10 to 20 hours with some worrisome but definitely non-lethal symptoms.You have already inserted the deadly poison in one glass and your non-lethal poison in another glass out of the 1402 glasses, but because of your forgetfulness you forgot which glasses had the poisons! Certainly, you don't want another one of your beloved guests to drink a poisoned glass, or even worse, giving yourself the lethally poisoned glass.Fortunately, you still have your supply of death-row prisoners who you are sure won't mind lending a helping hand by taste-testing the glasses. What is the least amount of prisoners needed to guarantee successful location of the lethally and non-lethally poisoned glasses? Note: if the lethal poison acts before the non-lethal poison, the prisoner will die without any symptoms.",
+			"idch": "i"
+		}
+	},
+	{
+		"model": "main.Question",
+		"pk": 9,
+		"fields": {
+			"questionno": "9",
+			"solution": "53",
+			"question": "You go into your garage and find a pile of 100 batteries (all the same type).You happen to know that half of them are good and half are bad, but you can't tell which is which.You have a flashlight which uses two batteries, and requires both to work in order to turn on.In the worst case scenario, with an optimal strategy, what is the minimum number of times you will need to put batteries into the flashlight before you can guarantee to get a working pair in the flashlight?Details and Assumptions:1. The flashlight either turns on or it doesn't, i.e. there is no way to distinguish between one of the two working and neither of the two working. 2. Your answer should be the number of 'flashlight loadings' you will need to actually get your flashlight working, not just how many you would need to identify two good batteries.",
+			"idch": "j"
+		}
+	},
+	{
+		"model": "main.Question",
+		"pk": 10,
+		"fields": {
+			"questionno": "10",
+			"solution": "2",
+			"question": "Three Aliens, Gren, Humf, and Isem are playing a game. Gren thinks of two whole numbers,tells one to Humf and the other to Isem, and announces, “The sum of the two numbers wasthree, or maybe four.”. With the help of the following animated conversation which happensbetween Humf and Isem, find Isem’s number.Humf: I don’t know your number.Isem: I don’t know your number.Humf: I don’t know your number.Isem: I don’t know your number.Humf: I know your number.",
+			"idch": "k"
+		}
+	},
+	{
+		"model": "main.Question",
+		"pk": 11,
+		"fields": {
+			"questionno": "11",
+			"solution": "19",
+			"question": "In order to get a burger to eat at the “BuggerKing”, you need to find out how much it costs.With every guess you make, the manager will tell you whether you got it right, or if not, whetheryou guessed higher or lower. You are allowed a maximum of two “Higher” and two “Lower”answers. On your third you won’t be getting anything to eat. The kind manager will tell you anumber N, such that the price of the burger doesn’t exceed $N. Find the largest N which he might tell for which you can assure yourself a burger. Burgers always cost some integer dollars.",
+			"idch": "l"
+		}
+	},
+	{
+		"model": "main.Question",
+		"pk": 12,
+		"fields": {
+			"questionno": "12",
+			"solution": "17",
+			"question": "There is a circle of  light bulbs with a switch next to each of them. Each switch can be flipped between two positions, thereby toggling the on/off states of three lights: its own and the two lights adjacent to it. Initially, all the lights are off.Let the minimum number of flips needed to turn on all the n=12  and n=13 light bulbs be a and b, respectively. Then what is the value of a+b?",
+			"idch": "m"
+		}
+	},
+	{
+		"model": "main.Question",
+		"pk": 13,
+		"fields": {
+			"questionno": "13",
+			"solution": "5",
+			"question": "There is an air base on the equator. The maximum amount of fuel that a plane can contain would be only sufficient for it to fly halfway around the world.For at least one plane to finish a trip around the world, how many planes do you need at least?Details and assumptions:<br>1. Same plane doesn't depart twice or more.<br>2. Ignore all scientific and aerodynamic facts such as revolution of the earth or evaporation of the fuel. The airplanes can use their fuel until it's empty. Starting the airplane doesn't take any time.Every plane moves at the same speed, and on the same airway.<br>3. Assume the planes and air base are dimensionless, and thus, can turn directions instantly.<br>4. The plane can only be fueled via aerial refueling, and the amount of time the process takes isnegligible.<br>5.Every plane starts at the air base and must return to the air base.?",
+			"idch": "n"
+		}
+	},
+	{
+		"model": "main.Question",
+		"pk": 14,
+		"fields": {
+			"questionno": "14",
+			"solution": "9641",
+			"question": "One joyous morning, Mrs. Tan gave birth to her fifth child, Eric, in Singapore General Hospital. Later in the day, the family of seven bumped into her old friend who was surprised to see a newborn baby. The friend asked how old her four older children were.Mr. Tan said,'The sum of the ages of our four older children is ‘x’, an integer less than 25. The product is 216.'The friend said,'This isn't helpful. Tell me more.' Mr. Tan replied,'Our oldest child's name is Charles.' The friend said, 'Still not enough information.'Mr. Tan answered, 'Including Eric, our only daughter, Brenda, is now our middle child.'Mrs. Tan's friend answered, 'Aha! Now I know the answer!'Assuming Mrs. Tan's friend is perfectly​ logical, how old are the four older children? Give your answer as the concatenation of the four ages in descending order. For example, if the four older children are 1, 2, 3 and 4 years old, your answer is 4321.Note: Mrs. Tan's friend knows what ‘x’ is,  but we as the readers do not.",
+			"idch": "o"
+		}
+	},
+	{
+		"model": "main.Question",
+		"pk": 15,
+		"fields": {
+			"questionno": "15",
+			"solution": "26",
+			"question": " The pretty Princess of Math was playing 'He loves me...he loves me not...' game with her flower. At the start, she would pick 1 petal off and then say 'love' alternating with 'not love' consecutively for the next picks.However, instead of picking one at a time like in the original game, in the following turns, the number of petals she picked would then run as a series of increasing primes (2, 3, 5, 7, 11...). If there weren't enough petals for the next larger prime, she would restart the new round by picking 1 petal and resume the same method. For example, if there were 10 petals, the number of picked petals would run: 1, 2, 3, 1, 2, 1 (ending with 'not love,).Eventually, the Princess finished her game with 1 last petal left, which was also the start of her fourth round, ending with 'not love'.If 7 was the largest prime number used in her game, then how many petals did her flower have?",
+			"idch": "p"
+		}
+	},
+	{
+		"model": "main.Question",
+		"pk": 16,
+		"fields": {
+			"questionno": "16",
+			"solution": "5",
+			"question": "There are 6 prisoners and the warden decides to play the following game.The prisoners will be taken in random order (with replacement) into a room with nothing but a (two-state) light-switch and a button. Initially, the light-switch is in the off state. Each prisoner may do whatever he wants with the light switch. Prisoners will continue to be randomly taken into the room until one prisoner becomes certain that every single prisoner has been in the room at least once. At this point he may push the button and all of the prisoners will be set free.No communication between the prisoners is possible once the game has begun. The prisoners must make a plan beforehand about how to use the switch to ensure that at some point during this process one prisoner will know that all of the prisoners have been in the room.Assuming that the prisoners use the most efficient possible strategy, how many times at least will the light switch be switched on?",
+			"idch": "q"
+		}
+	},
+	{
+		"model": "main.Question",
+		"pk": 17,
+		"fields": {
+			"questionno": "17",
+			"solution": "7342105869",
+			"question": " You wake up in a locked cell, a bit shaken up but with all faculties intact. When you get to the cell-door you see a Number Pad with an attached note that has the following instructions... 'I am Professor Mad Math. I have imprisoned you! The only way to escape is to punch in the correct Code into the Number Pad. The  digit Code is made up of digits  inclusive, each digit used exactly once. These are the clues to crack my Code---<br>1. The sum of the middle two digits is a Square Number.<br>2. The sum of the middle four digits is a Cube number<br>3. The net difference between the first and tenth digit is <br>4. The net difference between the second and ninth digit is <br>5. The net difference between the third and eighth digit is <br>6. The sum of the first five digits is a Prime number<br>7. The sum of the last five digits is a Triangular number<br>8. The sum of the digits in odd positions (first, third, fifth, seventh and ninth digits) is an Odd number.<br>9. The digit  is somewhere in the first five positions.<br>I believe I have given you more than adequate information. Can you crack the Code? <br>Give your answer as the complete code.'",
+			"idch": "r"
+		}
+	},
+	{
+		"model": "main.Question",
+		"pk": 18,
+		"fields": {
+			"questionno": "18",
+			"solution": "3",
+			"question": "Derrick, Eric, and Frederick are standing in a line with Derrick in the back, Eric in the middle, and Frederick in the front. Each person is wearing a shirt with an integer between 1 and 5 inclusive printed on the back, and each person can only see the numbers on the backs of the people in front of them.Garrick, who can see the numbers behind everyone's shirts, announces truthfully that all the numbers are unique and that they sum to a multiple of three. Then, he asks if anybody can figure out what number is on their own shirt.Some time passes with nobody saying anything. Suddenly, Frederick states that he knows what number is on his shirt. What number is it?",
+			"idch": "s"
+		}
+	},
+	{
+		"model": "main.Question",
+		"pk": 19,
+		"fields": {
+			"questionno": "19",
+			"solution": "415",
+			"question": "A dark room full of valuable orbs with superpowers : 1 orb inscribed 1, 2 orbs inscribed 2, ... , 50 orbs inscribed 50 on them [orbs inscribed 1 to 50 on them, with orb numbers respectively 1 to 50].As soon as Jason Langdon entered the room, the lights turned out and the door got close. A genie asked Jason Langdon to pick at least 10 orbs with the same integer inscribed on them.If he did so, he would get all orbs of that room. If he failed, he'd be stuck in this room forever.Additionally, the genie told him that for each orb he picked, he will remain asleep for a day at the middle of nowhere. JL didn't want to lose an extra day of his life, but he didn't wish to get stuck either.In this dark room where a man can never determine which orb is being picked, what's the least number of orbs JL should pick, to remain safe and to win all those orbs??",
+			"idch": "t"
+		}
+	},
+	{
+		"model": "main.Question",
+		"pk": 20,
+		"fields": {
+			"questionno": "20",
+			"solution": "39",
+			"question": " It's the end of the semester and a lot of your friends are having parties. Unfortunately, five of your best friends all scheduled theirs around the same time on the same day! You like all of your friends equally so you want to attend each party for exactly the same amount of time. Based on the times of the parties and time it takes to travel between each party, what is the maximum amount of time you can spend at each party? <br>Details:<br>Party 1: 12pm - 4pm <br>Party 2: 3pm - 5pm <br>Party 3: 1pm - 5pm <br>Party 4: 12pm - 3pm <br>Party 5: 1pm - 3pm<br>You arrive at the first party at 12pm sharp.<br>The time it takes to travel between each party is 15 minutes times the difference between the two party numbers. For example, it takes only 15 minutes to get from Party 2 to Party 3, but it takes 45 <br>minutes to get from Party 2 to Party 5. This formula can be written as  for your convenience.<br>You're not allowed to wait for another party to start, you're only possible actions are 'partying' and 'traveling'.",
+			"idch": "u"
+		}
 	}
-
-
-
 ]
