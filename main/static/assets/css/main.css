@@ -78,7 +78,7 @@
 .tadaa{
 	position: absolute;
 	width: 800px;
-	height: 60%;
+	min-height: 60%;
 	margin-top: 5%;
 	margin-left: calc(50vw - 400px);
 	border: 1px solid #fff;
@@ -266,6 +266,9 @@ li{
 	height: 100%;
 }
 
+.main_text{
+	padding: 0 0 30px 0;
+}
 
 .ex-small span{
 	display: block;
@@ -344,7 +347,7 @@ li{
 	border: 1px solid #fff;
 }
 
-#game-over{
+#game-over, #game-over2{
 	position: fixed;
 	top:0;
 	left:0;
@@ -361,6 +364,13 @@ li{
 	text-shadow: 4px 4px 6px #3f00ff;
 	z-index: 999;
 }
+
+#game-over2{
+	flex-direction: column;
+	text-align: center;
+	padding: 10vw;
+}
+
 
 .lo{
 	position: absolute;

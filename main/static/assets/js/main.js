@@ -6,11 +6,14 @@ $('.tadaa').hide();
 $('#snackbar').hide();
 $('#puzzle').hide();
 $('#game-over').hide();
+$('#game-over2').hide();
+
 
 setTimeout(function(){
 	$('.tadaa').removeClass('__hidden__');
 	$('#snackbar').removeClass('__hidden__')
 	$('#game-over').removeClass('__hidden__')
+	$('#game-over2').removeClass('__hidden__');
 }, 1000)
 
 
@@ -187,6 +190,7 @@ $(function __intit__(){
 						displayMinesweeper(createGrid(data.field),getCells())
 						if(data.qsObject != ""){
 							openQuestionDiv(data.qsObject);
+							updateQuesTried(data.quesTried);
 						}
 						updateScore(data.score);
 						updateMines(data.mines);
@@ -497,6 +501,10 @@ function updatePuzzleGained(i){
 	$('.puzzleGained').text(i);
 }
 
+function updateQuesTried(i){
+	$('.ques_tried').text(i);
+}
+
 function logout(){
 	window.location.href = "/main/logout";
 }
@@ -508,3 +516,15 @@ function gameOver(){
 $(".helpPuzzle").click(()=>{
 	openSnackBar("puzzleHelp", true);
 })
+
+function successLogOut(){
+	console.log("Success Logout")
+	$("#game-over2").fadeIn();
+	setTimeout(function(){
+		window.location.href = "/main/logout";
+	}, 10000)
+
+	
+	
+
+}

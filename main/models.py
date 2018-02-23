@@ -25,7 +25,6 @@ class UserProfile(AbstractUser):
 	#question_left = models.IntegerField(default=20)
 	mines = models.CharField(max_length=144,default='192100191000129100111111012210000191001910000111123321111000199291191011232322112129921291013931239211019920921101233210110001992000000001392000')
 	fieldViewed = models.CharField(max_length=144,default="hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
-	puzzleRetrieved = models.ManyToManyField(PuzzlePc)
 	puzzlePc = models.IntegerField(default=-1)
 	currentQs=models.IntegerField(default=-1)
 	quesTry = models.IntegerField(default=0)

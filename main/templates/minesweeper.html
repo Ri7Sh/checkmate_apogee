@@ -106,7 +106,7 @@
 					<!-- <p>PEICES GAINED : <span class="puzzleGained">(index + 1)</span></p> -->
 					<p>MINES LEFT : <span class="mines_left">{{mines}}</span></p>
 					<p>USER NAME: {{user}}<span class="letter6"></span></p>
-					
+					<p>MISSIONS COMPLETED: <span class="ques_tried">{{quesTried}}</span></p>
 					<br><br><br><br>
 
 					<!-- <p>VISUAL SCAN</p>
@@ -144,6 +144,12 @@
 				<p>GAME OVER</p>
 				<button class="lo" onclick="logout()" style="cursor:pointer;">LOG OUT</button>
 			</section>
+			<section id="game-over2" class="__hidden__">
+				<p>Congratulations!</p>
+                                <p>You've successfully helped the Autobots win the war. </p>
+				<button class="lo" onclick="logout()" style="cursor:pointer;">LOG OUT</button>
+			</section>
+
 		</div>
 
 	</div>
@@ -154,7 +160,7 @@
 		var str = "{{ field }}";
 		// var str='0bbbbb6789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789';
 		window.str = str;
-		
+		var gameState = "normal";
 
 
 		var timeleft1 = (parseInt("{{ time }}") != NaN )?parseInt("{{ time }}"):0;
@@ -181,6 +187,7 @@
 		function openInst(){
 			window.location.href = "/main/welcome"
 		}
+
 
 	</script>
 

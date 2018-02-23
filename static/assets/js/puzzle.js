@@ -662,9 +662,14 @@ function initPuzzle(str, tLeft){
 				"X-CSRFToken": csrf_token
 			},
 			success: function(data){
-				console.log(data);
-				if(data.message)
+				console.log("*****************", data);
+				if(data.message){
 					openSnackBar(data.message, true);
+					console.log(data.message, data.message == "puzzleSubmission3")
+					if(data.message == "puzzleSubmission3"){
+						successLogOut();
+					}
+				}
 			}
 		})
 		setTimeout(closePuzzle, 1500);
@@ -686,6 +691,7 @@ function encodeSequence(seq){
 		if(obj[i]) str += obj[i];
 		else str+="n";
 	}
+console.log(str);
 	return str;
 }
 
