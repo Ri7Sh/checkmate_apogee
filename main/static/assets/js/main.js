@@ -167,15 +167,15 @@ $(function __intit__(){
 			
 			cell.setAttribute('i',i);
 			cell.setAttribute('j',j);
-			// console.log(i, j)
+			// // console.log(i, j)
 			cell.addEventListener("click", function(e){
 				var obj  = {};
 				obj.cords = [e.target.getAttribute("i"), e.target.getAttribute("j")]
 				
 				var csrf_token = getCSRFToken();
-				console.log(document.cookie)
+				// console.log(document.cookie)
 				var data = JSON.stringify(obj);
-				console.log(data, csrf_token) 
+				// console.log(data, csrf_token) 
 				$.ajax({
 					"method": "POST",
 					"data" : data,
@@ -185,8 +185,8 @@ $(function __intit__(){
 					"url": '/main/reveal/',
 					"csrfmiddlewaretoken":csrf_token,
 					success: function(data){
-						console.log("success")
-						console.log(data)
+						// console.log("success")
+						// console.log(data)
 						displayMinesweeper(createGrid(data.field),getCells())
 						if(data.qsObject != ""){
 							openQuestionDiv(data.qsObject);
@@ -201,13 +201,13 @@ $(function __intit__(){
 				})
 				// displayMinesweeper(grid,cells)
 			});
-			// console.log(cells)
+			// // console.log(cells)
 			cells.push(cell);
 
 		}
 		fragment.appendChild(row);
 	}
-	// console.log(document.querySelector('.stage'))
+	// // console.log(document.querySelector('.stage'))
 	document.querySelector('.stage').appendChild(fragment);
 	// randBomb();
 	
@@ -298,13 +298,13 @@ function explodeAnimate(ele){
 		}
 		fragment.appendChild(row);
 	}
-	// console.log(document.querySelector('.stage'))
+	// // console.log(document.querySelector('.stage'))
 	ele.appendChild(fragment);
 	chooseEle(bomb_cells, ele)
 }
 
 function chooseEle(bomb_cells, ele){
-	// console.log(bomb_cells, ele)
+	// // console.log(bomb_cells, ele)
 	if(bomb_cells.length == 0){
 		// setTimeout(randBomb, 300);
 		var a = ele.children;
@@ -325,7 +325,7 @@ function chooseEle(bomb_cells, ele){
 }
 
 function exploded(ele){
-	console.log("exploded", ele)
+	// console.log("exploded", ele)
 	ele.setAttribute("data","b");
 	ele.className += " exploded";
 
@@ -348,7 +348,7 @@ function textAnimation(ele, text){
 	var char = text;
 	if(!animation_skip)
 		char = text.slice(0, 1);
-	// console.log(char);
+	// // console.log(char);
 	var child = document.createTextNode(char);
 	ele.appendChild(child);
 	if(!animation_skip)
@@ -442,7 +442,7 @@ function submitSuccess(data){
 	setTimeout(closeSnackBar, 3000);
 	openSnackBar(data.status);
 	if(data.status == "CP"){
-		console.log(data)
+		// console.log(data)
 		setTimeout(()=>{
 			newPeice = data.index;
 			openPuzzle(data.puzzle, data.TrialsLeft)
@@ -458,11 +458,11 @@ function submitFaliure(data){
 }
 
 function openSnackBar(templateName, autoFade=false){
-	console.log(templateName);
-	console.log($('#snackbar'), $('#snackbar')[0] ,$('#snackbar')[0].className)
+	// console.log(templateName);
+	// console.log($('#snackbar'), $('#snackbar')[0] ,$('#snackbar')[0].className)
 	$('#snackbar').html(templates[templateName].html);
 	$('#snackbar')[0].className = (templates[templateName].class);
-	console.log($('#snackbar'), $('#snackbar')[0] ,$('#snackbar')[0].className)
+	// console.log($('#snackbar'), $('#snackbar')[0] ,$('#snackbar')[0].className)
 	$('#snackbar').fadeIn();
 
 	if(autoFade){
@@ -518,7 +518,7 @@ $(".helpPuzzle").click(()=>{
 })
 
 function successLogOut(){
-	console.log("Success Logout")
+	// console.log("Success Logout")
 	$("#game-over2").fadeIn();
 	setTimeout(function(){
 		window.location.href = "/main/logout";

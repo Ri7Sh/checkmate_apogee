@@ -39,7 +39,7 @@ peiceList: Array<Peice>
 
 
 @function log
-@params (same as console.log params)
+@params (same as // console.log params)
 
 
 @function debug
@@ -67,7 +67,7 @@ Game.prototype.start = function(){
 	})
 
 	this.grid.cells.forEach((cell, index)=>{
-		// console.log(text[index]);
+		// // console.log(text[index]);
 		cell.cell.innerHTML = text[index];
 	})
 }
@@ -95,7 +95,7 @@ Game.prototype.snapPiece = function(piece){
 	if(this.grid.isInsideTable(piece.rect())){
 		this.grid.snapToGrid(piece);
 	}else{
-		// console.log(piece)
+		// // console.log(piece)
 		piece.setBack();
 		// this.grid.hightlightGridBlock(piece.rect());
 	}
@@ -227,7 +227,7 @@ Piece.prototype.highlight = function(){
 
 Piece.prototype.removeCell = function(){
 	if(this.cell){
-		// console.log(this.cell)
+		// // console.log(this.cell)
 		this.cell.removePiece();
 	}
 	this.cell = null;
@@ -289,7 +289,7 @@ function Grid(table, cells, config={rows:3, cols:3}){
 Grid.prototype.addPiece = function(piece, cell){
 	this.log(piece, cell, this);
 	if(cell.isFree()){
-		// console.log("is Free ->", cell.isFree())
+		// // console.log("is Free ->", cell.isFree())
 		piece.setCell(cell);
 		cell.setPiece(piece);
 	}else{
@@ -405,10 +405,10 @@ Cell.prototype.rect = function(){
 }
 
 Cell.prototype.setPiece = function(piece){
-	// console.log('setPiece', piece)
+	// // console.log('setPiece', piece)
 	// this.cell.style.backgroundColor = "#0ff";
 	this.piece = piece;
-	// console.log(this, this.isFree())
+	// // console.log(this, this.isFree())
 }
 
 Cell.prototype.getPieceIndex = function(){
@@ -437,7 +437,7 @@ Cell.prototype.highlight = function(piece){
 }
 Cell.prototype.setRed = function(peice){
 	this.cell.className += " red";
-	console.log(this.cell.className)
+	// console.log(this.cell.className)
 	setTimeout(()=>{
 		this.cell.className = this.cell.className.replace(' red', '');
 	}, 4000)
@@ -456,8 +456,8 @@ services = {};
 
 services.getAbsolutePosition = function(eleParent, pageOffsets){	
 	var [pageLeft, pageTop] = pageOffsets;
-	// console.log(pageOffsets)
-	// console.log(pageOffsets, window.scrollX, window.scrollY)
+	// // console.log(pageOffsets)
+	// // console.log(pageOffsets, window.scrollX, window.scrollY)
 	var parentRect = eleParent.getBoundingClientRect();
 	
 	return [pageLeft - parentRect.x + window.scrollX, pageTop - parentRect.y + window.scrollY]
@@ -472,7 +472,7 @@ services.getPieceDefaultPosition = function(eleParent, index){
 	var capacity = Math.floor((containerRect.width - 2*padding + spacing)/(PIECE_WIDTH + spacing));
 	var left = (index%capacity)*(PIECE_WIDTH + spacing) + padding;
 	var top = Math.floor(index/capacity)*(PIECE_HEIGHT + spacing) + padding;
-	console.log(index, capacity, index%capacity, Math.floor(index/capacity))
+	// console.log(index, capacity, index%capacity, Math.floor(index/capacity))
 	return services.getAbsolutePosition(eleParent, [left + containerRect.left, top + containerRect.top]);
 }
 
@@ -524,7 +524,7 @@ for(var i = 0; i< ROWS; i++){
 		var theta = (i*Math.PI/2 + (k-1)*Math.PI/6);
 		var x = RADIUS*Math.sin(theta);
 		var y = - RADIUS*Math.cos(theta);
-		// console.log(theta/Math.PI)
+		// // console.log(theta/Math.PI)
 		cell.style.transform = "translateX(" + x + "px) translateY(" + y +"px)";
 		// tr.appendChild(cell);
 		tableEle.appendChild(cell);
@@ -583,7 +583,7 @@ Start ^_^ (yay!)
 
 
 function openPuzzle(str=null, trialsLeft=null){
-	// console.log($(".piece"))
+	// // console.log($(".piece"))
 	$(".piece").remove();
 	$('.highlighted').removeClass('highlighted');
 	$('#puzzle').fadeIn();
@@ -597,10 +597,10 @@ function openPuzzle(str=null, trialsLeft=null){
 }
 
 function initPuzzle(str, tLeft){
-	console.log(str, tLeft)
+	// console.log(str, tLeft)
 	$('.dots').empty()
 	var dots = (new Array(tLeft)).fill(0).map(e=>{	
-		console.log(e)
+		// console.log(e)
 		var dot = document.createElement('div');
 		dot.className = "dot";
 		
@@ -630,7 +630,7 @@ function initPuzzle(str, tLeft){
 	})
 	board.appendChild(scene);
 	setupConfig();
-	console.log("newPeice", newPeice)
+	// console.log("newPeice", newPeice)
 	if(newPeice != null){
 		glowPiece(newPeice);
 		newPeice = null;
@@ -649,7 +649,7 @@ function initPuzzle(str, tLeft){
 		}, 2000)
 		var boardSequence = game.getSequence();
 		var string = encodeSequence(boardSequence);
-		console.log(string , ' @ ', "/main/" + e.target.getAttribute("data-url"))
+		// console.log(string , ' @ ', "/main/" + e.target.getAttribute("data-url"))
 		
 		var csrf_token = getCSRFToken();
 		$.ajax({
@@ -662,10 +662,10 @@ function initPuzzle(str, tLeft){
 				"X-CSRFToken": csrf_token
 			},
 			success: function(data){
-				console.log("*****************", data);
+				// console.log("*****************", data);
 				if(data.message){
 					openSnackBar(data.message, true);
-					console.log(data.message, data.message == "puzzleSubmission3")
+					// console.log(data.message, data.message == "puzzleSubmission3")
 					if(data.message == "puzzleSubmission3"){
 						successLogOut();
 					}
@@ -677,10 +677,10 @@ function initPuzzle(str, tLeft){
 });
 
 function encodeSequence(seq){
-	console.log(seq);
+	// console.log(seq);
 	var obj = {};
 	seq.forEach((el, i)=>{
-		console.log(el)
+		// console.log(el)
 		if(el != null){
 
 			obj[el]=(i).toString(16);
@@ -691,7 +691,7 @@ function encodeSequence(seq){
 		if(obj[i]) str += obj[i];
 		else str+="n";
 	}
-console.log(str);
+// console.log(str);
 	return str;
 }
 
@@ -724,12 +724,12 @@ function closePuzzle(){
 
 
 function getString(callback){
-	console.log('get puzzle from main/puzzle')
+	// console.log('get puzzle from main/puzzle')
 	$.ajax({
 		"method": "GET",
 		"url": '/main/puzzle/',
 		success: function(data){
-			console.log("puzzle data =>", data)
+			// console.log("puzzle data =>", data)
 			callback(data.puzzle, data.TrialLeft);
 		}
 	})
@@ -738,7 +738,7 @@ function getString(callback){
 // openPuzzle();
 
 function glowPiece(i){
-	console.log("glow",i,  pieceList[i].ele)
+	// console.log("glow",i,  pieceList[i].ele)
 	$(pieceList[i].ele).addClass('glowPiece');
 	setTimeout(function(){
 		$(pieceList[i].ele).removeClass('glowPiece');

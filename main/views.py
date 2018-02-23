@@ -50,7 +50,7 @@ def timer(request):
 	if request.user.is_authenticated():
 		request.user.time = 7200-(timezone.now()-request.user.regTime).total_seconds()
 
-		print(request.user.time)
+			# print(request.user.time)
 		request.user.save()
 		return request.user.time
 # def Status(request):
@@ -79,7 +79,7 @@ def user_login(request):
 		if user is not None:
 			if user.is_active:
 				login(request,user)
-				print(request.user.mineno)
+				# print(request.user.mineno)
 				if(timer(request)<0 or user.TrialLeft == 0 ):
 					state = "Time Over"
 					logout(request)
@@ -90,8 +90,8 @@ def user_login(request):
 			else:
 				state = "Your account is not active, please contact the site admin."
 				return render(request,'login.html', { 'state':state })
-			# print(request.user.mineno)
-			# print(request.user.mines)
+			# # print(request.user.mineno)
+			# # print(request.user.mines)
 		else:
 				state = "Your username and/or password were incorrect."
 				return render(request,'login.html', {'state':state})
@@ -146,7 +146,7 @@ def minesweeper(request):
 	
 	#if(request.user.quesDone>=20):
 	#	return HttpResponseRedirect('puzzle.html')
-	#print(request.user.User)
+	## print(request.user.User)
 	if(timer(request)<0):
 		logout(request)
 		return redirect('/')
@@ -166,26 +166,26 @@ def reveal1(request):
 		cords= dt['cords']
 		x = int(cords[1])
 		y = int(cords[0])
-		print(request.user.mineno)
-		print(request.user.mines)
+		# print(request.user.mineno)
+		# print(request.user.mines)
 
 		if(timer(request)<0):
 			logout(request)
 			return redirect('/')
 	
 
-		#print(request.user.Puzz)
+		## print(request.user.Puzz)
 		reveal(request,x,y,request.user.mines)
 		user= request.user
 		if user.currentQs != -1:
-				print(user.score)
-				print(user.currentQs)
-				print("0 or not 0")
+				# print(user.score)
+				# print(user.currentQs)
+				# print("0 or not 0")
 				if user.correctAns[user.currentQs]=='0':
-					#print(user.correctAns)
+					## print(user.correctAns)
 					qlist=Question.objects.get(questionno=user.currentQs)
 					qs = qlist.question
-					# print(qlist.solution)
+					# # print(qlist.solution)
 					return JsonResponse({'user':request.user.username,'field':user.fieldViewed,'qsObject':qs,'q': user.currentQs,'score':user.score,'mines':user.minesLeft,'quesTried':request.user.quesTry,'time':request.user.time})
 			#frontend needs to check of qlist contains an qs object or not. qlist is a queryset
 		return JsonResponse({'user':request.user.username, 'field':user.fieldViewed, 'qsObject':'','q': user.currentQs,'score':user.score,'mines':user.minesLeft,'quesTried':request.user.quesTry,'time':request.user.time})
@@ -236,10 +236,10 @@ def reveal(request,x,y,mines):
 			elif(mines[x*12+y] == '9'):
 				request.user.score-=10
 				request.user.minesLeft-=1
-				# print(request.user.score)
-				# print(request.user.fieldViewed)
+				# # print(request.user.score)
+				# # print(request.user.fieldViewed)
 			request.user.fieldViewed = replacindex(request.user.fieldViewed,x*12+y,request.user.mines[x*12+y])
-		# print(request.user.fieldViewed)
+		# # print(request.user.fieldViewed)
 			request.user.save()
 		
 			#frontend needs to check of qlist contains an qs object or not. qlist is a queryset
@@ -266,14 +266,14 @@ def puzzStat(request):
 	
 	if request.POST:
 		dt= json.loads(request.body.decode('utf-8'))["string"]
-		print(dt)
+		# print(dt)
 		if(timer(request)<0):
-			print("over")
+			# print("over")
 			return JsonResponse({'user':request.user.username, 'field':user.fieldViewed, 'qsObject':'','q': user.currentQs,'score':user.score,'mines':user.minesLeft,'time':0})
 
 
 		for i in range(0,12):
-			#print(i, dt[i] != 'n', )
+			## print(i, dt[i] != 'n', )
 			if(request.user.Puzz[i]!='h'):
 				
 				request.user.Puzz=replacindex(request.user.Puzz,i,dt[i])
@@ -300,7 +300,7 @@ def check(request):#to check the answer of puzzle
 	if(timer(request)<0):
 		logout(request)
 		return redirect('/')
-		# print("over")
+		# # print("over")
 		# return JsonResponse({'user':request.user.username, 'field':user.fieldViewed, 'qsObject':'','q': user.currentQs,'score':user.score,'mines':user.minesLeft,'time':0})
 
 
@@ -321,7 +321,7 @@ def check(request):#to check the answer of puzzle
 			pc = PuzzlePc.objects.get(idno = i)
 			n = int(request.user.Puzz[i], 16)
 			k = int(pc.pos)
-			print(n, k, n==k)
+			# print(n, k, n==k)
 			#if (request.user.Puzz[i] == 'a' and pc.pos == 10):
 			#	truth_value+=1
 			#elif (request.user.Puzz[i] == 'b' and pc.pos == 11):
@@ -330,7 +330,7 @@ def check(request):#to check the answer of puzzle
 			#	truth_value+=1
 			if (n == k):
 				truth_value+=1
-		print(truth_value)
+		# print(truth_value)
 		if truth_value==12:
 			status = "submit"
 			message="puzzleSubmission3"
@@ -383,7 +383,7 @@ def checkAnswer(request):
 	
 	if request.method == 'POST':
 		if(timer(request)<0):
-			print("over")
+			# print("over")
 			return JsonResponse({'user':request.user.username, 'field':user.fieldViewed, 'qsObject':'','q': user.currentQs,'score':user.score,'mines':user.minesLeft,'time':0})
 
 
@@ -393,21 +393,21 @@ def checkAnswer(request):
 		qsno=request.user.currentQs
 		request.user.correctAns = replacindex(request.user.correctAns,qsno,'1')
 		qs=Question.objects.get(questionno=qsno)
-		#print(answer)
-		#print("asd")
+		## print(answer)
+		## print("asd")
 		if qs.solution==answer:
 			request.user.correctAns = replacindex(request.user.correctAns,qsno,'2')
 			request.user.score+=50
-			print("s")
+			# print("s")
 			if(request.user.puzzlePc<11):
-				print("inside if")
-				print(request.user.puzzlePc)
+				# print("inside if")
+				# print(request.user.puzzlePc)
 				request.user.puzzlePc+=1
-				print(request.user.Puzz)
+				# print(request.user.Puzz)
 				request.user.Puzz = replacindex(request.user.Puzz,request.user.puzzlePc,'n')
 				request.user.save()
-				print("-->")
-				print(request.user.puzzlePc)
+				# print("-->")
+				# print(request.user.puzzlePc)
 				return JsonResponse({'user':request.user.username, 'score':request.user.score,'puzzle':request.user.Puzz,'index':request.user.puzzlePc,'status':"CP",'quesDone':request.user.quesTry,'TrialLeft' : request.user.TrialLeft,'time':request.user.time})
 
 			#Pc=PuzzlePc.objects.get(id=request.user.puzzlePc)
@@ -416,8 +416,8 @@ def checkAnswer(request):
 		# 	#return JsonResponse({'score':request.user.score,'puzzleOb':pc,'status':"correct",'quesDone':request.user.quesTry})
 		# 	return JsonResponse({'score':request.user.score,'puzzle':request.user.Puzz,'status':"correct",'quesDone':request.user.quesTry})
 			request.user.save()
-			print(request.user.Puzz)
-			print("okay !")
+			# print(request.user.Puzz)
+			# print("okay !")
 
 			return JsonResponse({'user':request.user.username, 'score':request.user.score,'puzzle':request.user.Puzz,'index':request.user.puzzlePc,'status':"C",'quesDone':request.user.quesTry,'TrialLeft' : request.user.TrialLeft,'time':request.user.time})
 
