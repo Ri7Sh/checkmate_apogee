@@ -1,7 +1,7 @@
 adium-theme-ubuntu==0.3.4
 Django==1.11.29
 numpy==1.13.3
-opencv-python==3.4.0.12
+opencv-python==3.4.7.28
 pygobject==3.20.0
 pytz==2017.3
 unity-lens-photos==1.0
