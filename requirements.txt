@@ -1,6 +1,6 @@
 adium-theme-ubuntu==0.3.4
 Django==1.11.29
-numpy==1.13.3
+numpy==1.22.0
 opencv-python==3.4.0.12
 pygobject==3.20.0
 pytz==2017.3
